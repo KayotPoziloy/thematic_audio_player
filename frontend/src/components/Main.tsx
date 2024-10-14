@@ -6,11 +6,7 @@ export default function Main() {
 
     const startAudio = async () => {
         try {
-<<<<<<< HEAD
-            const response = await fetch("http://localhost:3000/audio");
-=======
             const response = await fetch("http://localhost:5000/audio");
->>>>>>> 2cd988866308840d7969b2905d9a83c66ff86966
             if (!response.ok) {
                 throw new Error("Error");
             }
