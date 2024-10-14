@@ -3,7 +3,11 @@ import cors from "cors";
 import path from "path";
 
 const app = express();
+<<<<<<< HEAD
 const PORT = 9330;
+=======
+const PORT = 5000;
+>>>>>>> 2cd988866308840d7969b2905d9a83c66ff86966
 
 const test = 0; //коснтанта для тестинга pr
 
