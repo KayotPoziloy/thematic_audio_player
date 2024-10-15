@@ -7,10 +7,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        working-directory: frontend
-        run: npm ci
-
       - name: Install Frontend Dependencies
         working-directory: frontend
         run: npm ci
