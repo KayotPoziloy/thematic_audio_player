@@ -27,10 +27,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install Dependencies (Frontend)
+        working-directory: frontend
+        run: npm install
 
       - name: Run ESLint
+        working-directory: frontend
         env:
           SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: npx eslint .
