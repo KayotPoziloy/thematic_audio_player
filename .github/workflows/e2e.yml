@@ -11,12 +11,12 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Start Web Server
-        working-directory: frontend
-        run: npm start
-
+#      - name: Start Web Server
+#        working-directory: frontend
+#        run: npm start
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          start: npx ts-node backend/src/index.ts
+          working-directory: frontend
+          start: npm start
