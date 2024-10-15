@@ -2,25 +2,21 @@ name: End-to-end tests
 on: push
 jobs:
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
       - name: Install Dependencies
         working-directory: frontend
-        run: npm ci # Uses package-lock.json for a clean install
+        run: npm ci
 
       - name: Start Web Server
         working-directory: frontend
-        run: npm start &
-        # The '&' runs the server in the background
+        run: npm start
 
-      - name: Wait for Server to be Ready
-        working-directory: frontend
-        run: npx wait-on http://localhost:3000
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        with:
+          start: npx ts-node backend/src/index.ts
