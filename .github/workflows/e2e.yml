@@ -11,9 +11,13 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-#      - name: Start Web Server
-#        working-directory: frontend
-#        run: npm start
+      - name: Install Frontend Dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Install Backend Dependencies
+        working-directory: backend
+        run: npm ci
 
       - name: Start Backend
         run: npx ts-node backend/src/index.ts &
