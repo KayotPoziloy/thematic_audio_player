@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 
 export default function Main() {
     const audio = useRef<HTMLAudioElement | null>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+    // const [isPlaying, setIsPlaying] = useState(false);
 
     const startAudio = async () => {
         try {
@@ -17,7 +17,7 @@ export default function Main() {
             if (audio.current) {
                 audio.current.src = audioUrl;
                 audio.current.play();
-                setIsPlaying(true);
+                // setIsPlaying(true);
             }
         } catch (error) {
             console.error("Error fetching audio:", error);
@@ -27,7 +27,7 @@ export default function Main() {
     const stopAudio = () => {
         if (audio.current) {
             audio.current.pause();
-            setIsPlaying(false);
+            // setIsPlaying(false);
         }
     };
 
