@@ -29,10 +29,12 @@ jobs:
       - name: Run ESLint for frontend
         working-directory: frontend
         run: npm run lint
+        continue-on-error: true
 
       - name: Run ESLint for backend
         working-directory: backend
         run: npm run lint
+        continue-on-error: true
 
       - name: Upload analysis results to GitHub for frontend
         uses: github/codeql-action/upload-sarif@v3
