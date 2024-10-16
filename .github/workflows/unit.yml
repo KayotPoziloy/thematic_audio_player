@@ -14,3 +14,7 @@ jobs:
       - name: Start Unit tests
         working-directory: frontend
         run: npm test
+
+      - name: Start Unit tests
+        working-directory: frontend
+        run: npm test:coverage
