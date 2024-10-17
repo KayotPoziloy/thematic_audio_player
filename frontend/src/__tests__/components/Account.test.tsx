@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Account from '../../components/Account';
-import { text } from 'stream/consumers';
 
 describe("/components/auth/Account.test.tsx", () => {
   ['Настройки'].forEach(text => {

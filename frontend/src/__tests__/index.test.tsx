@@ -1,8 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "../App";
-import { createRoot } from "react-dom/client";
-
 const mockRender = jest.fn();
 jest.mock('react-dom/client', () => ({
     createRoot: jest.fn(() => ({
@@ -15,6 +10,7 @@ describe("/index.test.tsx", () => {
     const div = document.createElement("div");
     div.id = "root";
     document.body.appendChild(div);
+    // eslint-disable-next-line
     require("../index.tsx");
     expect(mockRender).toHaveBeenCalled();
   });

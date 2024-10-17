@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Main from '../../components/Main';
-import { text } from 'stream/consumers';
 import userEvent from '@testing-library/user-event'
 
 
@@ -42,9 +41,6 @@ describe("/components/Main.test.tsx", () => {
   });
 
   test('Start try',  () => {
-    const mockPlay = jest
-      .spyOn(window.HTMLMediaElement.prototype, 'play')
-      .mockImplementation(() => { });
     const mockAudioBlob = new Blob(['audio data'], { type: 'audio/mpeg' });
 
     global.fetch = jest.fn(() =>
