@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 
 export default function Main() {
     const audio = useRef<HTMLAudioElement | null>(null);
-    // const [isPlaying, setIsPlaying] = useState(false);
 
     const startAudio = async () => {
         try {
@@ -16,6 +15,7 @@ export default function Main() {
 
             audio.current!.src = audioUrl;
             audio.current!.play();
+
         } catch (error) {
             console.error("Error fetching audio:", error);
         }
