@@ -1,0 +1,20 @@
+name: Unit tests
+on: [pull_request]
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Frontend Dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Start Unit tests
+        working-directory: frontend
+        run: npm test
+
+      - name: Start test coverage
+        working-directory: frontend
+        run: npm run test:coverage
