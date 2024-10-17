@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
-import { text } from 'stream/consumers';
 
 describe("/App.test.tsx", () => {
   ['Избранное', 'Главная', 'Вход', 'Регистрация', 'Аккаунт', 'footer'].forEach(text => {

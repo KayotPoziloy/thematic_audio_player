@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import SignIn from '../../../components/auth/SignIn';
-import { text } from 'stream/consumers';
 
 describe("/components/auth/SignIn.test.tsx", () => {
   ['Вход', 'Введите имя', 'Введите пароль', 'Войти'].forEach(text => {
