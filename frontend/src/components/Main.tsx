@@ -14,21 +14,15 @@ export default function Main() {
             const audioBlob = await response.blob();
             const audioUrl = URL.createObjectURL(audioBlob);
 
-            if (audio.current) {
-                audio.current.src = audioUrl;
-                audio.current.play();
-                // setIsPlaying(true);
-            }
+            audio.current.src = audioUrl;
+            audio.current.play();
         } catch (error) {
             console.error("Error fetching audio:", error);
         }
     };
 
     const stopAudio = () => {
-        if (audio.current) {
-            audio.current.pause();
-            // setIsPlaying(false);
-        }
+        audio.current.pause();
     };
 
     return (
