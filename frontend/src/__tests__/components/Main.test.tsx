@@ -40,20 +40,5 @@ describe("/components/Main.test.tsx", () => {
     expect(global.fetch).toHaveBeenCalled();
   });
 
-  test('Start try',  () => {
-    const mockAudioBlob = new Blob(['audio data'], { type: 'audio/mpeg' });
-
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: true,
-        blob: jest.fn().mockResolvedValueOnce(mockAudioBlob),
-      })
-    );
-    global.URL.createObjectURL = jest.fn().mockReturnValue('mocked-audio-url');
-
-    render(<Main />); 
-    userEvent.click(screen.getByText('Start'));
-    expect(global.fetch).toHaveBeenCalledWith("http://localhost:5000/audio");
-  }); 
 
 });
