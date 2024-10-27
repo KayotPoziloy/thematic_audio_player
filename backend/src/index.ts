@@ -1,18 +1,25 @@
-import express from "express";
-import cors from "cors";
-import path from "path";
+const express = require("express");
+const cors = require("cors");
+const userRoutes = require("./routes/user.ts");
+const musicRoutes = require("./routes/music.ts");
+const cookieParser = require("cookie-parser")
+
 
 const app = express();
-const PORT = 5000;
-
+app.use(cookieParser());
 app.use(cors());
+app.use(express.json());
 
-app.get("/audio", (req, res) => {
-    const audio = path.join(__dirname, "audio.mp3");
-    res.sendFile(audio);
-});
+app.use("/api/user", userRoutes);
+app.use("/api/music", musicRoutes);
 
 
+if (process.argv.includes("--initdb")) {
+    const { fillDatabase, initializeDatabase } = require("./initdb.ts");
+    initializeDatabase(true).then(x => fillDatabase());
+}
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Старт сервера на порту http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
