@@ -4,6 +4,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint ./src",
+    "start:ci": "cd src && node index.js --initdb",
     "start": "cd src & node index.js --initdb",
     "start:noinit": "cd src & node index.js"
   },
