@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
     "lint": "eslint ./src",
-    "build": "tsc",
-    "start": "cd src & node index.ts --initdb"
+    "start": "cd src & node index.js --initdb",
+    "start:noinit": "cd src & node index.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.12.0",
@@ -21,11 +21,7 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.37.1",
-    "globals": "^15.11.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.6.3",
-    "typescript-eslint": "^8.9.0"
+    "globals": "^15.11.0"
   },
   "private": true,
   "keywords": [],
@@ -40,6 +36,7 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.0",
     "dotenv": "^16.4.5",
-    "cookie-parser": "^1.4.7"
+    "cookie-parser": "^1.4.7",
+    "express-openapi": "12.1.3"
   }
 }
