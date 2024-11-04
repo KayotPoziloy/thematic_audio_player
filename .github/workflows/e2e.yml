@@ -29,7 +29,8 @@ jobs:
         run: npm ci
 
       - name: Start Backend
-        run: npx ts-node backend/src/index.ts &
+        working-directory: backend
+        run: npm start &
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
