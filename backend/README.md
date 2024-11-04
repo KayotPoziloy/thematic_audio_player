@@ -1,17 +1,17 @@
-## Установка и запуск
+## Installation and launch
 ```bash
 npm install
 npm start
 ```
 
-без инициализации бд
+without initializing the database
 
 ```bash
 npm install
-cd src & node index.js
+npm run start:noinit
 ```
 
-## config.json
+## src/music/config.json
 ```json
 [
   {
@@ -39,27 +39,5 @@ cd src & node index.js
 ]
 ```
 
-## API
-`/api/user/signin?login=$1&password=$2` - возвращает и записывает в cookie токен при успешной авторизации с логином `$1` и паролем `$2`
-
-`/api/user/signup?login=$1&password=$2&name=$3` - добавляет нового пользователя в бд пользователя с логином `$1`, паролем `$2` и именем `$3`
-
-`/api/user/logout` - удаляет токен из cookie
-
-`/api/user/getinfo` - возвращает информацию об авторизированном пользователе
-
-<br>
-
-`/api/music/getplaylists` - возвращает список всех плейлистов (игр)
-
-`/api/music/getmusics?id=$1` - возвращает список всех треков по id плейлиста
-
-`/api/music/setlike?id=$1` - ставит лайк по id трека
-
-`/api/music/removelike?id=$1` - убирает лайк по id трека
-
-`/api/music/getliked` - возвращает список всех треков по id
-
-`/api/music/m/__filename__` - endpoint для скачивания музыки по названию файла
-
-Все запросы возвращают json `{ error: {error_code: 000, msg: ""} }` или `{ error: null, ... }`
+## OpenAPI
+OpenAPI json available at `http://localhost:PORT/api` and `backend/src/api.html`

@@ -21,8 +21,17 @@ jobs:
       - name: Install Frontend dependencies
         working-directory: frontend
         run: npm ci
+        
+      - name: Install Backend dependencies
+        working-directory: backend
+        run: npm ci
 
       - name: Run ESLint for frontend
         working-directory: frontend
+        run: npm run lint
+#        continue-on-error: true
+
+      - name: Run ESLint for backend
+        working-directory: backend
         run: npm run lint
 #        continue-on-error: true

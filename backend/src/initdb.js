@@ -1,12 +1,10 @@
-const pool = require("./db.ts");
+const pool = require("./db.js");
 
-async function initializeDatabase(drop) {
+async function initializeDatabase() {
     try {
-        if (drop) {
-            await pool.query('DROP TABLE IF EXISTS users, music, likes, playlist;');
-            console.log("Drop database successfully.");
-        }
-
+        await pool.query('DROP TABLE IF EXISTS users, music, likes, playlist;');
+        console.log("Drop database successfully.");
+        
         for (let q of [
             `CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,
@@ -44,7 +42,7 @@ async function initializeDatabase(drop) {
     }
 }
 async function fillDatabase() {
-    await pool.query("DELETE FROM likes"); // TODO SAVE likes
+    await pool.query("DELETE FROM likes");
     await pool.query("DELETE FROM music");
     await pool.query("DELETE FROM playlist");
     const fs = require('fs');
