@@ -3,7 +3,7 @@ const fs = require('fs');
 
 module.exports = function () {
     let operations = {
-        GET: [authenticateToken, GET]
+        GET
     };
 
     async function GET(req, res) {
