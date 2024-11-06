@@ -53,7 +53,7 @@ describe("/components/Main.test.tsx", () => {
 
     render(<Main />); 
     userEvent.click(screen.getByText('Start'));
-    expect(global.fetch).toHaveBeenCalledWith("http://localhost:5000/audio");
+    expect(global.fetch).toHaveBeenCalledWith("http://localhost:5000/api/music/m/audio.mp3");
   }); 
 
 });
