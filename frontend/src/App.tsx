@@ -4,16 +4,18 @@ import {BrowserRouter as Router} from "react-router-dom";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
+import {DropdownMenu} from "./components/DropdownMenu";
 
 function App() {
   return (
     <>
         <Router>
-            <div className="d-flex flex-column vh-100">
-                <Header/>
-                <Content/>
-                <Footer/>
-            </div>
+          <div className="d-flex flex-column vh-100">
+            <Header/>
+            <DropdownMenu/>
+            <Content/>
+            <Footer/>
+          </div>
         </Router>
     </>
   );
