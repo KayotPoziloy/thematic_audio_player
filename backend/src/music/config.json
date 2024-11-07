@@ -1,0 +1,24 @@
+[
+  {
+    "name": "game 1",
+
+    "tag": {
+      "example": "This contains the information on which the playlist interface should be based",
+      "background": "image...",
+      "colors": [ "#123123", "#333333", "#321321" ]
+    },
+
+    "music": [
+      {
+        "name": "Седая ночь",
+        "author": "Юрий Шатунов",
+        "filename": "audio.mp3",
+        "tag": {
+          "data": "...",
+          "background": "image...",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      }
+    ]
+  }
+]

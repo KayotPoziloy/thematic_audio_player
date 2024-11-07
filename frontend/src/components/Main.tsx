@@ -5,7 +5,7 @@ export default function Main() {
 
     const startAudio = async () => {
         try {
-            const response = await fetch("http://localhost:5000/audio");
+            const response = await fetch("http://localhost:5000/api/music/m/audio.mp3");
             if (!response.ok) {
                 throw new Error("Error");
             }
