@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DropdownMenu } from "./DropdownMenu";
 
 export default function Header() {
     return (
@@ -9,7 +8,6 @@ export default function Header() {
             <nav className="d-flex flex-column flex-md-row">
                 <Link to="/account" className="nav-link text-white">Аккаунт</Link>
             </nav>
-            <DropdownMenu/>
         </header>
     );
 }
