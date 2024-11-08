@@ -4,39 +4,9 @@ import "./Dropdown.css"
 export function DropdownMenu() {
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
-    console.log("open")
-    setOpen(true);
-  };
+  const handleOpen = () => setOpen(true);
 
-  const handleClose = () => {
-    console.log("closed")
-    setOpen(false);
-  };
-
-  const [open1, setOpen1] = useState(false);
-
-  const handleOpen1 = () => {
-    console.log("open")
-    setOpen(true);
-  };
-
-  const handleClose1 = () => {
-    console.log("closed")
-    setOpen(false);
-  };
-
-  const handleMenuOne = () => {
-    console.log("1")
-  };
-
-  const handleMenuTwo = () => {
-    console.log("2")
-  };
-
-  const handleMenuThree = () => {
-    console.log("3")
-  };
+  const handleClose = () => setOpen(false);
 
   return (
     <Dropdown
@@ -49,9 +19,9 @@ export function DropdownMenu() {
         </div>
       }
       menu={[
-        <div onClick={handleMenuOne}>Игры</div>,
-        <div onClick={handleMenuTwo}>Сериалы</div>,
-        <div onClick={handleMenuThree}>Фильмы</div>,
+        { label: "Игры", submenu: ["Gta 5", "Nfs"] },
+        { label: "Фильмы", submenu: ["Тарантино", "Гай Ричи"] },
+        { label: "Сериалы", submenu: ["Сопрано", "Во все тяжкие"] },
       ]}
     />
   );
@@ -62,10 +32,17 @@ interface DropdownProps {
   handleOpen: () => void;
   handleClose: () => void;
   trigger: React.ReactNode;
-  menu: React.ReactNode[];
+  menu: { label: string; submenu: string[] }[];
 }
 
-const Dropdown:React.FC<DropdownProps> = ({ open, handleOpen, handleClose, trigger, menu }) => {
+const Dropdown:React.FC<DropdownProps> =
+  ({
+     open,
+     handleOpen,
+     handleClose,
+     trigger,
+     menu
+  }) => {
   return (
     <div
       className="dropdown"
@@ -73,15 +50,44 @@ const Dropdown:React.FC<DropdownProps> = ({ open, handleOpen, handleClose, trigg
       onMouseLeave={handleClose}
     >
       {trigger}
-      {open ? (
+      {open && (
         <ul className="menu">
-          {menu.map((menuItem, index) => (
-            <li key={index} className="menu-item">
-              {menuItem}
-            </li>
+          {menu.map((item, index) => (
+            <DropdownItem key={index} label={item.label} submenu={item.submenu} />
           ))}
         </ul>
-      ) : null}
+      )}
     </div>
   );
 };
+
+interface DropdownItemProps {
+  label: string;
+  submenu: string[];
+}
+
+const DropdownItem: React.FC<DropdownItemProps> = ({ label, submenu }) => {
+  const [subOpen, setSubOpen] = useState(false);
+
+  const handleSubOpen = () => setSubOpen(true);
+  const handleSubClose = () => setSubOpen(false);
+
+  return (
+    <li
+      className="menu-item"
+      onMouseEnter={handleSubOpen}
+      onMouseLeave={handleSubClose}
+    >
+      <button>{label}</button>
+      {subOpen && (
+        <ul className="submenu">
+          {submenu.map((subItem, index) => (
+            <li key={index} className="submenu-item">
+              <button>{subItem}</button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  )
+}
