@@ -2,29 +2,56 @@ import React, { useState } from "react";
 import "./Dropdown.css"
 
 export function DropdownMenu() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open);
+    console.log("open")
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    console.log("closed")
+    setOpen(false);
+  };
+
+  const [open1, setOpen1] = useState(false);
+
+  const handleOpen1 = () => {
+    console.log("open")
+    setOpen(true);
+  };
+
+  const handleClose1 = () => {
+    console.log("closed")
+    setOpen(false);
   };
 
   const handleMenuOne = () => {
     console.log("1")
-    setOpen(false);
   };
 
   const handleMenuTwo = () => {
     console.log("2")
-    setOpen(false);
+  };
+
+  const handleMenuThree = () => {
+    console.log("3")
   };
 
   return (
     <Dropdown
       open={open}
-      trigger={<button onClick={handleOpen}>Dropdown</button>}
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      trigger={
+        <div>
+          Dropdown
+        </div>
+      }
       menu={[
-        <button onClick={handleMenuOne}>Menu 1</button>,
-        <button onClick={handleMenuTwo}>Menu 2</button>,
+        <div onClick={handleMenuOne}>Игры</div>,
+        <div onClick={handleMenuTwo}>Сериалы</div>,
+        <div onClick={handleMenuThree}>Фильмы</div>,
       ]}
     />
   );
@@ -32,18 +59,26 @@ export function DropdownMenu() {
 
 interface DropdownProps {
   open: boolean;
+  handleOpen: () => void;
+  handleClose: () => void;
   trigger: React.ReactNode;
   menu: React.ReactNode[];
 }
 
-const Dropdown:React.FC<DropdownProps> = ({ open, trigger, menu }) => {
+const Dropdown:React.FC<DropdownProps> = ({ open, handleOpen, handleClose, trigger, menu }) => {
   return (
-    <div className="dropdown">
+    <div
+      className="dropdown"
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleClose}
+    >
       {trigger}
       {open ? (
         <ul className="menu">
           {menu.map((menuItem, index) => (
-            <li key={index} className="menu-item">{menuItem}</li>
+            <li key={index} className="menu-item">
+              {menuItem}
+            </li>
           ))}
         </ul>
       ) : null}
