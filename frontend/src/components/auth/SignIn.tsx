@@ -32,11 +32,11 @@ export default function SignIn(){
 
                 <div className="form-floating">
                     <input type="text" className="form-control" id="username" name="username" placeholder="Username" value={login} onChange={(e)=> setLogin(e.target.value)}/>
-                    <label htmlFor="floatingInput">Введите почту</label>
+                    <label htmlFor="username">Введите почту</label>
                 </div>
                 <div className="form-floating">
                     <input type="password" className="form-control" id="password" name="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
-                    <label htmlFor="floatingPassword">Введите пароль</label>
+                    <label htmlFor="password">Введите пароль</label>
                 </div>
 
                 <button className="btn btn-primary w-100 py-2" type="submit">Войти</button>
