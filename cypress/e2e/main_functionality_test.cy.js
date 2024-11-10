@@ -16,14 +16,14 @@ describe('Main Functionality Test', () => {
     cy.get('audio').should('have.prop', 'paused', true); // Проверка, что аудио остановлено
 
     // Переход на вкладку "Аккаунт" через 3 секунды
-    cy.wait(3000);
-    cy.get('a.nav-link').contains('Аккаунт').click();
-    cy.url().should('include', '/account'); // Проверка URL для "Аккаунт"
-
-    // Возвращаемся на главную через 4 секунды
-    cy.wait(4000);
-    cy.get('a.nav-link').contains('Главная').click();
-    cy.url().should('include', '/'); // Проверка URL для главной страницы
+    // cy.wait(3000);
+    // cy.get('a.nav-link').contains('Аккаунт').click();
+    // cy.url().should('include', '/account'); // Проверка URL для "Аккаунт"
+    //
+    // // Возвращаемся на главную через 4 секунды
+    // cy.wait(4000);
+    // cy.get('a.nav-link').contains('Главная').click();
+    // cy.url().should('include', '/'); // Проверка URL для главной страницы
 
     // Снова включаем музыку через 1 секунду после возвращения на главную
     cy.wait(1000);

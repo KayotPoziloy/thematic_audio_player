@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from "react-redux";
-// @ts-ignore
+/**
+ * @ts-expect-error 'type'
+ */
 import {store} from "./redux/reducers";
 
 const root = ReactDOM.createRoot(

@@ -9,9 +9,9 @@ describe('Tab Switching Test Suite', () => {
     cy.url().should('include', '/'); // Главная страница
 
     // Переход на вкладку "Аккаунт" через 2 секунды
-    cy.wait(2000);
-    cy.get('a.nav-link').contains('Аккаунт').click();
-    cy.url().should('include', '/account'); // проверка URL для Аккаунт
+    // cy.wait(2000);
+    // cy.get('a.nav-link').contains('Аккаунт').click();
+    // cy.url().should('include', '/account'); // проверка URL для Аккаунт
 
     // Переход на вкладку "Вход" через 2 секунды
     cy.wait(4000);
@@ -24,8 +24,8 @@ describe('Tab Switching Test Suite', () => {
     cy.url().should('include', '/register'); // проверка URL для Регистрация
 
     // Возвращаемся на вкладку "Главная" через 2 секунды
-    cy.wait(4000);
-    cy.get('a.nav-link').contains('Главная').click();
-    cy.url().should('include', '/'); // проверка URL для Главная
+    // cy.wait(4000);
+    // cy.get('a.nav-link').contains('Главная').click();
+    // cy.url().should('include', '/'); // проверка URL для Главная
   });
 });

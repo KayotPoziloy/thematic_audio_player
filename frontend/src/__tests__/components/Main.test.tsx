@@ -30,7 +30,7 @@ describe("/components/Main.test.tsx", () => {
   });
   
   test('Start catch', () => {
-    // @ts-ignore
+    // @ts-expect-error 'type'
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: false,
@@ -44,7 +44,7 @@ describe("/components/Main.test.tsx", () => {
   test('Start try',  () => {
     const mockAudioBlob = new Blob(['audio data'], { type: 'audio/mpeg' });
 
-    // @ts-ignore
+    // @ts-expect-error 'type'
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,

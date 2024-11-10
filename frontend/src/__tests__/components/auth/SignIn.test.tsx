@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent} from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
 import SignIn from '../../../components/auth/SignIn';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
@@ -18,7 +18,7 @@ const renderWithState = (isAuth: boolean) => {
     user: userReducer,
   });
 
-  // @ts-ignore
+  // @ts-expect-error 'type'
   const mockStore = createStore(rootReducer, initialState);
 
   render(

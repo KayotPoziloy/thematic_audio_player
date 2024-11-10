@@ -24,7 +24,7 @@ export default function SignUp(){
         }
 
         setConfirmError("");
-        // @ts-ignore
+        // @ts-expect-error 'type'
         const request: string | null = await dispatch(signup(email, password, name, navigate));
 
         if (request && request.startsWith("Ошибка:")) {

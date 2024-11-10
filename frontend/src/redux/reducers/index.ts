@@ -7,7 +7,7 @@ const rootReducer = combineReducers({
     user: userReducer,
 });
 
-// @ts-ignore
+// @ts-expect-error 'type'
 export const store = createStore(
     rootReducer,
     applyMiddleware(thunk)

@@ -15,7 +15,7 @@ export default function SignIn(){
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // @ts-ignore
+        // @ts-expect-error 'type'
         const request: string | null = await dispatch(signin(login, password, navigate));
 
         if (request && request.startsWith("Ошибка:")) {
