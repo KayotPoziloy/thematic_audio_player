@@ -41,26 +41,26 @@ export default function SignUp(){
 
                 <div className="form-floating">
                     <input type="email" className="form-control" id="email" name="email"
-                           placeholder="Password" value={email} onChange={(e)=> setEmail(e.target.value)}/>
-                    <label htmlFor="floatingPassword">Введите почту</label>
+                           placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                    <label htmlFor="email">Введите почту</label>
                 </div>
 
                 <div className="form-floating">
                     <input type="password" className="form-control" id="password" name="password"
                            placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
-                    <label htmlFor="floatingPassword">Введите пароль</label>
+                    <label htmlFor="password">Введите пароль</label>
                 </div>
 
                 <div className="form-floating">
                     <input type="password" className="form-control" id="passwordConfirm" name="passwordConfirm"
                            placeholder="Password" value={passwordConfirm} onChange={(e)=> setPasswordConfirm(e.target.value)}/>
-                    <label htmlFor="floatingPassword">Повторите пароль</label>
+                    <label htmlFor="passwordConfirm">Повторите пароль</label>
                 </div>
 
                 <div className="form-floating">
                     <input type="text" className="form-control" id="name" name="name"
                            placeholder="name" value={name} onChange={(e)=> setName(e.target.value)}/>
-                    <label htmlFor="floatingInput">Введите имя пользователя</label>
+                    <label htmlFor="name">Введите имя пользователя</label>
                 </div>
 
                 <button className="btn btn-primary w-100 py-2" type="submit">Зарегистрироваться</button>
