@@ -7,7 +7,7 @@ import {Provider} from "react-redux";
 /**
  * @ts-expect-error 'type'
  */
-import {store} from "./redux/reducers";
+import store from "./redux/reducers/index";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

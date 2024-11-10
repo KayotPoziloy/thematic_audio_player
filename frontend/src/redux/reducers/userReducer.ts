@@ -1,48 +1,31 @@
-export const SET_USER = "SET_USER" as const;
-export const LOGOUT = "LOGOUT" as const;
-
-type SetUserAction = {
-    type: typeof SET_USER;
-    payload: string | null;
-};
-
-type LogoutAction = {
-    type: typeof LOGOUT;
-};
-
-export type UserAction = SetUserAction | LogoutAction;
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type UserState = {
     currentUser: string | null;
     isAuth: boolean;
 };
 
-const defaultState: UserState = {
+const initialState: UserState = {
     currentUser: null,
     isAuth: false,
 };
 
-export default function userReducer(state = defaultState, action: UserAction){
-    switch(action.type){
-        case SET_USER:
-            return {
-                ...state,
-                currentUser: action.payload,
-                isAuth:true
-            }
-        case LOGOUT:
-            return {
-                ...state,
-                currentUser: null,
-                isAuth: false
-            }
-        default:
-            return state;
-    }
-}
+const userSlice = createSlice({
+    name: 'user',
+    initialState,
+    reducers: {
+        setUser(state, action: PayloadAction<string | null>) {
+            state.currentUser = action.payload;
+            state.isAuth = true;
+        },
 
-export const setUser = (login: string | null): SetUserAction => ({
-    type: SET_USER,
-    payload: login,
+        logout(state) {
+            state.currentUser = null;
+            state.isAuth = false;
+        }
+    }
 });
-export const logout = () => ({type: LOGOUT})
+
+export const { setUser, logout } = userSlice.actions;
+
+export default userSlice.reducer;
