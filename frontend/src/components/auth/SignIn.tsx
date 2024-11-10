@@ -10,11 +10,19 @@ export default function SignIn(){
     const [password, setPassword] = useState('');
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
+    const [authError, setAuthError] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        dispatch(signin(login, password, navigate));
+        // @ts-ignore
+        const request: string | null = await dispatch(signin(login, password, navigate));
+
+        if (request && request.startsWith("Ошибка:")) {
+            setAuthError(request);
+        } else {
+            setAuthError("");
+        }
     };
 
     return (
@@ -32,6 +40,7 @@ export default function SignIn(){
                 </div>
 
                 <button className="btn btn-primary w-100 py-2" type="submit">Войти</button>
+                {authError && <div className="text-danger">{authError}</div>}
             </form>
         </>
     );

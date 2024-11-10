@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {logout} from "../redux/reducers/userReducer";
+import {API_URL} from "../config";
+import axios from "axios";
 
 export default function Header() {
     const dispatch = useDispatch();
@@ -10,15 +12,25 @@ export default function Header() {
     const isAuth = useSelector((state: any) => state.user.isAuth);
     const currentUser = useSelector((state: any) => state.user.currentUser);
 
-    const handleLogout = () => {
-        dispatch(logout());
-        navigate("/login");
+    const handleLogout = async () => {
+        try {
+            const response = await axios.get(`${API_URL}api/user/logout`, {
+                withCredentials: true
+            });
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+            dispatch(logout());
+            navigate("/login");
+        } catch (e:any) {
+            console.log(e);
+            alert(e.response?.data?.message || "Alert error");
+        }
+
     };
 
     useEffect(() => {
         if (localStorage.getItem("token") && !isAuth) {
         }
-    }, [isAuth, currentUser, dispatch]);
+    }, [isAuth, currentUser]);
 
     return (
         <header

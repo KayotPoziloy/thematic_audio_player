@@ -1,13 +1,73 @@
+// import React from 'react';
+// import { render, screen } from '@testing-library/react';
+// import App from '../App';
+//
+// describe("/App.test.tsx", () => {
+//   ['Избранное', 'Главная', 'Вход', 'Регистрация', 'Аккаунт', 'footer'].forEach(text => {
+//     test('text "' + text+ '" not found', () => {
+//       render(<App />);
+//       const element = screen.getByText(new RegExp(text, 'i'));
+//       expect(element).toBeInTheDocument();
+//     });
+//   });
+// });
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import App from '../App';
+import { Provider } from 'react-redux';
+import {combineReducers, createStore} from 'redux';
+import userReducer from '../redux/reducers/userReducer';
+
+const renderWithState = (isAuth: boolean) => {
+  const initialState = {
+    user: {
+      isAuth,
+      currentUser: isAuth ? { name: 'User' } : null,
+    },
+  };
+
+  const rootReducer = combineReducers({
+    user: userReducer,
+  });
+
+
+  // @ts-ignore
+  const mockStore = createStore(rootReducer, initialState);
+
+  render(
+      <Provider store={mockStore}>
+        <App />
+      </Provider>
+  );
+};
+
+beforeAll(() => {
+  jest.spyOn(console, 'warn').mockImplementation(() => {});
+});
+
+afterAll(() => {
+  // @ts-ignore
+  console.warn.mockRestore();
+});
 
 describe("/App.test.tsx", () => {
-  ['Избранное', 'Главная', 'Вход', 'Регистрация', 'Аккаунт', 'footer'].forEach(text => {
-    test('text "' + text+ '" not found', () => {
-      render(<App />);
-      const element = screen.getByText(new RegExp(text, 'i'));
-      expect(element).toBeInTheDocument();
-    });
+  test('Тексты для неавторизованного пользователя', () => {
+      renderWithState(false);
+
+    expect(screen.getByText(/Избранное/i)).toBeInTheDocument();
+    expect(screen.getByText(/Вход/i)).toBeInTheDocument();
+    expect(screen.getByText(/Регистрация/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Главная/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Аккаунт/i)).not.toBeInTheDocument();
+  });
+
+  test('Тексты для авторизованного пользователя', () => {
+      renderWithState(true);
+
+    expect(screen.getByText(/Избранное/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Вход/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Регистрация/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/Главная/i)).toBeInTheDocument();
+    expect(screen.getByText(/Аккаунт/i)).toBeInTheDocument();
   });
 });
