@@ -1,19 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import SignUp from '../../../components/auth/SignUp';
 import { MemoryRouter } from 'react-router-dom';
-import {UserAction} from '../../../redux/reducers/userReducer';
+import userReducer from '../../../redux/reducers/userReducer';
+import {configureStore} from "@reduxjs/toolkit";
 
-const mockReducer = (state = {}, action: UserAction) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
 
-const store = createStore(mockReducer);
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+  },
+});
 
 describe("/components/auth/SignUp.test.tsx", () => {
   ['Регистрация', 'Введите имя пользователя', 'Введите почту', 'Повторите пароль', 'Введите пароль', 'Зарегистрироваться'].forEach(text => {
