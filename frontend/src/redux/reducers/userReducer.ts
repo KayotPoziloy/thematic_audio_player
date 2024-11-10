@@ -1,12 +1,28 @@
-export const SET_USER:"SET_USER" = "SET_USER";
-export const LOGOUT:"LOGOUT" = "LOGOUT";
+export const SET_USER = "SET_USER" as const;
+export const LOGOUT = "LOGOUT" as const;
 
-const defaultState = {
+type SetUserAction = {
+    type: typeof SET_USER;
+    payload: string | null;
+};
+
+type LogoutAction = {
+    type: typeof LOGOUT;
+};
+
+export type UserAction = SetUserAction | LogoutAction;
+
+export type UserState = {
+    currentUser: string | null;
+    isAuth: boolean;
+};
+
+const defaultState: UserState = {
     currentUser: null,
-    isAuth:false
-}
+    isAuth: false,
+};
 
-export default function userReducer(state = defaultState, action: any){
+export default function userReducer(state = defaultState, action: UserAction){
     switch(action.type){
         case SET_USER:
             return {
@@ -25,5 +41,8 @@ export default function userReducer(state = defaultState, action: any){
     }
 }
 
-export const setUser = (login: any) => ({ type: SET_USER, payload: login });
+export const setUser = (login: string | null): SetUserAction => ({
+    type: SET_USER,
+    payload: login,
+});
 export const logout = () => ({type: LOGOUT})

@@ -31,7 +31,7 @@ const renderWithState = (isAuth: boolean) => {
   });
 
 
-  // @ts-ignore
+  // @ts-expect-error 'type'
   const mockStore = createStore(rootReducer, initialState);
 
   render(
@@ -46,7 +46,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  // @ts-ignore
+  // @ts-expect-error 'type'
   console.warn.mockRestore();
 });
 

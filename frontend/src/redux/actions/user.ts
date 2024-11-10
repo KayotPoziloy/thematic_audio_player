@@ -1,24 +1,29 @@
 import axios from 'axios';
 import {setUser} from "../reducers/userReducer";
 import {API_URL} from "../../config";
+import { NavigateFunction } from 'react-router-dom';
+import { Dispatch } from 'redux';
 
-export const signup =  (login: any, password: any, name:any, navigate:any ) => {
-    return async (dispatch:any) => {
+export const signup =  (login: string, password: string, name:string, navigate:NavigateFunction) => {
+    return async () => {
         try {
-            const response = await axios.post(`${API_URL}api/user/signup`,  {
+            await axios.post(`${API_URL}api/user/signup`,  {
                 login,
                 password,
                 name
             });
             navigate("/login");
-        } catch (e: any) {
-            return "Ошибка:" +e.response?.data?.error?.msg;
+        } catch (e: unknown) {
+            if (axios.isAxiosError(e) && e.response?.data?.error?.msg) {
+                return "Ошибка: " + e.response.data.error.msg;
+            }
+            return "Произошла ошибка";
         }
     }
 };
 
-export const signin = (login: any, password: any, navigate:any) => {
-    return async (dispatch: any) => {
+export const signin = (login: string, password: string, navigate:NavigateFunction) => {
+    return async (dispatch: Dispatch) => {
         try {
             const response = await axios.post(`${API_URL}api/user/signin`, {
                 login,
@@ -32,8 +37,11 @@ export const signin = (login: any, password: any, navigate:any) => {
 
             dispatch(setUser(response.data.login));
             navigate("/account");
-        } catch (e: any) {
-            return "Ошибка:" +e.response?.data?.error?.msg;
+        } catch (e: unknown) {
+            if (axios.isAxiosError(e) && e.response?.data?.error?.msg) {
+                return "Ошибка: " + e.response.data.error.msg;
+            }
+            return "Произошла ошибка";
         }
     };
 };

@@ -1,4 +1,4 @@
-// @ts-ignore
+export {}
 const mockRender = jest.fn();
 jest.mock('react-dom/client', () => ({
     createRoot: jest.fn(() => ({
