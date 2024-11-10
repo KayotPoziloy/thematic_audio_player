@@ -12,24 +12,28 @@ export const signup =  (login: any, password: any, name:any, navigate:any ) => {
             });
             navigate("/login");
         } catch (e: any) {
-            alert(e.response?.data?.message || "An error occurred");
+            return "Ошибка:" +e.response?.data?.error?.msg;
         }
     }
 };
 
-export const signin = (login: string, password: any, navigate:any) => {
+export const signin = (login: any, password: any, navigate:any) => {
     return async (dispatch: any) => {
         try {
             const response = await axios.post(`${API_URL}api/user/signin`, {
                 login,
                 password,
             });
+
+            const token = response.data.token;
+            if (token) {
+                document.cookie = "token=" + token;
+            }
+
             dispatch(setUser(response.data.login));
-            localStorage.setItem('token', response.data.token);
             navigate("/account");
         } catch (e: any) {
-            alert(e.response?.data?.message || "Alert error");
+            return "Ошибка:" +e.response?.data?.error?.msg;
         }
     };
 };
-

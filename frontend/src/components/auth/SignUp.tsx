@@ -9,21 +9,29 @@ export default function SignUp(){
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [name, setName] = useState("");
-    const [error, setError] = useState("");
+    const [confirmError, setConfirmError] = useState("");
+    const [authError, setAuthError] = useState("");
 
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (password !== passwordConfirm) {
-            setError("Пароли не совпадают");
+            setConfirmError("Пароли не совпадают");
             return;
         }
 
-        setError("");
-        dispatch(signup(email, password, name, navigate));
+        setConfirmError("");
+        // @ts-ignore
+        const request: string | null = await dispatch(signup(email, password, name, navigate));
+
+        if (request && request.startsWith("Ошибка:")) {
+            setAuthError(request);
+        } else {
+            setAuthError("");
+        }
     };
 
     return (
@@ -57,7 +65,8 @@ export default function SignUp(){
 
                 <button className="btn btn-primary w-100 py-2" type="submit">Зарегистрироваться</button>
 
-                {error && <div className="text-danger">{error}</div>}
+                {confirmError && <div className="text-danger">{confirmError}</div>}
+                {authError && <div className="text-danger">{authError}</div>}
             </form>
         </>
     );
