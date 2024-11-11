@@ -10,9 +10,29 @@
 
     "music": [
       {
-        "name": "Седая ночь",
-        "author": "Юрий Шатунов",
-        "filename": "audio.mp3",
+        "name": "Jay Rock",
+        "author": "Hood Gone Love It (feat. Kendrick Lamar)",
+        "filename": "Jay Rock - Hood Gone Love It (feat. Kendrick Lamar) .mp3",
+        "tag": {
+          "data": "...",
+          "background": "image...",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      },
+      {
+        "name": "Ali Bomaye",
+        "author": "The Game feat. Rick Ross & 2 Chainz",
+        "filename": "The Game feat. Rick Ross &amp; 2 Chainz - Ali Bomaye .mp3",
+        "tag": {
+          "data": "...",
+          "background": "image...",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      },
+      {
+        "name": "A.D.H.D",
+        "author": "Kendrick Lamar",
+        "filename": "Kendrick Lamar - A.D.H.D .mp3",
         "tag": {
           "data": "...",
           "background": "image...",

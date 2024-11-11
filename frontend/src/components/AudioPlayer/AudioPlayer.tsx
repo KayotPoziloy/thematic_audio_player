@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store"
 import {
-    loadTracks,
+    fetchPlaylistTracks,
     playTrack,
     pauseTrack,
     resumeTrack,
@@ -14,20 +14,27 @@ import { startAudio } from "./audioControls";
 export const AudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
     const dispatch = useDispatch();
-    const { tracks, currentTrackIndex, isPlaying, currentTime } = useSelector(
+    const {
+        tracks,
+        currentTrackIndex,
+        isPlaying,
+        currentTime,
+        error
+    } = useSelector(
         (state: RootState) => state.audio
-    )
+    );
 
     useEffect(() => {
-        dispatch(loadTracks(["http://localhost:5000/api/music/m/audio.mp3"]));
+        dispatch(fetchPlaylistTracks(1)); // Вставить id нужного плейлиста
     }, [dispatch]);
 
     useEffect(() => {
         if (tracks.length > 0) {
             if (isPlaying) {
-                startAudio(audio, tracks[currentTrackIndex]);
+                debugger
+                startAudio(audio, `http://localhost:5000/api/music/m/${tracks[currentTrackIndex].filename}`);
                 if (audio.current) {
-                    audio.current.currentTime = currentTime; // Устанавливаем текущую позицию
+                    audio.current.currentTime = currentTime;
                     audio.current.play();
                 }
             } else if (audio.current) {
