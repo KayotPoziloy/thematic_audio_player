@@ -10,15 +10,3 @@ export const startAudio = async (audio: React.RefObject<HTMLAudioElement>, audio
     console.error("Error playing audio:", error);
   }
 };
-
-export const pauseAudio = (audio: RefObject<HTMLAudioElement>) => {
-  if (audio.current) {
-    audio.current.pause();
-  }
-};
-
-export const resumeAudio = (audio: RefObject<HTMLAudioElement>) => {
-  if (audio.current) {
-    audio.current.play();
-  }
-};
