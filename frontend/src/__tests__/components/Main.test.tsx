@@ -1,64 +1,3 @@
-// import React from 'react';
-// import { render, screen } from '@testing-library/react';
-// import Main from '../../components/Main';
-// import userEvent from '@testing-library/user-event'
-//
-//
-// describe("/components/Main.test.tsx", () => {
-//
-//
-//   ['Start', 'Stop'].forEach(text => {
-//     test('text "' + text + '" not found', () => {
-//       render(<Main />);
-//       const element = screen.getByText(new RegExp(text, 'i'));
-//       expect(element).toBeInTheDocument();
-//     });
-//   });
-//
-//
-//   test('Stop', () => {
-//     const mockPause = jest
-//       .spyOn(window.HTMLMediaElement.prototype, 'pause')
-//       .mockImplementation(() => { });
-//
-//     render(<Main />);
-//
-//     userEvent.click(screen.getByText('Stop'));
-//     expect(mockPause).toHaveBeenCalled();
-//
-//
-//   });
-//
-//   test('Start catch', () => {
-//     // @ts-expect-error 'type'
-//     global.fetch = jest.fn(() =>
-//       Promise.resolve({
-//         ok: false,
-//       })
-//     );
-//     render(<Main />);
-//     userEvent.click(screen.getByText('Start'));
-//     expect(global.fetch).toHaveBeenCalled();
-//   });
-//
-//   test('Start try',  () => {
-//     const mockAudioBlob = new Blob(['audio data'], { type: 'audio/mpeg' });
-//
-//     // @ts-expect-error 'type'
-//     global.fetch = jest.fn(() =>
-//       Promise.resolve({
-//         ok: true,
-//         blob: jest.fn().mockResolvedValueOnce(mockAudioBlob),
-//       })
-//     );
-//     global.URL.createObjectURL = jest.fn().mockReturnValue('mocked-audio-url');
-//
-//     render(<Main />);
-//     userEvent.click(screen.getByText('Start'));
-//     expect(global.fetch).toHaveBeenCalledWith("http://localhost:5000/api/music/m/audio.mp3");
-//   });
-//
-// });
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import Main from '../../components/Main';
@@ -74,7 +13,7 @@ describe("/components/Main.test.tsx", () => {
     });
   });
 
-  test('Stop button calls pause on media element', async () => {
+  test('нажатие стоп для паузы', async () => {
     const mockPause = jest
         .spyOn(window.HTMLMediaElement.prototype, 'pause')
         .mockImplementation(() => { });
@@ -85,7 +24,7 @@ describe("/components/Main.test.tsx", () => {
     await waitFor(() => expect(mockPause).toHaveBeenCalled());
   });
 
-  test('Start button handles fetch error', async () => {
+  test('нажатие на старт для вызова ошибки', async () => {
     // @ts-expect-error 'type'
     global.fetch = jest.fn(() =>
         Promise.resolve({
@@ -99,7 +38,7 @@ describe("/components/Main.test.tsx", () => {
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
   });
 
-  test('Start button fetches audio successfully', async () => {
+  test('кнопка старт для запуска видео', async () => {
     const mockAudioBlob = new Blob(['audio data'], { type: 'audio/mpeg' });
 
     // @ts-expect-error 'type'
