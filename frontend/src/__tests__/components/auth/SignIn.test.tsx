@@ -1,43 +1,37 @@
-import React from 'react';
 import { render, screen} from '@testing-library/react';
-import SignIn from '../../../components/auth/SignIn';
 import { Provider } from 'react-redux';
-import { combineReducers, createStore } from 'redux';
-import userReducer from '../../../redux/reducers/userReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer, { UserState } from '../../../redux/reducers/userReducer';
+import SignIn from "../../../components/auth/SignIn";
 import { MemoryRouter } from 'react-router-dom';
+import React from 'react';
 
-const renderWithState = (isAuth: boolean) => {
-  const initialState = {
-    user: {
-      isAuth,
-      currentUser: isAuth ? { name: 'User' } : null,
+const createMockStore = (preloadedState: { user: UserState }) => {
+  return configureStore({
+    reducer: {
+      user: userReducer,
     },
-  };
-
-  const rootReducer = combineReducers({
-    user: userReducer,
+    preloadedState,
   });
-
-  // @ts-expect-error 'type'
-  const mockStore = createStore(rootReducer, initialState);
-
-  render(
-      <Provider store={mockStore}>
-        <MemoryRouter>
-          <SignIn />
-        </MemoryRouter>
-      </Provider>
-  );
 };
 
-describe("/components/auth/SignIn.test.tsx", () => {
-  test('renders form elements correctly', () => {
-    renderWithState(false);  // неавторизовнный пользователь
+describe('SignIn Component', () => {
+  test('render формы входа с вводом имени пользователя и пароля', () => {
+    render(
+        <Provider store={createMockStore({ user: { currentUser: null, isAuth: false } })}>
+          <MemoryRouter>
+            <SignIn />
+          </MemoryRouter>
+        </Provider>
+    );
 
-    ['Вход', 'Введите почту', 'Введите пароль', 'Войти'].forEach(text => {
-      const element = screen.getByText(new RegExp(text, 'i'));
-      expect(element).toBeInTheDocument();
-    });
+    const usernameInput = screen.getByPlaceholderText(/username/i);
+    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const submitButton = screen.getByRole('button', { name: /войти/i });
+
+    expect(usernameInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+    expect(submitButton).toBeInTheDocument();
   });
 
 });
