@@ -4,6 +4,7 @@
 
     "tag": {
       "example": "This contains the information on which the playlist interface should be based",
+      "pic": "https://psv4.userapi.com/s/v1/d/BtjNcFp_wJiC1af0FsSbhQWhIGDCSCgeua5PkgrwbSi49Myke26phXTb-oHkthmpPUCGnihtc3dHwMbJtYNyNqc0pT34J46_6awMBsfdIsHaY_2-sg0YHA/gta5.png",
       "background": "image...",
       "colors": [ "#123123", "#333333", "#321321" ]
     },
@@ -15,7 +16,7 @@
         "filename": "Jay Rock - Hood Gone Love It (feat. Kendrick Lamar) .mp3",
         "tag": {
           "data": "...",
-          "background": "image...",
+          "background": "https://psv4.userapi.com/s/v1/d/_S6UT32TYse2z6IU-qHGOl4r1es3DSDYSpFDeF2c1iFmamtohhm2dhNLHv9ahD7TyyAUcV_sHfTeyurlGyIi9yUVndg64Dumyii1McRxXS3c3p1zspa1zA/Jay_Rock_-_Hood_Gone_Love_It_feat_Kendrick_Lamar.png",
           "colors": [ "#123123", "#333333", "#321321" ]
         }
       },
@@ -25,7 +26,7 @@
         "filename": "The Game feat. Rick Ross &amp; 2 Chainz - Ali Bomaye .mp3",
         "tag": {
           "data": "...",
-          "background": "image...",
+          "background": "https://psv4.userapi.com/s/v1/d/4mQjelnyW9AqkPOfoP27zwrrhr0taOV7GWXlh1xq2XdxtKb-Qo_8TRE6K_CTpx7GtACTU2eNWzwr5XbF7Cj3yKyJItgs0gQbZPqXxS_p5zAGzPgiQfdiqQ/The_Game_feat_Rick_Ross_amp_2_Chainz_-_Ali_Bomaye.png",
           "colors": [ "#123123", "#333333", "#321321" ]
         }
       },
@@ -35,7 +36,7 @@
         "filename": "Kendrick Lamar - A.D.H.D .mp3",
         "tag": {
           "data": "...",
-          "background": "image...",
+          "background": "https://psv4.userapi.com/s/v1/d/61HX8rB17AgKUXbbGG9zZGk8yW-cYqKP_NlOp5D3VG7vnTjziyAA-L88eaUYt5UnQROT9Gf2H5gKtweNwmLttaP84deuWEsl2z5IkCYoutk1xAB8Zs3xDQ/Kendrick_Lamar_-_A_D_H_D.png",
           "colors": [ "#123123", "#333333", "#321321" ]
         }
       }

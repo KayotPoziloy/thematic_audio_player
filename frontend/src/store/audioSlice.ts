@@ -35,11 +35,20 @@ export const fetchPlaylistTracks = createAsyncThunk(
                 { "id": playlistId },
                 { withCredentials: true }
             );
-
             if (response.data.error) {
                 throw new Error(response.data.error);
             }
-            return response.data.musics;
+
+            const tracks = response.data.musics.map((track: any) => ({
+                id: track.id,
+                playlist_id: track.playlist_id,
+                name: track.name,
+                author: track.author,
+                filename: track.filename,
+                tag: track.tag,
+            }));
+
+            return tracks;
         } catch (error: any) {
             return rejectWithValue(error.message);
         }
