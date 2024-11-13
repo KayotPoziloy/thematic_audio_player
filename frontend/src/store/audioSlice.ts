@@ -86,11 +86,17 @@ const audioSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchPlaylistTracks.fulfilled, (state, action: PayloadAction<Track[]>) => {
+            .addCase(fetchPlaylistTracks.fulfilled, (
+                state,
+                action: PayloadAction<Track[]>
+            ) => {
                 state.tracks = action.payload;
                 state.error = null;
             })
-            .addCase(fetchPlaylistTracks.rejected, (state, action) => {
+            .addCase(fetchPlaylistTracks.rejected, (
+                state,
+                action
+            ) => {
                 state.error = action.payload as string;
             });
     },

@@ -12,8 +12,6 @@ function App() {
         <Router>
           <div className="d-flex flex-column vh-100">
             <Header/>
-            <DropdownMenu name="выбор"/>
-            <DropdownMenuFavourites name="избранное"/>
             <Content/>
             <Footer/>
           </div>
