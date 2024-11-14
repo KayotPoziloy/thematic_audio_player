@@ -16,7 +16,6 @@ export default function Account(){
                     </div>
                     <div className="col-md-8 d-flex flex-column justify-content-center">
                         <h3>Имя: Иван</h3>
-                        <h4>Фамилия: Иванов</h4>
                         <p>Email: ivanov@example.com</p>
                         <p>Телефон: +7 (123) 456-78-90</p>
                     </div>
