@@ -44,6 +44,23 @@ export const AudioPlayer = () => {
         }
     }, [tracks, currentTrackIndex, isPlaying, currentTime]);
 
+    const handlePlayPause = () => {
+        if (!isPlaying && currentTime === 0) {
+            dispatch(playTrack(currentTrackIndex)); // Начинаем воспроизведение с начала
+        } else if (isPlaying) {
+            if (audio.current) {
+                const currentTime = audio.current.currentTime;
+                audio.current.pause();
+                dispatch(pauseTrack(currentTime)); // Ставим на паузу
+            }
+        } else {
+            if (audio.current) {
+                audio.current.play();
+                dispatch(resumeTrack()); // Продолжаем с текущей позиции
+            }
+        }
+    };
+
     const handleStart = () => {
         dispatch(playTrack(currentTrackIndex));
     };
@@ -83,22 +100,36 @@ export const AudioPlayer = () => {
         <div>
             {tracks.length > 0 && (
                 <div className="track-cover">
-                    <img src={JSON.parse(tracks[currentTrackIndex].tag).background} width="100" height="100" alt="Track Cover" className="cover-image" />
+                    <img
+                        src={JSON.parse(tracks[currentTrackIndex].tag).background}
+                        width="100"
+                        height="100"
+                        alt="Track Cover"
+                        className="cover-image"
+                    />
                 </div>
             )}
+
             <div>
-                <h5>{ tracks.length > 0 && tracks[currentTrackIndex].author }</h5>
-                <p>{ tracks.length > 0 && tracks[currentTrackIndex].name }</p>
+                <h5>{tracks.length > 0 && tracks[currentTrackIndex].author}</h5>
+                <p>{tracks.length > 0 && tracks[currentTrackIndex].name}</p>
             </div>
-            <button className="btn btn-success" onClick={handleStart} disabled={isPlaying}>
-                Start
+            <button
+                className="btn btn-success"
+                onClick={handlePlayPause}
+            >
+                {isPlaying ? "Pause" : currentTime === 0 ? "Start" : "Resume"}
             </button>
-            <button className="btn btn-warning" onClick={handlePause} disabled={!isPlaying}>
-                Pause
-            </button>
-            <button className="btn btn-info" onClick={handleResume} disabled={isPlaying}>
-                Resume
-            </button>
+            {/*<button className="btn btn-success" onClick={isPlaying ? handlePause : handleResume}*/}
+            {/*        disabled={isPlaying ? !isPlaying : isPlaying}>*/}
+            {/*    {isPlaying ? "Pause" : "Resume"}*/}
+            {/*</button>*/}
+            {/*<button className="btn btn-warning" onClick={handlePause} disabled={!isPlaying}>*/}
+            {/*    Pause*/}
+            {/*</button>*/}
+            {/*<button className="btn btn-info" onClick={handleResume} disabled={isPlaying}>*/}
+            {/*    Resume*/}
+            {/*</button>*/}
             <button className="btn btn-primary" onClick={handlePrevious}>
                 Previous
             </button>

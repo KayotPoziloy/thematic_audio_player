@@ -12,8 +12,6 @@ export const Playlists = () => {
         dispatch(fetchPlaylists());
     }, [dispatch]);
 
-    console.log(playlists)
-
     return (
         <div className="playlists">
             {error && <p className="error">{error}</p>}
