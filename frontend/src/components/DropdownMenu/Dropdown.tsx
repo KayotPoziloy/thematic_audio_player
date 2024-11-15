@@ -6,7 +6,7 @@ export default function Dropdown() {
         <div
             className="dropdown">
             <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><img src={"../png/Dropdown.png"} alt={"выбор"}/>
+                    aria-expanded="false"><img className="dropdown-img" src={"../png/Dropdown.png"} alt={"выбор"}/>
             </button>
             <ul className="dropdown-menu bg-secondary bg-opacity-50">
                 <li className="dropend">

@@ -61,7 +61,13 @@
 .dropdown-toggle::after {
     display: none !important;
 }
-
+.btn{
+    border: none !important;
+}
+.dropdown-img{
+    width: 40%;
+    height: 40%;
+}
 li.dropend:hover > .dropdown-menu {
     display: block;
     position: absolute;

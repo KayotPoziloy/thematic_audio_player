@@ -1,0 +1,13 @@
+button{
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    width: 20%;
+    height: 20%;
+}
+footer >div > button > img{
+    object-fit: cover;
+    height: 5%;
+    width: 5%;
+}

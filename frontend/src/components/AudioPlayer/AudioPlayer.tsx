@@ -10,6 +10,7 @@ import {
     previousTrack,
 } from "../../store/audioSlice";
 import { startAudio } from "./audioControls";
+import "./AudioPlayer.css"
 
 export const AudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
@@ -115,10 +116,10 @@ export const AudioPlayer = () => {
                 <p>{tracks.length > 0 && tracks[currentTrackIndex].name}</p>
             </div>
             <button
-                className="btn btn-success"
+                className="btn"
                 onClick={handlePlayPause}
             >
-                {isPlaying ? "Pause" : currentTime === 0 ? "Start" : "Resume"}
+                {isPlaying ? (<img src="../png/Pause.png" alt="Pause"/>) : currentTime === 0 ? (<img src="../png/Play.png" alt="Play"/>)  : "Resume"}
             </button>
             {/*<button className="btn btn-success" onClick={isPlaying ? handlePause : handleResume}*/}
             {/*        disabled={isPlaying ? !isPlaying : isPlaying}>*/}
@@ -130,14 +131,14 @@ export const AudioPlayer = () => {
             {/*<button className="btn btn-info" onClick={handleResume} disabled={isPlaying}>*/}
             {/*    Resume*/}
             {/*</button>*/}
-            <button className="btn btn-primary" onClick={handlePrevious}>
-                Previous
+            <button className="btn " onClick={handlePrevious}>
+                <img src="../png/Back.png" alt="Previous"/>
             </button>
-            <button className="btn btn-primary" onClick={handleNext}>
-                Next
+            <button className="btn " onClick={handleNext}>
+                <img src="../png/Next.png" alt="Next"/>
             </button>
             <div>
-                <label htmlFor="volume">Volume</label>
+                <label htmlFor="volume"><img width={"5%"} height={"5%"} src="png/Volume.png" alt=""/></label>
                 <input
                     id="volume"
                     type="range"

@@ -33,3 +33,7 @@ code {
 main{
     z-index: 1;
 }
+.profile{
+    width: 70%;
+    height: 70%;
+}
