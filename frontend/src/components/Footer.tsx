@@ -3,6 +3,8 @@ import {AudioPlayer} from "./AudioPlayer/AudioPlayer";
 
 export default function Footer() {
     return (
-        <AudioPlayer/>
+        <footer className="bg-secondary bg-opacity-50">
+            <AudioPlayer/>
+        </footer>
     );
 }
