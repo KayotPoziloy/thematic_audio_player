@@ -5,7 +5,7 @@ import { fetchPlaylists } from "../../store/playlistSlice";
 import "./Playlists.css"
 
 export const Playlists = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const { playlists, error } = useSelector((state: RootState) => state.playlist);
 
     useEffect(() => {

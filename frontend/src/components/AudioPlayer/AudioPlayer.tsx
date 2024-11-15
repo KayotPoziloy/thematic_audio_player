@@ -13,7 +13,7 @@ import { startAudio } from "./audioControls";
 
 export const AudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const [volume, setVolume] = useState(0.5);
 
     const {

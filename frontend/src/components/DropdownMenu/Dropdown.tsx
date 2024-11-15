@@ -1,68 +1,40 @@
-import React, {useState} from "react";
+import React from "react";
+import "./Dropdown.css"
 
-interface DropdownProps {
-  open: boolean;
-  handleOpen: () => void;
-  handleClose: () => void;
-  trigger: React.ReactNode;
-  menu: { label: string; submenu: string[] }[];
-}
-
-const Dropdown:React.FC<DropdownProps> =
-  ({
-     open,
-     handleOpen,
-     handleClose,
-     trigger,
-     menu
-   }) => {
+export default function Dropdown() {
     return (
-      <div
-        className="dropdown"
-        onMouseEnter={handleOpen}
-        onMouseLeave={handleClose}
-      >
-        {trigger}
-        {open && (
-          <ul className="menu">
-            {menu.map((item, index) => (
-              <DropdownItem key={index} label={item.label} submenu={item.submenu} />
-            ))}
-          </ul>
-        )}
-      </div>
+        <div
+            className="dropdown">
+            <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><img src={"../png/Dropdown.png"} alt={"выбор"}/>
+            </button>
+            <ul className="dropdown-menu bg-secondary bg-opacity-50">
+                <li className="dropend">
+                    <a className="btn dropdown-toggle dropdown-item" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Игры</a>
+                    <ul className="dropdown-menu bg-secondary bg-opacity-50">
+                        <li className="dropdown-item"><a>Gta 5</a></li>
+                        <li className="dropdown-item"><a>Nfs</a></li>
+                    </ul>
+                </li>
+                <li className="dropend">
+                    <a className="btn dropdown-toggle dropdown-item" data-bs-toggle="dropdown"
+                       aria-expanded="false">Фильмы</a>
+                    <ul className="dropdown-menu bg-secondary bg-opacity-50">
+                        <li className="dropdown-item"><a>Тарантино</a></li>
+                        <li className="dropdown-item"><a>Гай Ричи</a></li>
+                    </ul>
+                </li>
+                <li className="dropend">
+                    <a className="btn dropdown-toggle dropdown-item" data-bs-toggle="dropdown"
+                       aria-expanded="false">Сериалы</a>
+                    <ul className="dropdown-menu bg-secondary bg-opacity-50">
+                        <li className="dropdown-item"><a>Сопрано</a></li>
+                        <li className="dropdown-item"><a>Во все тяжкие</a></li>
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
     );
-  };
-
-interface DropdownItemProps {
-  label: string;
-  submenu: string[];
 }
-
-const DropdownItem: React.FC<DropdownItemProps> = ({ label, submenu }) => {
-  const [subOpen, setSubOpen] = useState(false);
-
-  const handleSubOpen = () => setSubOpen(true);
-  const handleSubClose = () => setSubOpen(false);
-
-  return (
-    <li
-      className="menu-item"
-      onMouseEnter={handleSubOpen}
-      onMouseLeave={handleSubClose}
-    >
-      <button>{label}</button>
-      {subOpen && (
-        <ul className="submenu">
-          {submenu.map((subItem, index) => (
-            <li key={index} className="submenu-item">
-              <button>{subItem}</button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </li>
-  )
-}
-
-export default Dropdown;
