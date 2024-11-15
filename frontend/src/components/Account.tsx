@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style_lk/Account.css";
 import UserHeader from "./Acc_components/UserHeader";
 
 export default function Account() {
     const navigate = useNavigate();
+    const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
+    const [avatarImage, setAvatarImage] = useState<string | null>(null);
 
     return (
         <div>
-            <UserHeader /> {/* Шапка пользователя */}
+            <UserHeader backgroundImage={backgroundImage} avatarImage={avatarImage} /> {/* Передаем оба параметра */}
 
             <div className="account-button-section">
                 <div className="container">

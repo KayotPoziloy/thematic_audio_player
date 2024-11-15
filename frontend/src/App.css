@@ -1,4 +1,4 @@
-/* Задаем высоту для корневых элементов, чтобы flexbox мог работать */
+/* Общие настройки для структуры страницы */
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -10,21 +10,32 @@ html, body, #root {
   min-height: 100vh; /* Высота на весь экран */
 }
 
+/* Стиль для шапки и подвала */
+header {
+  position: fixed; /* Закрепляем шапку наверху */
+  top: 0;
+  width: 100%;
+  height: 60px; /* Высота шапки */
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  z-index: 1000;
+}
+
+footer {
+  height: 60px;
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
 /* Контейнер для основного содержимого между header и footer */
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center; /* Выравнивание контента по центру */
-}
-
-header, footer {
-  height: 60px; /* Устанавливаем фиксированную высоту для header и footer */
-}
-
-footer {
-  background-color: #282c34;
-  color: white;
-  text-align: center;
-  padding: 10px;
+  padding-top: 60px; /* Отступ сверху, чтобы контент не перекрывался шапкой */
 }

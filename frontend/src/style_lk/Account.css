@@ -1,23 +1,59 @@
-/* Общие стили для шапки и страницы аккаунта */
+/* Стили для информации о пользователе */
+.user-info {
+    color: #000; /* Черный цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+    font-size: 1.2em; /* Увеличенный размер шрифта */
+    font-family: Arial, sans-serif; /* Выбор шрифта */
+}
+
+/* Стили для верхней части страницы аккаунта */
 .account-top-section {
     background-color: #f0f0f0;
     padding: 20px;
+    position: fixed;
+    top: 60px; /* Отступ от верхней навигационной строки */
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для визуального разделения */
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
 }
 
+/* Контейнер для аватара */
+.avatar-container {
+    flex-shrink: 0;
+    margin-right: 25px;
+    margin-left: -200px; /* Сдвиг аватара левее */
+}
+
+/* Стили для аватара */
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Стили для иконок */
 .icons {
     display: flex;
     gap: 10px;
     margin-top: 10px;
 }
 
+/* Стили для кнопок аккаунта */
 .account-button-section .row .col-6 {
-    padding: 5px;
+    padding: 25px;
 }
 
+/* Стили для страницы настроек */
 .settings-page {
     padding: 20px;
 }
 
+/* Стили для опций настроек */
 .settings-options {
     display: flex;
     justify-content: space-around;
