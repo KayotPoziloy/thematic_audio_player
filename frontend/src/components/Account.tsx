@@ -1,32 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../style_lk/Account.css";
+import UserHeader from "./Acc_components/UserHeader";
 
 export default function Account() {
     const navigate = useNavigate();
 
     return (
         <div>
-            <div className="account-top-section">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-4 d-flex justify-content-center align-items-center">
-                            <img
-                                src="https://thumbs.dreamstime.com/b/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-%D1%81%D0%BC%D0%B8-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0-%D0%B7%D0%BD%D0%B0%D1%87%D0%BA%D0%B0-%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8F-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8B-%D0%BF%D0%BE-%D1%83%D0%BC%D0%BE%D0%BB%D1%87%D0%B0%D0%BD%D0%B8%D1%8E-176256935.jpg"
-                                alt="Аватар пользователя"
-                                className="img-fluid rounded-circle"
-                                style={{ width: '150px', height: '150px' }}
-                            />
-                        </div>
-                        <div className="col-md-8 d-flex flex-column justify-content-center">
-                            <h3>Имя: Иван</h3>
-                            <h4>Фамилия: Иванов</h4>
-                            <p>Email: ivanov@example.com</p>
-                            <p>Телефон: +7 (123) 456-78-90</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <UserHeader /> {/* Шапка пользователя */}
 
             <div className="account-button-section">
                 <div className="container">
@@ -36,7 +18,7 @@ export default function Account() {
                                 className="btn btn-primary w-100 py-3"
                                 onClick={() => navigate("/settings")}
                             >
-                                Настройки
+                                НАСТРОЙКИ ПРОФИЛЯ
                             </button>
                         </div>
                         <div className="col-6">
@@ -44,7 +26,7 @@ export default function Account() {
                                 className="btn btn-secondary w-100 py-3"
                                 onClick={() => navigate("/friends")}
                             >
-                                Список друзей
+                                СПИСОК ДРУЗЕЙ
                             </button>
                         </div>
                     </div>
@@ -54,7 +36,7 @@ export default function Account() {
                                 className="btn btn-success w-100 py-3"
                                 onClick={() => navigate("/help")}
                             >
-                                Помощь
+                                ПАРТНЕРСТВО
                             </button>
                         </div>
                         <div className="col-6">
@@ -62,7 +44,7 @@ export default function Account() {
                                 className="btn btn-danger w-100 py-3"
                                 onClick={() => navigate("/support")}
                             >
-                                Поддержать проект
+                                ПОДДЕРЖКА ПРОЕКТА
                             </button>
                         </div>
                     </div>
@@ -72,7 +54,7 @@ export default function Account() {
                                 className="btn btn-info w-100 py-3"
                                 onClick={() => navigate("/privacy")}
                             >
-                                Конфиденциальность
+                                АВТОРСКИЕ ПРАВА
                             </button>
                         </div>
                         <div className="col-6">
@@ -80,7 +62,7 @@ export default function Account() {
                                 className="btn btn-warning w-100 py-3"
                                 onClick={() => navigate("/favorites")}
                             >
-                                Избранное
+                                ВЫХОД ИЗ АККАУНТА
                             </button>
                         </div>
                     </div>

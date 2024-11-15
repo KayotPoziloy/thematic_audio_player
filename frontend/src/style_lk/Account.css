@@ -1,24 +1,30 @@
+/* Общие стили для шапки и страницы аккаунта */
 .account-top-section {
-    padding-top: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 20px;
 }
 
-.account-button-section {
+.icons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-}
-.account-button-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 350px; /* Добавьте отступ сверху, если нужен */
+    gap: 10px;
+    margin-top: 10px;
 }
 
+.account-button-section .row .col-6 {
+    padding: 5px;
+}
+
+.settings-page {
+    padding: 20px;
+}
+
+.settings-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.option {
+    flex: 1;
+    text-align: center;
+}
