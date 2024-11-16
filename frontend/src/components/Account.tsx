@@ -29,7 +29,7 @@ export default function Account() {
                     <img src={img5} alt="Список друзей" className="icon-image" />
                     <p className="icon-label">СПИСОК ДРУЗЕЙ</p>
                 </div>
-                <div className="icon-item" onClick={() => navigate("/help")}>
+                <div className="icon-item" onClick={() => navigate("/help")}> {/* cooperation */}
                     <img src={img3} alt="Партнерство" className="icon-image" />
                     <p className="icon-label">ПАРТНЕРСТВО</p>
                 </div>
@@ -41,7 +41,7 @@ export default function Account() {
                     <img src={img4} alt="Авторские права" className="icon-image" />
                     <p className="icon-label">АВТОРСКИЕ ПРАВА</p>
                 </div>
-                <div className="icon-item" onClick={() => navigate("/favorites")}>
+                <div className="icon-item" onClick={() => navigate("/favorites")}> {/*exit*/}
                     <img src={img2} alt="Выход из аккаунта" className="icon-image" />
                     <p className="icon-label">ВЫХОД ИЗ АККАУНТА</p>
                 </div>

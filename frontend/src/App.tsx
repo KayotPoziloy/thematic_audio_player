@@ -8,9 +8,9 @@ import Account from "./components/Account"; // Импорт страницы л�
 import Settings from "./components/Acc_components/Settings"; // Импорт страницы настроек
 import Privacy from "./components/Acc_components/Privacy"; // Импорт страницы конфиденциальности
 import Friends from "./components/Acc_components/Friends"; // Импорт страницы списка друзей
-import Help from "./components/Acc_components/Help"; // Импорт страницы помощи
+import Cooperation from "./components/Acc_components/Cooperation"; // Импорт страницы помощи
 import Support from "./components/Acc_components/Support"; // Импорт страницы поддержки проекта
-import Favorites from "./components/Acc_components/Favorites"; // Импорт страницы избранного
+import Exit from "./components/Acc_components/Exit"; // Импорт страницы избранного
 
 function App() {
     return (
@@ -25,9 +25,9 @@ function App() {
                         <Route path="/settings" element={<Settings />} /> {/* Настройки */}
                         <Route path="/privacy" element={<Privacy />} /> {/* Конфиденциальность */}
                         <Route path="/friends" element={<Friends />} /> {/* Список друзей */}
-                        <Route path="/help" element={<Help />} /> {/* Помощь */}
+                        <Route path="/help" element={<Cooperation />} /> {/* Помощь */}
                         <Route path="/support" element={<Support />} /> {/* Поддержка проекта */}
-                        <Route path="/favorites" element={<Favorites />} /> {/* Избранное */}
+                        <Route path="/favorites" element={<Exit />} /> {/* Избранное */}
                     </Routes>
                 </div>
 
