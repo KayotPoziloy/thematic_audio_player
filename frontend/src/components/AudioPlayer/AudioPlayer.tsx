@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store"
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../store/store"
 import {
     fetchPlaylistTracks,
     playTrack,
@@ -9,13 +9,14 @@ import {
     nextTrack,
     previousTrack,
 } from "../../store/audioSlice";
-import { startAudio } from "./audioControls";
-import "./AudioPlayer.css"
+import {startAudio} from "./audioControls";
+import "./AudioPlayer.scss"
 
 export const AudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
     const dispatch = useDispatch<any>();
     const [volume, setVolume] = useState(0.5);
+    const [show, setShow] = useState(false);
 
     const {
         tracks,
@@ -115,41 +116,46 @@ export const AudioPlayer = () => {
                 <h5>{tracks.length > 0 && tracks[currentTrackIndex].author}</h5>
                 <p>{tracks.length > 0 && tracks[currentTrackIndex].name}</p>
             </div>
-            <button
-                className="btn"
-                onClick={handlePlayPause}
-            >
-                {isPlaying ? (<img src="../png/Pause.png" alt="Pause"/>) : currentTime === 0 ? (<img src="../png/Play.png" alt="Play"/>)  : "Resume"}
-            </button>
-            {/*<button className="btn btn-success" onClick={isPlaying ? handlePause : handleResume}*/}
-            {/*        disabled={isPlaying ? !isPlaying : isPlaying}>*/}
-            {/*    {isPlaying ? "Pause" : "Resume"}*/}
-            {/*</button>*/}
-            {/*<button className="btn btn-warning" onClick={handlePause} disabled={!isPlaying}>*/}
-            {/*    Pause*/}
-            {/*</button>*/}
-            {/*<button className="btn btn-info" onClick={handleResume} disabled={isPlaying}>*/}
-            {/*    Resume*/}
-            {/*</button>*/}
-            <button className="btn " onClick={handlePrevious}>
-                <img src="../png/Back.png" alt="Previous"/>
-            </button>
-            <button className="btn " onClick={handleNext}>
-                <img src="../png/Next.png" alt="Next"/>
-            </button>
-            <div>
-                <label htmlFor="volume"><img width={"5%"} height={"5%"} src="png/Volume.png" alt=""/></label>
-                <input
-                    id="volume"
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value={volume}
-                    onChange={handleVolumeChange}
-                />
+            <div className="btn-group">
+                {/*<button className="btn btn-success" onClick={isPlaying ? handlePause : handleResume}*/}
+                {/*        disabled={isPlaying ? !isPlaying : isPlaying}>*/}
+                {/*    {isPlaying ? "Pause" : "Resume"}*/}
+                {/*</button>*/}
+                {/*<button className="btn btn-warning" onClick={handlePause} disabled={!isPlaying}>*/}
+                {/*    Pause*/}
+                {/*</button>*/}
+                {/*<button className="btn btn-info" onClick={handleResume} disabled={isPlaying}>*/}
+                {/*    Resume*/}
+                {/*</button>*/}
+                <button className="btn " onClick={handlePrevious}>
+                    <img className="footer-icon-img" src="../png/Back.png" alt="Previous"/>
+                </button>
+                <button
+                    className="btn"
+                    onClick={handlePlayPause}
+                >
+                    {isPlaying ? (
+                        <img className="footer-icon-img" src="../png/Pause.png" alt="Pause"/>) : currentTime === 0 ? (
+                        <img className="footer-icon-img" src="../png/Play.png" alt="Play"/>) : "Resume"}
+                </button>
+                <button className="btn " onClick={handleNext}>
+                    <img className="footer-icon-img" src="../png/Next.png" alt="Next"/>
+                </button>
+                <button className="btn">
+                    <label htmlFor="volume" onClick={() => setShow(!show)}><img className="volume-img"
+                                                                                src="png/Volume.png" alt=""/></label>
+                    {show && <div className="wrapper"><input
+                        id="volume"
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={volume}
+                        onChange={handleVolumeChange}
+                    /></div>}
+                </button>
+                <audio ref={audio}/>
             </div>
-            <audio ref={audio}/>
         </div>
     );
 }

@@ -22,6 +22,8 @@ export const fetchPlaylists = createAsyncThunk(
     "playlist/fetchPlaylists",
     async (_, { rejectWithValue }) => {
         try {
+            // console.log(localStorage)
+            // debugger
             const response = await axios.get(
                 "http://localhost:5000/api/music/playlists",
                 { withCredentials: true }

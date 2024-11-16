@@ -19,10 +19,6 @@ export const Playlists = () => {
             {playlists.map((playlist) => (
                 <div key={playlist.id} className="playlist">
                     <img src={playlist.pic} alt={`${playlist.name} pic`} className="playlist-pic" />
-                    <div
-                        className="playlist-background"
-                        style={{ backgroundImage: `url(${playlist.background})` }}
-                    />
                     <h3>{playlist.name}</h3>
                 </div>
             ))}
