@@ -1,0 +1,72 @@
+.support-page {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Убираем отступы у родительского контейнера */
+.support-page {
+    margin: 0; /* Полностью убираем внешние отступы */
+    padding: 0; /* Полностью убираем внутренние отступы */
+    margin-top: -170px; /* Сдвигаем блок вверх */
+}
+
+/* Стили для текста */
+.support-text {
+    text-align: justify; /* Выравнивание текста по ширине */
+    /*margin: 0 auto; !* Центрируем текст *!*/
+    padding: 0 20px; /* Убираем верхние отступы */
+    /*max-width: 1500px; !* Ограничение ширины текста *!*/
+
+}
+
+/* Заголовок */
+.support-text h2 {
+    font-size: 35px; /* Увеличенный размер заголовка */
+    font-weight: bold; /* Жирный текст */
+    line-height: 1.5; /* Увеличенное межстрочное расстояние */
+    color: #333; /* Тёмный цвет текста */
+    margin: 0 0 20px 0; /* Верхний отступ 0, нижний - 20px */
+    text-align: left; /* Выравнивание заголовка по левому краю */
+}
+
+/* Основной текст */
+.support-text p {
+    font-size: 35px; /* Увеличенный размер текста */
+    line-height: 1.8; /* Межстрочное расстояние */
+    color: #555; /* Более светлый цвет текста */
+    margin: 0; /* Полностью убираем отступы */
+}
+
+
+.support-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 250px; /* Расстояние между кнопками */
+    margin-top: 140px; /* Сдвигаем блок вверх */
+
+}
+
+.support-option {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.support-option:hover {
+    transform: scale(1.1);
+}
+
+.support-icon {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.support-option span {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}

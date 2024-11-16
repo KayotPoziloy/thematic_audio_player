@@ -5,8 +5,6 @@ import avatarIcon from ".././Acc_components/img/Settings/img.png";
 import backgroundIcon from ".././Acc_components/img/Settings/img_1.png";
 import editIcon from ".././Acc_components/img/Settings/img_2.png";
 
-// Остальной код...
-
 
 
 export default function Settings() {
