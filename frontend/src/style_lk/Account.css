@@ -25,7 +25,7 @@
 .avatar-container {
     flex-shrink: 0;
     margin-right: 25px;
-    margin-left: -200px; /* Сдвиг аватара левее */
+    margin-left: -15px; /* Сдвиг аватара левее */
 }
 
 /* Стили для аватара */
@@ -36,31 +36,44 @@
     object-fit: cover;
 }
 
-/* Стили для иконок */
-.icons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-/* Стили для кнопок аккаунта */
-.account-button-section .row .col-6 {
-    padding: 25px;
-}
-
-/* Стили для страницы настроек */
-.settings-page {
+/* Контейнер для кнопок в виде иконок */
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три колонки */
+    gap: 40px; /* Увеличенное расстояние между элементами */
     padding: 20px;
+    justify-content: center; /* Центрирование сетки */
+    align-items: center;
+    margin: 230px auto 0; /* Отступ сверху для опускания сетки вниз */
+    max-width: px; /* Ограничение ширины для центрирования */
 }
 
-/* Стили для опций настроек */
-.settings-options {
+/* Общий стиль для каждого элемента */
+.icon-item {
     display: flex;
-    justify-content: space-around;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 }
 
-.option {
-    flex: 1;
-    text-align: center;
+.icon-item:hover {
+    transform: scale(1.1);
+}
+
+/* Стили для изображения иконки */
+.icon-image {
+    width: 170px; /* Увеличение ширины иконки */
+    height: 170px; /* Увеличение высоты иконки */
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+/* Стили для подписей под иконками */
+.icon-label {
+    font-size: 25px; /* Размер текста */
+    color: #333;
+    font-weight: bold;
+    margin-top: 5px;
 }

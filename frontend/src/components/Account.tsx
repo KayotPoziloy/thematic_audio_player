@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style_lk/Account.css";
 import UserHeader from "./Acc_components/UserHeader";
+import img1 from "./Acc_components/img/img_1.png";
+import img2 from "./Acc_components/img/img_2.png";
+import img3 from "./Acc_components/img/img_3.png";
+import img4 from "./Acc_components/img/img_4.png";
+import img5 from "./Acc_components/img/img_5.png";
+import imgDefault from "./Acc_components/img/img_6.png";
 
 export default function Account() {
     const navigate = useNavigate();
@@ -10,64 +16,34 @@ export default function Account() {
 
     return (
         <div>
-            <UserHeader backgroundImage={backgroundImage} avatarImage={avatarImage} /> {/* Передаем оба параметра */}
+            {/* Шапка профиля */}
+            <UserHeader backgroundImage={backgroundImage} avatarImage={avatarImage} />
 
-            <div className="account-button-section">
-                <div className="container">
-                    <div className="row mb-3">
-                        <div className="col-6">
-                            <button
-                                className="btn btn-primary w-100 py-3"
-                                onClick={() => navigate("/settings")}
-                            >
-                                НАСТРОЙКИ ПРОФИЛЯ
-                            </button>
-                        </div>
-                        <div className="col-6">
-                            <button
-                                className="btn btn-secondary w-100 py-3"
-                                onClick={() => navigate("/friends")}
-                            >
-                                СПИСОК ДРУЗЕЙ
-                            </button>
-                        </div>
-                    </div>
-                    <div className="row mb-3">
-                        <div className="col-6">
-                            <button
-                                className="btn btn-success w-100 py-3"
-                                onClick={() => navigate("/help")}
-                            >
-                                ПАРТНЕРСТВО
-                            </button>
-                        </div>
-                        <div className="col-6">
-                            <button
-                                className="btn btn-danger w-100 py-3"
-                                onClick={() => navigate("/support")}
-                            >
-                                ПОДДЕРЖКА ПРОЕКТА
-                            </button>
-                        </div>
-                    </div>
-                    <div className="row mb-3">
-                        <div className="col-6">
-                            <button
-                                className="btn btn-info w-100 py-3"
-                                onClick={() => navigate("/privacy")}
-                            >
-                                АВТОРСКИЕ ПРАВА
-                            </button>
-                        </div>
-                        <div className="col-6">
-                            <button
-                                className="btn btn-warning w-100 py-3"
-                                onClick={() => navigate("/favorites")}
-                            >
-                                ВЫХОД ИЗ АККАУНТА
-                            </button>
-                        </div>
-                    </div>
+            {/* Сетка кнопок */}
+            <div className="icon-grid">
+                <div className="icon-item" onClick={() => navigate("/settings")}>
+                    <img src={imgDefault} alt="Настройки профиля" className="icon-image" />
+                    <p className="icon-label">НАСТРОЙКИ ПРОФИЛЯ</p>
+                </div>
+                <div className="icon-item" onClick={() => navigate("/friends")}>
+                    <img src={img5} alt="Список друзей" className="icon-image" />
+                    <p className="icon-label">СПИСОК ДРУЗЕЙ</p>
+                </div>
+                <div className="icon-item" onClick={() => navigate("/help")}>
+                    <img src={img3} alt="Партнерство" className="icon-image" />
+                    <p className="icon-label">ПАРТНЕРСТВО</p>
+                </div>
+                <div className="icon-item" onClick={() => navigate("/support")}>
+                    <img src={img1} alt="Поддержка проекта" className="icon-image" />
+                    <p className="icon-label">ПОДДЕРЖКА ПРОЕКТА</p>
+                </div>
+                <div className="icon-item" onClick={() => navigate("/privacy")}>
+                    <img src={img4} alt="Авторские права" className="icon-image" />
+                    <p className="icon-label">АВТОРСКИЕ ПРАВА</p>
+                </div>
+                <div className="icon-item" onClick={() => navigate("/favorites")}>
+                    <img src={img2} alt="Выход из аккаунта" className="icon-image" />
+                    <p className="icon-label">ВЫХОД ИЗ АККАУНТА</p>
                 </div>
             </div>
         </div>
