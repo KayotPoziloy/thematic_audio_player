@@ -1,0 +1,68 @@
+/* Стили для страницы настроек */
+.settings-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Стили для опций настроек */
+.settings-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap; /* Для адаптации на маленьких экранах */
+}
+
+.option {
+    text-align: center;
+    flex: 1;
+}
+
+/* Стили для кнопок */
+.settings-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.settings-button:hover {
+    transform: scale(1.1); /* Анимация при наведении */
+}
+
+.settings-icon {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1px;
+    object-fit: contain; /* Для корректного отображения иконок */
+}
+
+.settings-button span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 768px) {
+    .settings-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .settings-button span {
+        font-size: 30px; /* Уменьшение шрифта */
+    }
+
+    .settings-icon {
+        width: 60px;
+        height: 60px;
+    }
+}
