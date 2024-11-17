@@ -18,6 +18,12 @@ const initialState: PlaylistState = {
     error: null,
 }
 
+interface ApiPlaylist {
+    id: number;
+    name: string;
+    tag: string; // tag хранится как строка
+}
+
 export const fetchPlaylists = createAsyncThunk(
     "playlist/fetchPlaylists",
     async (_, { rejectWithValue }) => {
@@ -32,7 +38,7 @@ export const fetchPlaylists = createAsyncThunk(
                 throw new Error(response.data.error);
             }
 
-            const playlists = response.data.playlists.map((playlist: any) => {
+            const playlists = response.data.playlists.map((playlist: ApiPlaylist) => {
                 const tag = JSON.parse(playlist.tag);
                 return {
                     id: playlist.id,
@@ -43,8 +49,11 @@ export const fetchPlaylists = createAsyncThunk(
             });
 
             return playlists;
-        } catch (error: any) {
-            return rejectWithValue(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                return rejectWithValue(error.message);
+            }
+            return rejectWithValue("Unknown error occurred");
         }
     }
 );

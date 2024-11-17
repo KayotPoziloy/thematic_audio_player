@@ -1,11 +1,11 @@
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import { useEffect } from "react";
+import { AppDispatch, RootState } from "../../store/store";
 import { fetchPlaylists } from "../../store/playlistSlice";
 import "./Playlists.css"
 
 export const Playlists = () => {
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch<AppDispatch>();
     const { playlists, error } = useSelector((state: RootState) => state.playlist);
 
     useEffect(() => {

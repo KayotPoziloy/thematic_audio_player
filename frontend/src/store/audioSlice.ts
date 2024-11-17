@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import axios from "axios";
+import { loadAudioState } from "../utils/localStorage";
 
 interface Track {
     id: number;
@@ -18,11 +19,13 @@ interface AudioState {
     error: string | null;
 }
 
+const savedState = loadAudioState();
+
 const initialState: AudioState = {
     tracks: [],
-    currentTrackIndex: 0,
+    currentTrackIndex: savedState?.currentTrackIndex || 0,
     isPlaying: false,
-    currentTime: 0,
+    currentTime: savedState?.currentTime || 0,
     error: null,
 };
 
@@ -39,7 +42,7 @@ export const fetchPlaylistTracks = createAsyncThunk(
                 throw new Error(response.data.error);
             }
 
-            const tracks = response.data.musics.map((track: any) => ({
+            const tracks = response.data.musics.map((track: Track) => ({
                 id: track.id,
                 playlist_id: track.playlist_id,
                 name: track.name,
@@ -49,8 +52,11 @@ export const fetchPlaylistTracks = createAsyncThunk(
             }));
 
             return tracks;
-        } catch (error: any) {
-            return rejectWithValue(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                return rejectWithValue(error.message);
+            }
+            return rejectWithValue("Unknown error occurred");
         }
     }
 )
@@ -74,7 +80,7 @@ const audioSlice = createSlice({
         nextTrack: (state) => {
             state.currentTrackIndex =
                 (state.currentTrackIndex + 1) % state.tracks.length;
-            state.isPlaying = true;
+            // state.isPlaying = true;
             state.currentTime = 0;
         },
         previousTrack: (state) => {

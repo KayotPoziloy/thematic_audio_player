@@ -5,14 +5,12 @@ import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "./store/store";
+import {AppDispatch, RootState} from "./store/store";
 import {fetchPlaylists} from "./store/playlistSlice";
 
-// import {DropdownMenu, DropdownMenuFavourites} from "./components/DropdownMenu";
-
 function App() {
-    const dispatch = useDispatch<any>();
-    const {playlists, error} = useSelector((state: RootState) => state.playlist);
+    const dispatch = useDispatch<AppDispatch>();
+    const {playlists} = useSelector((state: RootState) => state.playlist);
 
     useEffect(() => {
         dispatch(fetchPlaylists());
@@ -21,8 +19,8 @@ function App() {
         <>
             <Router>
                 <div className="bg-image vh-100">
-                    {playlists.map((playlist) => (
-                        <img src={playlist.background} alt={`${playlist.name} pic`}/>
+                    {playlists.map((playlist, index) => (
+                        <img src={playlist.background} key={index} alt={`${playlist.name} pic`}/>
                     ))};
                 </div>
                 <div className="app d-flex flex-column vh-100">

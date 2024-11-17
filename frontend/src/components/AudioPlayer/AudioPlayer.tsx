@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store/store"
+import { useDispatch, useSelector } from "react-redux";
+import {AppDispatch, RootState} from "../../store/store"
 import {
     fetchPlaylistTracks,
     playTrack,
@@ -9,12 +9,12 @@ import {
     nextTrack,
     previousTrack,
 } from "../../store/audioSlice";
-import {startAudio} from "./audioControls";
 import "./AudioPlayer.scss"
+import { saveAudioState } from "../../utils/localStorage";
 
 export const AudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch<AppDispatch>();
     const [volume, setVolume] = useState(0.5);
     const [show, setShow] = useState(false);
 
@@ -23,7 +23,6 @@ export const AudioPlayer = () => {
         currentTrackIndex,
         isPlaying,
         currentTime,
-        error
     } = useSelector(
         (state: RootState) => state.audio
     );
@@ -34,51 +33,55 @@ export const AudioPlayer = () => {
 
     useEffect(() => {
         if (tracks.length > 0) {
-            if (isPlaying) {
-                startAudio(audio, `http://localhost:5000/api/music/m/${tracks[currentTrackIndex].filename}`);
-                if (audio.current) {
-                    audio.current.currentTime = currentTime;
-                    audio.current.play();
+            const currentTrack = tracks[currentTrackIndex];
+
+            if (audio.current) {
+                audio.current.src = `http://localhost:5000/api/music/m/${currentTrack.filename}`;
+                audio.current.currentTime = currentTime;
+
+                if (isPlaying) {
+                    const playAudio = async () => {
+                        try {
+                            await audio.current?.play();
+                        } catch (error) {
+                            console.error("Error playing audio:", error);
+                        }
+                    };
+
+                    audio.current.addEventListener("loadeddata", playAudio);
+
+                    return () => {
+                        audio.current?.removeEventListener("loadeddata", playAudio);
+                    };
+                } else {
+                    audio.current.pause();
                 }
-            } else if (audio.current) {
-                audio.current.pause();
             }
         }
     }, [tracks, currentTrackIndex, isPlaying, currentTime]);
 
+    useEffect(() => {
+        saveAudioState({
+            currentTrackIndex,
+            currentTime,
+            isPlaying,
+        });
+    }, [currentTrackIndex, currentTime, isPlaying]);
+
     const handlePlayPause = () => {
         if (!isPlaying && currentTime === 0) {
-            dispatch(playTrack(currentTrackIndex)); // Начинаем воспроизведение с начала
+            dispatch(playTrack(currentTrackIndex));
         } else if (isPlaying) {
             if (audio.current) {
                 const currentTime = audio.current.currentTime;
                 audio.current.pause();
-                dispatch(pauseTrack(currentTime)); // Ставим на паузу
+                dispatch(pauseTrack(currentTime));
             }
         } else {
             if (audio.current) {
                 audio.current.play();
-                dispatch(resumeTrack()); // Продолжаем с текущей позиции
+                dispatch(resumeTrack());
             }
-        }
-    };
-
-    const handleStart = () => {
-        dispatch(playTrack(currentTrackIndex));
-    };
-
-    const handlePause = () => {
-        if (audio.current) {
-            const currentTime = audio.current.currentTime;
-            audio.current.pause();
-            dispatch(pauseTrack(currentTime));
-        }
-    };
-
-    const handleResume = () => {
-        if (audio.current) {
-            audio.current.play();
-            dispatch(resumeTrack());
         }
     };
 
@@ -117,16 +120,6 @@ export const AudioPlayer = () => {
                 <p>{tracks.length > 0 && tracks[currentTrackIndex].name}</p>
             </div>
             <div className="btn-group">
-                {/*<button className="btn btn-success" onClick={isPlaying ? handlePause : handleResume}*/}
-                {/*        disabled={isPlaying ? !isPlaying : isPlaying}>*/}
-                {/*    {isPlaying ? "Pause" : "Resume"}*/}
-                {/*</button>*/}
-                {/*<button className="btn btn-warning" onClick={handlePause} disabled={!isPlaying}>*/}
-                {/*    Pause*/}
-                {/*</button>*/}
-                {/*<button className="btn btn-info" onClick={handleResume} disabled={isPlaying}>*/}
-                {/*    Resume*/}
-                {/*</button>*/}
                 <button className="btn " onClick={handlePrevious}>
                     <img className="footer-icon-img" src="../png/Back.png" alt="Previous"/>
                 </button>
