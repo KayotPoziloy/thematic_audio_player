@@ -24,7 +24,6 @@ body {
 }
 
 footer{
-    position: relative;
     z-index: 2;
     max-height: 10%;
 }

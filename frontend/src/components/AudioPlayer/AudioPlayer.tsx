@@ -119,8 +119,8 @@ export const AudioPlayer = () => {
                     <p>{tracks.length > 0 && tracks[currentTrackIndex].name}</p>
                 </div>
             </div>
-            <div className="btn-group">
-                <button className="btn " onClick={handlePrevious}>
+            <div className="btn-group gap-2 d-md-block">
+                <button className="btn" onClick={handlePrevious}>
                     <img className="footer-icon-img" src="../png/Back.png" alt="Previous"/>
                 </button>
                 <button
