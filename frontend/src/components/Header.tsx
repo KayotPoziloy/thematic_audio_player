@@ -33,7 +33,6 @@ export default function Header() {
         <header
             className="bg-primary text-white d-flex flex-column flex-md-row align-items-center justify-content-between p-3">
             <nav className="d-flex flex-column flex-md-row">
-                <Link to="/" className="nav-link text-white me-3">Избранное</Link>
 
                 {!isAuth ? (
                     <>
@@ -44,6 +43,7 @@ export default function Header() {
                     <>
                         <Link to="/" className="nav-link text-white me-3">Главная</Link>
                         <Link to="/account" className="nav-link text-white me-3">Аккаунт</Link>
+                        <Link to="/" className="nav-link text-white me-3">Избранное</Link>
                     </>
                 )}
             </nav>
