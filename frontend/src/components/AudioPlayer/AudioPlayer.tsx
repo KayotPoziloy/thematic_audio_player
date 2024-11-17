@@ -36,7 +36,7 @@ export const AudioPlayer = () => {
             const currentTrack = tracks[currentTrackIndex];
 
             if (audio.current) {
-                audio.current.src = `http://localhost:5000/api/music/m/${currentTrack.filename}`;
+                audio.current.src = `http://localhost:4000/api/music/m/${currentTrack.filename}`;
                 audio.current.currentTime = currentTime;
 
                 if (isPlaying) {
@@ -139,7 +139,7 @@ export const AudioPlayer = () => {
                     <img className="footer-icon-img"
                          src="png/Volume.png" alt=""/>
                 </button>
-                {show && <div>
+                {show && <div className="volume-range">
                     <div className="wrapper"><input
                         id="volume"
                         type="range"
