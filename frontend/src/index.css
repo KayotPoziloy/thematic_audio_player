@@ -24,7 +24,9 @@ body {
 }
 
 footer{
+    position: relative;
     z-index: 2;
+    max-height: 10%;
 }
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

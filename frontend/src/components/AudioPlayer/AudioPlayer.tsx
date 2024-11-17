@@ -102,22 +102,22 @@ export const AudioPlayer = () => {
     }
 
     return (
-        <div>
-            {tracks.length > 0 && (
-                <div className="track-cover">
-                    <img
-                        src={JSON.parse(tracks[currentTrackIndex].tag).background}
-                        width="100"
-                        height="100"
-                        alt="Track Cover"
-                        className="cover-image"
-                    />
-                </div>
-            )}
+        <div className="footer-player">
+            <div className="playlist-footer">
+                {tracks.length > 0 && (
+                    <div className="track-cover">
+                        <img
+                            src={JSON.parse(tracks[currentTrackIndex].tag).background}
+                            alt="Track Cover"
+                            className="cover-image"
+                        />
+                    </div>
+                )}
 
-            <div>
-                <h5>{tracks.length > 0 && tracks[currentTrackIndex].author}</h5>
-                <p>{tracks.length > 0 && tracks[currentTrackIndex].name}</p>
+                <div className= "track-name">
+                    <p>{tracks.length > 0 && tracks[currentTrackIndex].author}</p>
+                    <p>{tracks.length > 0 && tracks[currentTrackIndex].name}</p>
+                </div>
             </div>
             <div className="btn-group">
                 <button className="btn " onClick={handlePrevious}>
@@ -129,15 +129,18 @@ export const AudioPlayer = () => {
                 >
                     {isPlaying ? (
                         <img className="footer-icon-img" src="../png/Pause.png" alt="Pause"/>) : currentTime === 0 ? (
-                        <img className="footer-icon-img" src="../png/Play.png" alt="Play"/>) : "Resume"}
+                        <img className="footer-icon-img" src="../png/Play.png" alt="Play"/>) : (
+                        <img className="footer-icon-img" src="../png/Play.png" alt="Play"/>)}
                 </button>
                 <button className="btn " onClick={handleNext}>
                     <img className="footer-icon-img" src="../png/Next.png" alt="Next"/>
                 </button>
-                <button className="btn">
-                    <label htmlFor="volume" onClick={() => setShow(!show)}><img className="volume-img"
-                                                                                src="png/Volume.png" alt=""/></label>
-                    {show && <div className="wrapper"><input
+                <button className="btn" onClick={() => setShow(!show)}>
+                    <img className="footer-icon-img"
+                         src="png/Volume.png" alt=""/>
+                </button>
+                {show && <div>
+                    <div className="wrapper"><input
                         id="volume"
                         type="range"
                         min="0"
@@ -145,8 +148,8 @@ export const AudioPlayer = () => {
                         step="0.01"
                         value={volume}
                         onChange={handleVolumeChange}
-                    /></div>}
-                </button>
+                    /></div>
+                </div>}
                 <audio ref={audio}/>
             </div>
         </div>
