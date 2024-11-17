@@ -43,7 +43,7 @@ describe("/App.test.tsx", () => {
 
     expect(screen.getByText(/Вход/i)).toBeInTheDocument();
     expect(screen.getByText(/Регистрация/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Главная/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/Главная/i)).toBeInTheDocument();
     expect(screen.queryByText(/Аккаунт/i)).not.toBeInTheDocument();
   });
 
