@@ -33,10 +33,10 @@ export default function Header() {
         <header
             className="bg-primary text-white d-flex flex-column flex-md-row align-items-center justify-content-between p-3">
             <nav className="d-flex flex-column flex-md-row">
-                <Link to="/" className="nav-link text-white me-3">Избранное</Link>
 
                 {!isAuth ? (
                     <>
+                        <Link to="/" className="nav-link text-white me-3">Главная</Link>
                         <Link to="/login" className="nav-link text-white me-3">Вход</Link>
                         <Link to="/register" className="nav-link text-white me-3">Регистрация</Link>
                     </>
@@ -44,10 +44,11 @@ export default function Header() {
                     <>
                         <Link to="/" className="nav-link text-white me-3">Главная</Link>
                         <Link to="/account" className="nav-link text-white me-3">Аккаунт</Link>
+                        <Link to="/" className="nav-link text-white me-3">Избранное</Link>
                     </>
                 )}
             </nav>
-            <button onClick={handleLogout} className="btn btn-danger ms-md-3">Выход</button>
+            {isAuth ? <button onClick={handleLogout} className="btn btn-danger ms-md-3">Выход</button> : null}
         </header>
     );
 }

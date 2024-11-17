@@ -41,10 +41,9 @@ describe("/App.test.tsx", () => {
   test('Тексты для неавторизованного пользователя', () => {
       renderWithState(false);
 
-    expect(screen.getByText(/Избранное/i)).toBeInTheDocument();
     expect(screen.getByText(/Вход/i)).toBeInTheDocument();
     expect(screen.getByText(/Регистрация/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Главная/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/Главная/i)).toBeInTheDocument();
     expect(screen.queryByText(/Аккаунт/i)).not.toBeInTheDocument();
   });
 

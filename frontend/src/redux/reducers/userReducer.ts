@@ -5,9 +5,11 @@ export type UserState = {
     isAuth: boolean;
 };
 
+const isTokenInCookies = document.cookie.includes('token=');
+
 const initialState: UserState = {
     currentUser: null,
-    isAuth: false,
+    isAuth: isTokenInCookies,
 };
 
 const userSlice = createSlice({
