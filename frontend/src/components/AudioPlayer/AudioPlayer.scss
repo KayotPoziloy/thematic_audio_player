@@ -8,9 +8,6 @@ button {
 }
 
 .footer-icon-img {
-  //object-fit: cover;
-  //height: 25%;
-  //width: 25%;
   max-height: 100%;
   max-width: 100%;
 }
@@ -22,17 +19,13 @@ label {
   height: 11%;
 }
 
-//.volume-img {
-//  object-fit: cover;
-//  max-height: 100%;
-//  max-width: 100%;
-//}
-
 .wrapper {
   position: relative;
   height: 5rem;
   width: 0.75rem;
-  right: 15%;
+  margin: 0 !important;
+  right: 1%;
+  top: 10%;
 
   &::before,
   &::after {
@@ -136,4 +129,9 @@ input[type="range"] {
 
 .btn {
   height: 60%;
+}
+.volume-range{
+  position: absolute;
+  bottom: 100%;
+  right: 30%;
 }
