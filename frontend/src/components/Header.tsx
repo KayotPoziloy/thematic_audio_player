@@ -36,6 +36,7 @@ export default function Header() {
 
                 {!isAuth ? (
                     <>
+                        <Link to="/" className="nav-link text-white me-3">Главная</Link>
                         <Link to="/login" className="nav-link text-white me-3">Вход</Link>
                         <Link to="/register" className="nav-link text-white me-3">Регистрация</Link>
                     </>
@@ -47,7 +48,7 @@ export default function Header() {
                     </>
                 )}
             </nav>
-            <button onClick={handleLogout} className="btn btn-danger ms-md-3">Выход</button>
+            {isAuth ? <button onClick={handleLogout} className="btn btn-danger ms-md-3">Выход</button> : null}
         </header>
     );
 }
