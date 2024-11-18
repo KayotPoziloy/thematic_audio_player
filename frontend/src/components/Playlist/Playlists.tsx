@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { fetchPlaylists } from "../../store/playlistSlice";
-import "./Playlists.css"
+import "./Playlists.scss"
 
 export const Playlists = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -25,7 +25,7 @@ export const Playlists = () => {
                     <img
                         src={selectedPlaylist.pic}
                         alt={`${selectedPlaylist.name} pic`}
-                        className="playlist-pic"
+                        className="playlist-pic rotating"
                     />
                     <h3>{selectedPlaylist.name}</h3>
                 </div>
