@@ -6,7 +6,11 @@ import "./Playlists.css"
 
 export const Playlists = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const { playlists, error } = useSelector((state: RootState) => state.playlist);
+    const { playlists, selectedPlaylistId, error } = useSelector((state: RootState) => state.playlist);
+
+    const selectedPlaylist = playlists.find(
+        (playlist) => playlist.id === selectedPlaylistId
+    );
 
     useEffect(() => {
         dispatch(fetchPlaylists());
@@ -16,12 +20,18 @@ export const Playlists = () => {
         <div className="playlists">
             {error && <p className="error">{error}</p>}
 
-            {playlists.map((playlist) => (
-                <div key={playlist.id} className="playlist">
-                    <img src={playlist.pic} alt={`${playlist.name} pic`} className="playlist-pic" />
-                    <h3>{playlist.name}</h3>
+            {selectedPlaylist ? (
+                <div className="playlist">
+                    <img
+                        src={selectedPlaylist.pic}
+                        alt={`${selectedPlaylist.name} pic`}
+                        className="playlist-pic"
+                    />
+                    <h3>{selectedPlaylist.name}</h3>
                 </div>
-            ))}
+            ) : (
+                <p>Выберите плейлист</p>
+            )}
         </div>
     );
 };

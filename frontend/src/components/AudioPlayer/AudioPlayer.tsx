@@ -17,6 +17,7 @@ export const AudioPlayer = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [volume, setVolume] = useState(0.5);
     const [show, setShow] = useState(false);
+    const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
 
     const {
         tracks,
@@ -28,7 +29,7 @@ export const AudioPlayer = () => {
     );
 
     useEffect(() => {
-        dispatch(fetchPlaylistTracks(1)); // Вставить id нужного плейлиста
+        dispatch(fetchPlaylistTracks(selectedPlaylistId));
     }, [dispatch]);
 
     useEffect(() => {
@@ -36,7 +37,7 @@ export const AudioPlayer = () => {
             const currentTrack = tracks[currentTrackIndex];
 
             if (audio.current) {
-                audio.current.src = `http://localhost:4000/api/music/m/${currentTrack.filename}`;
+                audio.current.src = `http://localhost:5000/api/music/m/${currentTrack.filename}`;
                 audio.current.currentTime = currentTime;
 
                 if (isPlaying) {

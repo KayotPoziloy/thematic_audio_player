@@ -10,7 +10,11 @@ import {fetchPlaylists} from "./store/playlistSlice";
 
 function App() {
     const dispatch = useDispatch<AppDispatch>();
-    const {playlists} = useSelector((state: RootState) => state.playlist);
+    const {playlists, selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
+
+    const selectedPlaylist = playlists.find(
+        (playlist) => playlist.id === selectedPlaylistId
+    );
 
     useEffect(() => {
         dispatch(fetchPlaylists());
@@ -19,9 +23,15 @@ function App() {
         <>
             <Router>
                 <div className="bg-image vh-100">
-                    {playlists.map((playlist, index) => (
-                        <img src={playlist.background} key={index} alt={`${playlist.name} pic`}/>
-                    ))};
+                    {selectedPlaylist ? (
+                        <img
+                            src={selectedPlaylist.background}
+                            alt={`${selectedPlaylist.name} pic`}
+                        />
+                    ) : (
+                        <p>Выберите плейлист</p>
+                    )}
+
                 </div>
                 <div className="app d-flex flex-column vh-100">
 

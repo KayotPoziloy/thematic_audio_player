@@ -1,6 +1,6 @@
 [
   {
-    "name": "game 1",
+    "name": "GTA 5",
 
     "tag": {
       "example": "This contains the information on which the playlist interface should be based",
@@ -41,5 +41,30 @@
         }
       }
     ]
+  },
+  {
+    "name": "NFS",
+
+    "tag": {
+      "example": "This contains the information on which the playlist interface should be based",
+      "pic": "https://psv4.userapi.com/s/v1/d/BtjNcFp_wJiC1af0FsSbhQWhIGDCSCgeua5PkgrwbSi49Myke26phXTb-oHkthmpPUCGnihtc3dHwMbJtYNyNqc0pT34J46_6awMBsfdIsHaY_2-sg0YHA/gta5.png",
+      "background": "https://psv4.userapi.com/s/v1/d/ZCDEu6tMTBHccQ6hOxi7QxRUAhF3994gIpIj1rmhV-s84YNESXDPvPB3RDfvdzoG7YfRcpkmBx8F8htuYAzLbuVGGL3yWms0CsK9Jtu79AK7XlsPO-oTkw/tumblr_8a54b7384d58c6d48c71aaf7beb3e4d8_8518ea76_540.gif",
+      "colors": [ "#123123", "#333333", "#321321" ]
+    },
+
+    "music": [
+      {
+        "name": "Jay Rock",
+        "author": "Hood Gone Love It (feat. Kendrick Lamar)",
+        "filename": "Jay Rock - Hood Gone Love It (feat. Kendrick Lamar) .mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/_S6UT32TYse2z6IU-qHGOl4r1es3DSDYSpFDeF2c1iFmamtohhm2dhNLHv9ahD7TyyAUcV_sHfTeyurlGyIi9yUVndg64Dumyii1McRxXS3c3p1zspa1zA/Jay_Rock_-_Hood_Gone_Love_It_feat_Kendrick_Lamar.png",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      }
+    ]
+
   }
+
 ]
