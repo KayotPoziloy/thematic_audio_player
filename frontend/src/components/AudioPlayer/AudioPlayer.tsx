@@ -141,13 +141,13 @@ export const AudioPlayer = () => {
                     </div>
                 )}
 
-                <div className= "track-name">
+                <div className="track-name">
+                    <p><b>{tracks.length > 0 && tracks[currentTrackIndex].name}</b></p>
                     <p>{tracks.length > 0 && tracks[currentTrackIndex].author}</p>
-                    <p>{tracks.length > 0 && tracks[currentTrackIndex].name}</p>
                 </div>
             </div>
             <div className="btn-group gap-2 d-md-block">
-                <button className="btn" onClick={handlePrevious}>
+            <button className="btn" onClick={handlePrevious}>
                     <img className="footer-icon-img" src="../png/Back.png" alt="Previous"/>
                 </button>
                 <button
