@@ -34,6 +34,29 @@ export const AudioPlayer = () => {
         }
     }, [selectedPlaylistId, dispatch]);
 
+    useEffect(() => {
+        if (audio.current) {
+            const handleTrackEnd = () => {
+                dispatch(nextTrack());
+
+                setTimeout(() => {
+                    if (audio.current) {
+                        try {
+                            audio.current.play();
+                        } catch (error) {
+                            console.error("Error playing next track:", error);
+                        }
+                    }
+                }, 0);
+            };
+
+            audio.current.addEventListener("ended", handleTrackEnd);
+
+            return () => {
+                audio.current?.removeEventListener("ended", handleTrackEnd);
+            };
+        }
+    }, [dispatch]);
 
     useEffect(() => {
         if (tracks.length > 0) {
