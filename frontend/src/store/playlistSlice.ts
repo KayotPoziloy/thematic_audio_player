@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { clearTracks, fetchPlaylistTracks } from "./audioSlice";
 import axios from "axios";
+import { AppDispatch } from "./store";
 
 interface Playlist {
     id: number;
@@ -79,4 +81,13 @@ const playlistSlice = createSlice({
 });
 
 export const { setSelectedPlaylist } = playlistSlice.actions;
+
+
+//  Добавить проверку, если выбрали тот же плейлист
+export const changePlaylist = (playlistId: number) => (dispatch: AppDispatch) => {
+    dispatch(setSelectedPlaylist(playlistId)); // Сохраняем id выбранного плейлиста
+    dispatch(clearTracks()); // Очищаем треки
+    dispatch(fetchPlaylistTracks(playlistId)); // Загружаем новые треки
+};
+
 export default playlistSlice.reducer;

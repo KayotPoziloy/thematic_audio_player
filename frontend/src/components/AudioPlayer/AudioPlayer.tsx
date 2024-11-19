@@ -29,8 +29,11 @@ export const AudioPlayer = () => {
     );
 
     useEffect(() => {
-        dispatch(fetchPlaylistTracks(selectedPlaylistId));
-    }, [dispatch]);
+        if (selectedPlaylistId) {
+            dispatch(fetchPlaylistTracks(selectedPlaylistId));
+        }
+    }, [selectedPlaylistId, dispatch]);
+
 
     useEffect(() => {
         if (tracks.length > 0) {

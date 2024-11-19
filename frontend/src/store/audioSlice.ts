@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { loadAudioState } from "../utils/localStorage";
 
@@ -89,6 +89,12 @@ const audioSlice = createSlice({
             state.isPlaying = true;
             state.currentTime = 0;
         },
+        clearTracks: (state) => {
+            state.tracks = [];
+            state.currentTrackIndex = 0;
+            state.isPlaying = false;
+            state.currentTime = 0;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -108,6 +114,12 @@ const audioSlice = createSlice({
     },
 })
 
-export const { playTrack, pauseTrack, resumeTrack, nextTrack, previousTrack } =
-    audioSlice.actions;
+export const {
+    playTrack,
+    pauseTrack,
+    resumeTrack,
+    nextTrack,
+    previousTrack ,
+    clearTracks,
+} = audioSlice.actions;
 export default audioSlice.reducer;
