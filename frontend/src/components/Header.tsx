@@ -8,7 +8,6 @@ export default function Header() {
             <nav className="navbar bg-secondary bg-opacity-50">
                 <Dropdown/>
                 <ul className="nav justify-content-end">
-                    {/*<li className="nav-item"><DropdownMenuFavourites name="избранное"/></li>*/}
                     <li className="nav-item"><Link to="/account" className="nav-link"><img className="profile" src="/png/Profile.png" alt="Профиль"/></Link></li>
                 </ul>
             </nav>

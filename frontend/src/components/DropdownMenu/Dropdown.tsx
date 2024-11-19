@@ -1,15 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { changePlaylist, setSelectedPlaylist } from "../../store/playlistSlice";
 import "./Dropdown.css"
-import { AppDispatch } from "../../store/store";
+import { useDropdown } from "../../hooks/useDropdown";
 
 export default function Dropdown() {
-    const dispatch = useDispatch<AppDispatch>();
-
-    const handleSelect = (playlistId: number) => {
-        dispatch(changePlaylist(playlistId));
-    };
+    const {handleSelect} = useDropdown();
 
     return (
         <div

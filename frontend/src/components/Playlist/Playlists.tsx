@@ -1,20 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { fetchPlaylists } from "../../store/playlistSlice";
+import React from "react";
 import "./Playlists.scss"
+import {usePlaylists} from "../../hooks/usePlaylists";
 
 export const Playlists = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const { playlists, selectedPlaylistId, error } = useSelector((state: RootState) => state.playlist);
-
-    const selectedPlaylist = playlists.find(
-        (playlist) => playlist.id === selectedPlaylistId
-    );
-
-    useEffect(() => {
-        dispatch(fetchPlaylists());
-    }, [dispatch]);
+    const {
+        error,
+        selectedPlaylist
+    } = usePlaylists();
 
     return (
         <div className="playlists">
