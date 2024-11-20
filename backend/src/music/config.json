@@ -1,21 +1,85 @@
 [
   {
-    "name": "game 1",
+    "name": "GTA 5",
 
     "tag": {
       "example": "This contains the information on which the playlist interface should be based",
-      "background": "image...",
+      "pic": "https://psv4.userapi.com/s/v1/d/BtjNcFp_wJiC1af0FsSbhQWhIGDCSCgeua5PkgrwbSi49Myke26phXTb-oHkthmpPUCGnihtc3dHwMbJtYNyNqc0pT34J46_6awMBsfdIsHaY_2-sg0YHA/gta5.png",
+      "background": "https://psv4.userapi.com/s/v1/d/ZCDEu6tMTBHccQ6hOxi7QxRUAhF3994gIpIj1rmhV-s84YNESXDPvPB3RDfvdzoG7YfRcpkmBx8F8htuYAzLbuVGGL3yWms0CsK9Jtu79AK7XlsPO-oTkw/tumblr_8a54b7384d58c6d48c71aaf7beb3e4d8_8518ea76_540.gif",
       "colors": [ "#123123", "#333333", "#321321" ]
     },
 
     "music": [
       {
-        "name": "Седая ночь",
-        "author": "Юрий Шатунов",
-        "filename": "audio.mp3",
+        "author": "Jay Rock",
+        "name": "Hood Gone Love It (feat. Kendrick Lamar)",
+        "filename": "Jay Rock - Hood Gone Love It (feat. Kendrick Lamar) .mp3",
         "tag": {
           "data": "...",
-          "background": "image...",
+          "background": "https://psv4.userapi.com/s/v1/d/_S6UT32TYse2z6IU-qHGOl4r1es3DSDYSpFDeF2c1iFmamtohhm2dhNLHv9ahD7TyyAUcV_sHfTeyurlGyIi9yUVndg64Dumyii1McRxXS3c3p1zspa1zA/Jay_Rock_-_Hood_Gone_Love_It_feat_Kendrick_Lamar.png",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      },
+      {
+        "author": "Ali Bomaye",
+        "name": "The Game feat. Rick Ross & 2 Chainz",
+        "filename": "The Game feat. Rick Ross &amp; 2 Chainz - Ali Bomaye .mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/GTK06knCmeNH3AZUchPHnAebeI3WOJWQuLfnGKfG45LyF9Q-Iq8X5FgAJnKYQQfxtGujjFzCS4Eg8VQnmGI8xFDOanyoop1kd6O5ZuwBuZgHqKHBcqYN7w/artworks-000035655166-8zkzz9-t500x500.jpg",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      },
+      {
+        "name": "A.D.H.D",
+        "author": "Kendrick Lamar",
+        "filename": "Kendrick Lamar - A.D.H.D .mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/61HX8rB17AgKUXbbGG9zZGk8yW-cYqKP_NlOp5D3VG7vnTjziyAA-L88eaUYt5UnQROT9Gf2H5gKtweNwmLttaP84deuWEsl2z5IkCYoutk1xAB8Zs3xDQ/Kendrick_Lamar_-_A_D_H_D.png",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "NFS RIVALS",
+
+    "tag": {
+      "example": "This contains the information on which the playlist interface should be based",
+      "pic": "https://psv4.userapi.com/s/v1/d/qpHDlxJNQgylZu2Z1RoJplQrd_C5TTECzyx2hA5yJB_BnXHUhuuc-g4PGt4EDms8HxwUSnw-VWdHcRCJo3RPshPMz2qVK4ue-sHJKf27eL7YGYgtQXwMZA/Need_for_Speed-_Rivals_Cover_Art.jpg",
+      "background": "https://psv4.userapi.com/s/v1/d/WXuYd2PVfAqfYyZ_1M_8g5MHnQlga1klUH3ZAvuhoXPbAGjvqX03xEXvEnzAtvvx-Mf3TXrmnabTHIX2KQzPgkYElGKwGFO9fwG5P_3rQ44-6xQ9qYkcrg/Snimok_ekrana_2024-11-20_202806.jpg",
+      "colors": [ "#123123", "#333333", "#321321" ]
+    },
+
+    "music": [
+      {
+        "name": "Pompeii (Remix)",
+        "author": "Bastille",
+        "filename": "Bastille - Pompeii (Remix).mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/ZNrr9szse1V1fARHEf7QR_Owpk0C6jkpBKR0YdeNOcME0HQv_dpz1e7pFpILi4ktHIJLS5WtwnotIpq4A6qyH_XJOA5uH4lAw4weAMLYcXgq5UGn4ABSDA/Snimok_ekrana_2024-11-19_141250.jpg",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      },
+      {
+        "name": "Dynamo",
+        "author": "Binary",
+        "filename": "Binary - Dynamo .mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/DS0ageepd2YGZ83SdaAcJ9_MqaSuDig8ZSwqmEdTKXhly9dqLkNADkxjUV92X2oDawgltdoToUATKqbzxKgx1zYxvRZEq4Bqog7WkEf6QiijPHANdoidNA/https__images_genius_com_cb8c32aa67071deed8dbf35124015d7b_647x647x1.jpg",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      },
+      {
+        "name": "Bangs",
+        "author": "Brick + Mortar",
+        "filename": "Brick + Mortar - Bangs .mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/n5Khtpop3zLW2KwBubiFMq6r1HhTxoYHON-UEhBmVYjy-GySJmLcuei6tT5ri0SDC116W7fhPJkPB8_SNvHCxXpkTkXz2Gb6c7xaMxlBL7ZIMOfWQ0JDpw/f35910f0162fa02c56e409a8d7f160d6_1000x1000x1.jpg",
           "colors": [ "#123123", "#333333", "#321321" ]
         }
       }
