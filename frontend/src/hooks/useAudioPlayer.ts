@@ -115,8 +115,9 @@ export const useAudioPlayer = () => {
             currentTrackIndex,
             currentTime,
             isPlaying,
+            currentPlaylistIndex: selectedPlaylistId,
         });
-    }, [currentTrackIndex, currentTime, isPlaying]);
+    }, [currentTrackIndex, currentTime, isPlaying, selectedPlaylistId]);
 
     const handlePlayPause = () => {
         if (!isPlaying && currentTime === 0) {

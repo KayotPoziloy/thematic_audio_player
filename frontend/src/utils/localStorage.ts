@@ -2,6 +2,7 @@ export const saveAudioState = (state: {
     currentTrackIndex: number;
     currentTime: number;
     isPlaying: boolean;
+    currentPlaylistIndex: number;
 }) => {
     localStorage.setItem("audioState", JSON.stringify(state));
 };

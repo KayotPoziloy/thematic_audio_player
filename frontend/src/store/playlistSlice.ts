@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { clearTracks, fetchPlaylistTracks } from "./audioSlice";
 import axios from "axios";
 import { AppDispatch } from "./store";
+import { loadAudioState } from "../utils/localStorage";
 
 interface Playlist {
     id: number;
@@ -16,16 +17,18 @@ interface PlaylistState {
     error: string | null;
 }
 
+const savedState = loadAudioState();
+
 const initialState: PlaylistState = {
     playlists: [],
-    selectedPlaylistId: 1,
+    selectedPlaylistId: savedState?.currentPlaylistIndex || 1,
     error: null,
 }
 
 interface ApiPlaylist {
     id: number;
     name: string;
-    tag: string; // tag хранится как строка
+    tag: string;
 }
 
 export const fetchPlaylists = createAsyncThunk(
