@@ -23,7 +23,7 @@ const savedState = loadAudioState();
 
 const initialState: AudioState = {
     tracks: [],
-    currentTrackIndex: savedState?.currentTrackIndex || 0,
+    currentTrackIndex: savedState?.currentTrackIndex || 1,
     isPlaying: false,
     currentTime: savedState?.currentTime || 0,
     error: null,
