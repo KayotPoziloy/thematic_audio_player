@@ -36,7 +36,7 @@
     transform: rotate(360deg);
   }
 }
-
-header, footer {
-  height: 10%;
+p{
+  margin: 0 !important;
 }
+
