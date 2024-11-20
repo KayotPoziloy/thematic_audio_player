@@ -8,7 +8,7 @@ import Account from "./Account";
 
 export default function Content() {
     return (
-        <main className="bg-light flex-grow-1 d-flex align-items-center justify-content-center">
+        <main className="flex-grow-1 d-flex align-items-center justify-content-center">
             <Routes>
                 <Route path="/" element={<Main/>}/>
                 <Route path="/login" element={<SignIn/>}/>
