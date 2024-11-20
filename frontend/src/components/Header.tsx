@@ -5,6 +5,7 @@ import {logout} from "../redux/reducers/userReducer";
 import {API_URL} from "../config";
 import axios from "axios";
 import {UserState} from "../redux/reducers/userReducer"
+import {Dropdown} from "./DropdownMenu";
 
 export default function Header() {
     const dispatch = useDispatch();
@@ -30,10 +31,9 @@ export default function Header() {
     };
 
     return (
-        <header
-            className="bg-primary text-white d-flex flex-column flex-md-row align-items-center justify-content-between p-3">
-            <nav className="d-flex flex-column flex-md-row">
-
+        <header>
+            <nav className="navbar bg-secondary bg-opacity-50">
+                <Dropdown/>
                 {!isAuth ? (
                     <>
                         <Link to="/" className="nav-link text-white me-3">Главная</Link>
@@ -43,12 +43,14 @@ export default function Header() {
                 ) : (
                     <>
                         <Link to="/" className="nav-link text-white me-3">Главная</Link>
-                        <Link to="/account" className="nav-link text-white me-3">Аккаунт</Link>
-                        <Link to="/" className="nav-link text-white me-3">Избранное</Link>
+                        <Link to="/account" className="nav-link">
+                            <img className="profile" src="/png/Profile.png" alt="Профиль"/>
+                        </Link>
                     </>
                 )}
+                {isAuth ? <button onClick={handleLogout} className="btn btn-danger ms-md-3">Выход</button> : null}
+
             </nav>
-            {isAuth ? <button onClick={handleLogout} className="btn btn-danger ms-md-3">Выход</button> : null}
         </header>
     );
 }
