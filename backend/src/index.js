@@ -7,11 +7,10 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cookieParser());
-const corsOptions = {
-    origin: "http://localhost:3000",
-    credentials: true,
-};
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 
 
 app.use(express.json());
