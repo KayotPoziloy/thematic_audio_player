@@ -20,7 +20,7 @@ Bugsnag.start({
 })
 BugsnagPerformance.start({ apiKey: 'a7cd7214f76992387f9e0688a7bba7b0' })
 
-// @ts-expect-error
+// @ts-expect-error хз почему линтер ругается
 const ErrorBoundary = Bugsnag.getPlugin('react')
     .createErrorBoundary(React)
 
