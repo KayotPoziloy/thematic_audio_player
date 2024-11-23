@@ -19,6 +19,8 @@ export const useAudioPlayer = () => {
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
     const [duration, setDuration] = useState<number>(0);
 
+    console.log(duration)
+
     useEffect(() => {
         const updateDuration = () => {
             if (audio.current) {

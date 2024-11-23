@@ -20,7 +20,7 @@ Bugsnag.start({
 })
 BugsnagPerformance.start({ apiKey: 'a7cd7214f76992387f9e0688a7bba7b0' })
 
-// @ts-ignore
+// @ts-expect-error
 const ErrorBoundary = Bugsnag.getPlugin('react')
     .createErrorBoundary(React)
 
