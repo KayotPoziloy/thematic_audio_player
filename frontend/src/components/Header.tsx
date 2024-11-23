@@ -6,6 +6,7 @@ import {API_URL} from "../config";
 import axios from "axios";
 import {UserState} from "../redux/reducers/userReducer"
 import {Dropdown} from "./DropdownMenu";
+import Bugsnag from "@bugsnag/js";
 
 export default function Header() {
     const dispatch = useDispatch();
@@ -23,8 +24,11 @@ export default function Header() {
             navigate("/login");
         } catch (e: unknown) {
             if (axios.isAxiosError(e) && e.response?.data?.error?.msg) {
+                Bugsnag.notify(e.response.data.error.msg)
+
                 return "Ошибка: " + e.response.data.error.msg;
             }
+            Bugsnag.notify("Произошла ошибка")
             return "Произошла ошибка";
         }
 

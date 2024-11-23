@@ -10,6 +10,7 @@ import {
     previousTrack,
 } from "../redux/reducers/audioSlice";
 import { saveAudioState } from "../utils/localStorage";
+import Bugsnag from "@bugsnag/js";
 
 export const useAudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
@@ -64,6 +65,7 @@ export const useAudioPlayer = () => {
                         try {
                             audio.current.play();
                         } catch (error) {
+                            Bugsnag.notify(error as Error)
                             console.error("Error playing next track:", error);
                         }
                     }
@@ -92,6 +94,7 @@ export const useAudioPlayer = () => {
                         try {
                             await audio.current?.play();
                         } catch (error) {
+                            Bugsnag.notify(error as Error)
                             console.error("Error playing audio:", error);
                         }
                     };
