@@ -10,6 +10,7 @@ import {
     previousTrack,
 } from "../redux/reducers/audioSlice";
 import { saveAudioState } from "../utils/localStorage";
+import Bugsnag from "@bugsnag/js";
 
 export const useAudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
@@ -17,6 +18,8 @@ export const useAudioPlayer = () => {
     const [volume, setVolume] = useState(0.5);
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
     const [duration, setDuration] = useState<number>(0);
+
+    console.log(duration)
 
     useEffect(() => {
         const updateDuration = () => {
@@ -64,6 +67,7 @@ export const useAudioPlayer = () => {
                         try {
                             audio.current.play();
                         } catch (error) {
+                            Bugsnag.notify(error as Error)
                             console.error("Error playing next track:", error);
                         }
                     }
@@ -92,6 +96,7 @@ export const useAudioPlayer = () => {
                         try {
                             await audio.current?.play();
                         } catch (error) {
+                            Bugsnag.notify(error as Error)
                             console.error("Error playing audio:", error);
                         }
                     };

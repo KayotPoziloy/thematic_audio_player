@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { loadAudioState } from "../../utils/localStorage";
+import Bugsnag from "@bugsnag/js";
 
 interface Track {
     id: number;
@@ -54,8 +55,10 @@ export const fetchPlaylistTracks = createAsyncThunk(
             return tracks;
         } catch (error: unknown) {
             if (error instanceof Error) {
+                Bugsnag.notify(error.message)
                 return rejectWithValue(error.message);
             }
+            Bugsnag.notify("Unknown error occurred")
             return rejectWithValue("Unknown error occurred");
         }
     }
