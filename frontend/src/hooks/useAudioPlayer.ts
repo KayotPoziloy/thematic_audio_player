@@ -11,6 +11,7 @@ import {
 } from "../redux/reducers/audioSlice";
 import { saveAudioState } from "../utils/localStorage";
 import Bugsnag from "@bugsnag/js";
+import {API_URL} from "../config";
 
 export const useAudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
@@ -88,7 +89,7 @@ export const useAudioPlayer = () => {
             const currentTrack = tracks[currentTrackIndex];
 
             if (audio.current) {
-                audio.current.src = `http://localhost:5000/api/music/m/${currentTrack.filename}`;
+                audio.current.src = API_URL + `api/music/m/${currentTrack.filename}`;
                 audio.current.currentTime = currentTime;
 
                 if (isPlaying) {
