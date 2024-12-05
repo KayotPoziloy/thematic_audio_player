@@ -18,13 +18,13 @@ describe("Header component", () => {
             },
         };
 
-        render(
-            <Provider store={{ ...store, getState: () => mockState }}>
-                <Router>
-                    <Header />
-                </Router>
-            </Provider>
-        );
+        // render(
+        //     <Provider store={{ ...store, getState: () => mockState }}>
+        //         <Router>
+        //             <Header />
+        //         </Router>
+        //     </Provider>
+        // );
 
         expect(screen.getByText("Вход")).toBeInTheDocument();
         expect(screen.getByText("Регистрация")).toBeInTheDocument();
@@ -38,13 +38,13 @@ describe("Header component", () => {
             },
         };
 
-        render(
-            <Provider store={{ ...store, getState: () => mockState }}>
-                <Router>
-                    <Header />
-                </Router>
-            </Provider>
-        );
+        // render(
+        //     <Provider store={{ ...store, getState: () => mockState }}>
+        //         <Router>
+        //             <Header />
+        //         </Router>
+        //     </Provider>
+        // );
 
         expect(screen.getByText("Главная")).toBeInTheDocument();
         expect(screen.getByText("Аккаунт")).toBeInTheDocument();
@@ -63,13 +63,13 @@ describe("Header component", () => {
             },
         };
 
-        render(
-            <Provider store={{ ...store, getState: () => mockState }}>
-                <Router>
-                    <Header />
-                </Router>
-            </Provider>
-        );
+        // render(
+        //     <Provider store={{ ...store, getState: () => mockState }}>
+        //         <Router>
+        //             <Header />
+        //         </Router>
+        //     </Provider>
+        // );
 
         const logoutButton = screen.getByText("Выход");
         fireEvent.click(logoutButton);

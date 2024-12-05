@@ -1,31 +1,44 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
 import {usePlaylists} from "./hooks/usePlaylists";
+import Account from "./components/Account";
+import {Routes} from "react-router";
+
 
 function App() {
-    const {selectedPlaylist} = usePlaylists();
+    const { selectedPlaylist } = usePlaylists();
 
     return (
         <>
             <Router>
-                <div className="bg-image vh-100">
-                    {selectedPlaylist ? (
+                <div className="bg-image">
+                    {selectedPlaylist && (
                         <img
                             src={selectedPlaylist.background}
                             alt={`${selectedPlaylist.name} pic`}
+                            style={{
+                                position: "fixed",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                                zIndex: -1, // Фон за другими элементами
+                            }}
                         />
-                    ) : (
-                        <p>Выберите плейлист</p>
                     )}
                 </div>
                 <div className="d-flex flex-column vh-100">
-                    <Header/>
-                    <Content/>
-                    <Footer/>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<Content />} />
+                        <Route path="/account/*" element={<Account />} />
+                    </Routes>
+                    <Footer />
                 </div>
             </Router>
         </>
