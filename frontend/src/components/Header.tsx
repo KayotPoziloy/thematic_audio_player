@@ -52,7 +52,7 @@ export default function Header() {
                         </Link>
                     </>
                 )}
-                {isAuth ? <button onClick={handleLogout} className="btn btn-danger ms-md-3">Выход</button> : null}
+                {/*{isAuth ? <button onClick={handleLogout} className="btn btn-danger ms-md-3">Выход</button> : null}*/}
 
             </nav>
         </header>
