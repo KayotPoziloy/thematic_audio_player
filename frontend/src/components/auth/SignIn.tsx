@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {signin} from "../../redux/actions/user";
 import {AppDispatch} from "../../redux/reducers";
 import {useNavigate} from "react-router-dom";
+import "./SignIn.css";
 
 
 export default function SignIn(){

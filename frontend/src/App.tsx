@@ -7,6 +7,9 @@ import Footer from "./components/Footer";
 import {usePlaylists} from "./hooks/usePlaylists";
 import Account from "./components/Account";
 import {Routes} from "react-router";
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
+
 
 
 function App() {
@@ -37,6 +40,8 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Content />} />
                         <Route path="/account/*" element={<Account />} />
+                        <Route path="/login" element={<SignIn />} />
+                        <Route path="/register" element={<SignUp />} />
                     </Routes>
                     <Footer />
                 </div>
