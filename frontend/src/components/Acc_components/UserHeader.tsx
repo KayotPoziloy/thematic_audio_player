@@ -1,6 +1,5 @@
 import React from "react";
 import "../../style_lk/Account.css";
-import defaultAvatar from "./img/1.png";
 
 type UserHeaderProps = {
     backgroundImage?: string | null;
@@ -15,7 +14,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
         >
             <div className="avatar-container">
                 <img
-                    src={avatarImage || defaultAvatar} // Используем импортированное изображение
+                    src={avatarImage || "/png_lk/1.png"} // Используем импортированное изображение
                     alt="Аватар пользователя"
                     className="avatar"
                 />

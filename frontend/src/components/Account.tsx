@@ -2,12 +2,6 @@ import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "../style_lk/Account.css"; // Подключение CSS для оформления
 import UserHeader from "./Acc_components/UserHeader"; // Шапка профиля
-import img1 from "./Acc_components/img/img_1.png"; // Импорт изображений
-import img2 from "./Acc_components/img/img_2.png";
-import img3 from "./Acc_components/img/img_3.png";
-import img4 from "./Acc_components/img/img_4.png";
-import img5 from "./Acc_components/img/img_5.png";
-import imgDefault from "./Acc_components/img/img_6.png";
 
 // Импорт компонентов для маршрутов
 import Settings from "./Acc_components/Settings";
@@ -59,7 +53,7 @@ export default function Account() {
                             <div className="icon-grid">
                                 <div className="icon-item" onClick={() => navigate("settings")}>
                                     <img
-                                        src={imgDefault}
+                                        src="/png_lk/img_6.png"
                                         alt="Настройки профиля"
                                         className="icon-image"
                                     />
@@ -67,7 +61,7 @@ export default function Account() {
                                 </div>
                                 <div className="icon-item" onClick={() => navigate("friends")}>
                                     <img
-                                        src={img5}
+                                        src="/png_lk/img_5.png"
                                         alt="Список друзей"
                                         className="icon-image"
                                     />
@@ -75,7 +69,7 @@ export default function Account() {
                                 </div>
                                 <div className="icon-item" onClick={() => navigate("help")}>
                                     <img
-                                        src={img3}
+                                        src="/png_lk/img_3.png"
                                         alt="Партнерство"
                                         className="icon-image"
                                     />
@@ -83,7 +77,7 @@ export default function Account() {
                                 </div>
                                 <div className="icon-item" onClick={() => navigate("support")}>
                                     <img
-                                        src={img1}
+                                        src="/png_lk/img_1.png"
                                         alt="Поддержка проекта"
                                         className="icon-image"
                                     />
@@ -91,7 +85,7 @@ export default function Account() {
                                 </div>
                                 <div className="icon-item" onClick={() => navigate("privacy")}>
                                     <img
-                                        src={img4}
+                                        src="/png_lk/img_4.png"
                                         alt="Авторские права"
                                         className="icon-image"
                                     />
@@ -100,7 +94,7 @@ export default function Account() {
                                 {/* Кнопка выхода с обработчиком */}
                                 <div className="icon-item" onClick={handleLogout}>
                                     <img
-                                        src={img2}
+                                        src="/png_lk/img_2.png"
                                         alt="Выход из аккаунта"
                                         className="icon-image"
                                     />
