@@ -24,8 +24,8 @@ import Bugsnag from "@bugsnag/js";
 export default function Account() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [backgroundImage, setBackgroundImage] = useState<string | null>(null); // Состояние для фона
-    const [avatarImage, setAvatarImage] = useState<string | null>(null); // Состояние для аватара
+    const [backgroundImage] = useState<string | null>(null); // Состояние для фона
+    const [avatarImage] = useState<string | null>(null); // Состояние для аватара
 
     const handleLogout = async () => {
         try {
