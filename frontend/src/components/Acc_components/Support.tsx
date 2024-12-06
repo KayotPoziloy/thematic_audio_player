@@ -1,7 +1,6 @@
 import React from "react";
 import "../../style_lk/Support.css";
-import donateIcon from "../Acc_components/img/Support/img.png";
-import mailIcon from "../Acc_components/img/Support/img_1.png";
+
 
 export default function Support() {
     return (
@@ -18,7 +17,7 @@ export default function Support() {
             <div className="support-buttons">
                 <div className="support-option">
                     <img
-                        src={donateIcon}
+                        src="/png_lk/Support/img.png"
                         alt="Поддержать проект"
                         className="support-icon"
                     />
@@ -26,7 +25,7 @@ export default function Support() {
                 </div>
                 <div className="support-option">
                     <img
-                        src={mailIcon}
+                        src="/png_lk/Support/img_1.png"
                         alt="Почта для Ваших писем"
                         className="support-icon"
                     />

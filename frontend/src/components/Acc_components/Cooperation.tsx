@@ -1,7 +1,5 @@
 import React from "react";
 import "../../style_lk/Cooperation.css";
-import donateIcon from "../Acc_components/img/Cooperation/img.png";
-import mailIcon from "../Acc_components/img/Cooperation/img_1.png";
 
 export default function Cooperation() {
     return (
@@ -19,7 +17,7 @@ export default function Cooperation() {
             <div className="support-buttons">
                 <div className="support-option">
                     <img
-                        src={donateIcon}
+                        src="/png_lk/Cooperation/img.png"
                         alt="Анкета для сотрудничества"
                         className="support-icon"
                     />
@@ -27,7 +25,7 @@ export default function Cooperation() {
                 </div>
                 <div className="support-option">
                     <img
-                        src={mailIcon}
+                        src="/png_lk/Cooperation/img_1.png"
                         alt="Почта для Ваших писем"
                         className="support-icon"
                     />
