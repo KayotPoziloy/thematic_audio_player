@@ -1,11 +1,11 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
+import {render, screen, fireEvent} from "@testing-library/react";
+import {Provider} from "react-redux";
+import {BrowserRouter as Router} from "react-router-dom";
 import axios from "axios";
-import Header from "../../components/Header";
 import {API_URL} from "../../config";
 import store from "../../redux/reducers";
 import React from 'react';
+import Header from "../../components/Header";
 
 jest.mock("axios");
 
@@ -18,13 +18,13 @@ describe("Header component", () => {
             },
         };
 
-        // render(
-        //     <Provider store={{ ...store, getState: () => mockState }}>
-        //         <Router>
-        //             <Header />
-        //         </Router>
-        //     </Provider>
-        // );
+        render(
+            <Provider store={{ ...store, getState: () => mockState }}>
+                <Router>
+                    <Header />
+                </Router>
+            </Provider>
+        );
 
         expect(screen.getByText("Вход")).toBeInTheDocument();
         expect(screen.getByText("Регистрация")).toBeInTheDocument();
@@ -38,13 +38,13 @@ describe("Header component", () => {
             },
         };
 
-        // render(
-        //     <Provider store={{ ...store, getState: () => mockState }}>
-        //         <Router>
-        //             <Header />
-        //         </Router>
-        //     </Provider>
-        // );
+        render(
+            <Provider store={{ ...store, getState: () => mockState }}>
+                <Router>
+                    <Header />
+                </Router>
+            </Provider>
+        );
 
         expect(screen.getByText("Главная")).toBeInTheDocument();
         expect(screen.getByText("Аккаунт")).toBeInTheDocument();
@@ -63,13 +63,13 @@ describe("Header component", () => {
             },
         };
 
-        // render(
-        //     <Provider store={{ ...store, getState: () => mockState }}>
-        //         <Router>
-        //             <Header />
-        //         </Router>
-        //     </Provider>
-        // );
+        render(
+            <Provider store={{ ...store, getState: () => mockState }}>
+                <Router>
+                    <Header />
+                </Router>
+            </Provider>
+        );
 
         const logoutButton = screen.getByText("Выход");
         fireEvent.click(logoutButton);
