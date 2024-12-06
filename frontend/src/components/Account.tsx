@@ -15,15 +15,35 @@ import Privacy from "./Acc_components/Privacy";
 import Friends from "./Acc_components/Friends";
 import Cooperation from "./Acc_components/Cooperation";
 import Support from "./Acc_components/Support";
-import Exit from "./Acc_components/Exit";
-
-
-
+import axios from "axios";
+import { logout } from "../redux/reducers/userReducer";
+import { useDispatch } from "react-redux";
+import { API_URL } from "../config";
+import Bugsnag from "@bugsnag/js";
 
 export default function Account() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [backgroundImage, setBackgroundImage] = useState<string | null>(null); // Состояние для фона
     const [avatarImage, setAvatarImage] = useState<string | null>(null); // Состояние для аватара
+
+    const handleLogout = async () => {
+        try {
+            await axios.get(`${API_URL}api/user/logout`, {
+                withCredentials: true,
+            });
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+            dispatch(logout());
+            navigate("/login");
+        } catch (e: unknown) {
+            if (axios.isAxiosError(e) && e.response?.data?.error?.msg) {
+                Bugsnag.notify(e.response.data.error.msg);
+                return "Ошибка: " + e.response.data.error.msg;
+            }
+            Bugsnag.notify("Произошла ошибка");
+            return "Произошла ошибка";
+        }
+    };
 
     return (
         <div className="account-container" style={{ position: "relative", zIndex: 1 }}>
@@ -45,7 +65,7 @@ export default function Account() {
                                     />
                                     <p className="icon-label">НАСТРОЙКИ ПРОФИЛЯ</p>
                                 </div>
-                                <div className="icon-item" onClick={() => navigate("products")}>
+                                <div className="icon-item" onClick={() => navigate("friends")}>
                                     <img
                                         src={img5}
                                         alt="Список друзей"
@@ -77,7 +97,8 @@ export default function Account() {
                                     />
                                     <p className="icon-label">АВТОРСКИЕ ПРАВА</p>
                                 </div>
-                                <div className="icon-item" onClick={() => navigate("favorites")}>
+                                {/* Кнопка выхода с обработчиком */}
+                                <div className="icon-item" onClick={handleLogout}>
                                     <img
                                         src={img2}
                                         alt="Выход из аккаунта"
@@ -105,12 +126,6 @@ export default function Account() {
                 <Route path="friends" element={<Friends />} />
                 <Route path="help" element={<Cooperation />} />
                 <Route path="support" element={<Support />} />
-                <Route path="favorites" element={<Exit />} />
-
-
-
-
-
             </Routes>
         </div>
     );
