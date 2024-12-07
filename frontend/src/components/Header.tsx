@@ -1,13 +1,13 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {UserState} from "../redux/reducers/userReducer"
 import {Dropdown} from "./DropdownMenu";
-import Bugsnag from "@bugsnag/js";
+// import Bugsnag from "@bugsnag/js";
 
 export default function Header() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
 
     const isAuth = useSelector((state: { user: UserState }) => state.user.isAuth);
 
