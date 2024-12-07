@@ -25,6 +25,9 @@ export default function Dropdown() {
                         <li className="dropdown-item" onClick={() => handleSelect(2)}>
                             <a>NFS RIVALS</a>
                         </li>
+                        <li className="dropdown-item" onClick={() => handleSelect(3)}>
+                            <a>THE WITHER</a>
+                        </li>
                     </ul>
                 </li>
                 <li className="dropend">
