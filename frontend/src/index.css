@@ -38,3 +38,15 @@ main{
   width: 70%;
   height: 70%;
 }
+.logo-out{
+  margin-top: 1px;
+  width: 27px;
+  height: 27px;
+}
+.logo{
+  width: 30px;
+  height: 30px;
+}
+.right-sided{
+  right: 0;
+}
