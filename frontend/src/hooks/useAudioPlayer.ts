@@ -158,6 +158,7 @@ export const useAudioPlayer = () => {
         isPlaying,
         currentTime,
         volume,
+        duration,
         handlePlayPause,
         handleNext,
         handlePrevious,
