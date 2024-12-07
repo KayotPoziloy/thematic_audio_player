@@ -83,5 +83,47 @@
         }
       }
     ]
+  },
+  {
+    "name": "THE WITHER",
+    "tag": {
+      "example": "This contains the information on which the playlist interface should be based",
+      "pic": "https://psv4.userapi.com/s/v1/d/fkW2xl-ZNlCnTvV4C1gSIR_yqxJpJU0Q0nEOkj0-EtRmz5_pOPgYs60Z8F8pgS1hwTa2UFFK3w95SdNhVf8QUzfyHW3oczILSfq-a3DL8mJHhnt4y8OoqQ/IMG_6797.png",
+      "background": "https://psv4.userapi.com/s/v1/d/_lUvaCqOCX0MPebrfR-Ca-TS_49zRtd83HluZm7bRK23JhULVBbVuqvSCUMWQ88PMFPF4PrzXhQPuwlq4JZDUr8d10o2dmc-cO9GY0TL7pfpM0Tkfogi9g/IMG_6795.jpg",
+      "colors": [ "#123123", "#333333", "#321321" ]
+    },
+
+    "music": [
+      {
+        "author": "CD Project Red",
+        "name": "Hearts of Stone",
+        "filename": "The Wither - Hearts of Stone.mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/4OyB7-cyY5NW707bYuTn6QfaxEu4rLEsw4Kf0usByQ3OraoNM3s0VIw8Aa2xM75NVgFBpKDhL97qg-IF_AoRnDCLszSmc1yC_ND9feJIarVgQyOTkwC1ig/IMG_6800.jpg",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      },
+      {
+        "author": "CD Project Red",
+        "name": "Blood and Wine",
+        "filename": "The Wither - Blood and Wine.mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/5NPW3d-YM_5mUhgsqUu91HjPU3oZIOGg4VocHnvK11zPtCccwZJ3RkWIaY1hlfqFhgPd-OmxnSmus4tS3DV8innxFjelHCqWwE3bSt9F9QUBTuHLqISi2g/IMG_6798.jpg",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      },
+      {
+        "name": "Novigrad",
+        "author": "CD Project Red",
+        "filename": "The Wither - Novigrad.mp3",
+        "tag": {
+          "data": "...",
+          "background": "https://psv4.userapi.com/s/v1/d/xrJPMJUIM2uzv58PJhWntsj2BB46nP34agfT3tSzVeYIVfiIccY-pYvyO8ICZdZzSMqrGUq6LxLitan0VzEAs7DtfK4bqZz7UREtULpFJ9MO54FfOzwwpw/IMG_6799.jpg",
+          "colors": [ "#123123", "#333333", "#321321" ]
+        }
+      }
+    ]
   }
 ]
