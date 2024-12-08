@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { loadAudioState } from "../../utils/localStorage";
 import Bugsnag from "@bugsnag/js";
+import {API_URL} from "../../config";
 
 interface Track {
     id: number;
@@ -35,7 +36,7 @@ export const fetchPlaylistTracks = createAsyncThunk(
     async (playlistId: number, { rejectWithValue })=> {
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/music/musics",
+                API_URL + "api/music/musics",
                 { "id": playlistId },
                 { withCredentials: true }
             );

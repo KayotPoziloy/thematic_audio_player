@@ -1,0 +1,15 @@
+form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto 0; /* Центрируем форму и учитываем высоту шапки */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    gap: 15px;
+}
