@@ -1,0 +1,93 @@
+/* Стили для информации о пользователе */
+.user-info {
+    color: #0d0d0d; /* Черный цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+    font-size: 1.2em; /* Увеличенный размер шрифта */
+    font-family: Arial, sans-serif; /* Выбор шрифта */
+}
+
+/* Стили для верхней части страницы аккаунта */
+.account-top-section {
+    background-color: #f0f0f0;
+    padding: 20px;
+    position: fixed;
+    top: 60px; /* Отступ от верхней навигационной строки */
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для визуального разделения */
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    /*margin-left: -365px;*/
+}
+
+/* Контейнер для аватара */
+.avatar-container {
+    flex-shrink: 0;
+    margin-right: 25px;
+    margin-left: -15px; /* Сдвиг аватара левее */
+}
+
+/* Стили для аватара */
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Контейнер для кнопок в виде иконок */
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три колонки */
+    gap: 40px; /* Увеличенное расстояние между элементами */
+    padding: 20px;
+    justify-content: center; /* Центрирование сетки */
+    align-items: center;
+    margin: 230px auto 0; /* Отступ сверху для опускания сетки вниз */
+    max-width: px; /* Ограничение ширины для центрирования */
+
+}
+
+/* Общий стиль для каждого элемента */
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.icon-item:hover {
+    transform: scale(1.1);
+}
+
+/* Стили для изображения иконки */
+.icon-image {
+    width: 170px; /* Увеличение ширины иконки */
+    height: 170px; /* Увеличение высоты иконки */
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+/* Стили для подписей под иконками */
+.icon-label {
+    font-size: 25px; /* Размер текста */
+    color: #333;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Высота футера */
+    background-color: #f8f9fa;
+    text-align: center;
+    line-height: 60px; /* Вертикальное выравнивание текста */
+    z-index: 10;
+}
