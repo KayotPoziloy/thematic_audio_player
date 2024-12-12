@@ -81,11 +81,6 @@ export default function Header() {
                                     )}
                                 </>
                             )}
-                            {isAuth ? <Link onClick={handleLogout} to="" className="nav-link nav-item">
-                                <img className="logo-out"
-                                     src="/png/Log-out.png"
-                                     alt="Выход"/>
-                            </Link> : null}
                         </ul>
                     </div>
                 </div>
