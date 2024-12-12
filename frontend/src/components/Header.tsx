@@ -1,15 +1,10 @@
 import React from "react";
-import {Link, useNavigate, useLocation} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {logout} from "../redux/reducers/userReducer";
-import {API_URL} from "../config";
-import axios from "axios";
+import {Link, useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
 import {UserState} from "../redux/reducers/userReducer"
 import {Dropdown} from "./DropdownMenu";
 
 export default function Header() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
     const location = useLocation();
     const isAuthPages = ["/register", "/login", "/account"];
 
