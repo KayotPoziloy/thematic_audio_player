@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import Main from '../../components/Main';
 import userEvent from '@testing-library/user-event';
+import {API_URL} from "../../config";
 
 describe("/components/Main.test.tsx", () => {
 
@@ -54,7 +55,7 @@ describe("/components/Main.test.tsx", () => {
 
     userEvent.click(screen.getByText('Start'));
 
-    await waitFor(() => expect(global.fetch).toHaveBeenCalledWith("http://localhost:5000/api/music/m/audio.mp3"));
+    await waitFor(() => expect(global.fetch).toHaveBeenCalledWith(API_URL + "/api/music/m/audio.mp3"));
   });
 
 });

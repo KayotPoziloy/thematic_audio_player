@@ -3,6 +3,8 @@ import { clearTracks, fetchPlaylistTracks } from "./audioSlice";
 import axios from "axios";
 import { AppDispatch } from "./index";
 import { loadAudioState } from "../../utils/localStorage";
+import Bugsnag from "@bugsnag/js";
+import {API_URL} from "../../config";
 
 interface Playlist {
     id: number;
@@ -36,7 +38,7 @@ export const fetchPlaylists = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/music/playlists",
+                API_URL + "api/music/playlists",
                 { withCredentials: true }
             );
             if (response.data.error) {
@@ -55,8 +57,10 @@ export const fetchPlaylists = createAsyncThunk(
             return playlists;
         } catch (error: unknown) {
             if (error instanceof Error) {
+                Bugsnag.notify(error.message)
                 return rejectWithValue(error.message);
             }
+            Bugsnag.notify("Unknown error occurred")
             return rejectWithValue("Unknown error occurred");
         }
     }

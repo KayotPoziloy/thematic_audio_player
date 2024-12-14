@@ -4,11 +4,10 @@ import {useSelector} from "react-redux";
 import {UserState} from "../redux/reducers/userReducer"
 import {Dropdown} from "./DropdownMenu";
 
+
 export default function Header() {
     const location = useLocation();
     const isAuthPages = ["/register", "/login", "/account"];
-
-
     const isAuth = useSelector((state: { user: UserState }) => state.user.isAuth);
 
     return (

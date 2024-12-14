@@ -1,58 +1,126 @@
-import React from "react";
+import React, { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import "../style_lk/Account.css"; // Подключение CSS для оформления
+import UserHeader from "./Acc_components/UserHeader"; // Шапка профиля
 
-export default function Account(){
+// Импорт компонентов для маршрутов
+import Settings from "./Acc_components/Settings";
+import Privacy from "./Acc_components/Privacy";
+import Friends from "./Acc_components/Friends";
+import Cooperation from "./Acc_components/Cooperation";
+import Support from "./Acc_components/Support";
+import axios from "axios";
+import { logout } from "../redux/reducers/userReducer";
+import { useDispatch } from "react-redux";
+import { API_URL } from "../config";
+import Bugsnag from "@bugsnag/js";
+
+export default function Account() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [backgroundImage] = useState<string | null>(null); // Состояние для фона
+    const [avatarImage] = useState<string | null>(null); // Состояние для аватара
+
+    const handleLogout = async () => {
+        try {
+            await axios.get(`${API_URL}api/user/logout`, {
+                withCredentials: true,
+            });
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+            dispatch(logout());
+            navigate("/login");
+        } catch (e: unknown) {
+            if (axios.isAxiosError(e) && e.response?.data?.error?.msg) {
+                Bugsnag.notify(e.response.data.error.msg);
+                return "Ошибка: " + e.response.data.error.msg;
+            }
+            Bugsnag.notify("Произошла ошибка");
+            return "Произошла ошибка";
+        }
+    };
+
     return (
-        <div className="flex-column">
-            <div className="container mp-5">
-                <div className="row mp-5">
-
-                    <div className="col-md-4 d-flex justify-content-center align-items-center">
-                        <img
-                            src="https://thumbs.dreamstime.com/b/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-%D1%81%D0%BC%D0%B8-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0-%D0%B7%D0%BD%D0%B0%D1%87%D0%BA%D0%B0-%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8F-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8B-%D0%BF%D0%BE-%D1%83%D0%BC%D0%BE%D0%BB%D1%87%D0%B0%D0%BD%D0%B8%D1%8E-176256935.jpg"
-                            alt="Аватар пользователя"
-                            className="img-fluid rounded-circle"
-                            style={{width: '150px', height: '150px'}}
-                        />
-                    </div>
-                    <div className="col-md-8 d-flex flex-column justify-content-center">
-                        <h3>Имя: Иван</h3>
-                        <p>Email: ivanov@example.com</p>
-                        <p>Телефон: +7 (123) 456-78-90</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="d-flex justify-content-center align-items-center flex-grow-1">
-                <div className="container">
-                    <div className="row mb-3">
-                        <div className="col-6">
-                            <button className="btn btn-primary w-100 py-3">Настройки</button>
-                        </div>
-                        <div className="col-6">
-                            <button className="btn btn-secondary w-100 py-3">Список друзей</button>
-                        </div>
-                    </div>
-                    <div className="row mb-3">
-                        <div className="col-6">
-                            <button className="btn btn-success w-100 py-3">Помощь</button>
-                        </div>
-                        <div className="col-6">
-                            <button className="btn btn-danger w-100 py-3">Поддержать проект</button>
-                        </div>
-                    </div>
-
-                    <div className="row mb-3">
-                        <div className="col-6">
-                            <button className="btn btn-info w-100 py-3">Конфедициальность
-                            </button>
-                        </div>
-                        <div className="col-6">
-                            <button className="btn btn-warning w-100 py-3">Избранное</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <div className="account-container" style={{ position: "relative", zIndex: 1 }}>
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <>
+                            <UserHeader
+                                backgroundImage={backgroundImage}
+                                avatarImage={avatarImage}
+                            />
+                            <div className="icon-grid">
+                                <div className="icon-item" onClick={() => navigate("settings")}>
+                                    <img
+                                        src="/png_lk/img_6.png"
+                                        alt="Настройки профиля"
+                                        className="icon-image"
+                                    />
+                                    <p className="icon-label">НАСТРОЙКИ ПРОФИЛЯ</p>
+                                </div>
+                                <div className="icon-item" onClick={() => navigate("friends")}>
+                                    <img
+                                        src="/png_lk/img_5.png"
+                                        alt="Список друзей"
+                                        className="icon-image"
+                                    />
+                                    <p className="icon-label">СПИСОК ДРУЗЕЙ</p>
+                                </div>
+                                <div className="icon-item" onClick={() => navigate("help")}>
+                                    <img
+                                        src="/png_lk/img_3.png"
+                                        alt="Партнерство"
+                                        className="icon-image"
+                                    />
+                                    <p className="icon-label">ПАРТНЕРСТВО</p>
+                                </div>
+                                <div className="icon-item" onClick={() => navigate("support")}>
+                                    <img
+                                        src="/png_lk/img_1.png"
+                                        alt="Поддержка проекта"
+                                        className="icon-image"
+                                    />
+                                    <p className="icon-label">ПОДДЕРЖКА ПРОЕКТА</p>
+                                </div>
+                                <div className="icon-item" onClick={() => navigate("privacy")}>
+                                    <img
+                                        src="/png_lk/img_4.png"
+                                        alt="Авторские права"
+                                        className="icon-image"
+                                    />
+                                    <p className="icon-label">АВТОРСКИЕ ПРАВА</p>
+                                </div>
+                                {/* Кнопка выхода с обработчиком */}
+                                <div className="icon-item" onClick={handleLogout}>
+                                    <img
+                                        src="/png_lk/img_2.png"
+                                        alt="Выход из аккаунта"
+                                        className="icon-image"
+                                    />
+                                    <p className="icon-label">ВЫХОД ИЗ АККАУНТА</p>
+                                </div>
+                            </div>
+                        </>
+                    }
+                />
+                <Route
+                    path="settings"
+                    element={
+                        <>
+                            <UserHeader
+                                backgroundImage={backgroundImage}
+                                avatarImage={avatarImage}
+                            />
+                            <Settings />
+                        </>
+                    }
+                />
+                <Route path="privacy" element={<Privacy />} />
+                <Route path="friends" element={<Friends />} />
+                <Route path="help" element={<Cooperation />} />
+                <Route path="support" element={<Support />} />
+            </Routes>
         </div>
     );
 }
