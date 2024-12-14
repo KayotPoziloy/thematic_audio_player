@@ -3,6 +3,7 @@ import {setUser} from "../reducers/userReducer";
 import {API_URL} from "../../config";
 import { NavigateFunction } from 'react-router-dom';
 import { Dispatch } from 'redux';
+import Bugsnag from "@bugsnag/js";
 
 export const signup =  (login: string, password: string, name:string, navigate:NavigateFunction) => {
     return async () => {
@@ -15,8 +16,10 @@ export const signup =  (login: string, password: string, name:string, navigate:N
             navigate("/login");
         } catch (e: unknown) {
             if (axios.isAxiosError(e) && e.response?.data?.error?.msg) {
+                Bugsnag.notify(e.response.data.error.msg)
                 return "Ошибка: " + e.response.data.error.msg;
             }
+            Bugsnag.notify("Произошла ошибка")
             return "Произошла ошибка";
         }
     }
@@ -39,8 +42,10 @@ export const signin = (login: string, password: string, navigate:NavigateFunctio
             navigate("/account");
         } catch (e: unknown) {
             if (axios.isAxiosError(e) && e.response?.data?.error?.msg) {
+                Bugsnag.notify(e.response.data.error.msg)
                 return "Ошибка: " + e.response.data.error.msg;
             }
+            Bugsnag.notify("Произошла ошибка")
             return "Произошла ошибка";
         }
     };
