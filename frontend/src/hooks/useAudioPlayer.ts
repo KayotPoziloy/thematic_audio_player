@@ -18,34 +18,36 @@ export const useAudioPlayer = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [volume, setVolume] = useState(0.5);
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
-    const [duration, setDuration] = useState<number>(0);
+    // const [duration, setDuration] = useState<number>(0);
 
-    console.log(duration)
+    // console.log(duration)
 
-    useEffect(() => {
-        const updateDuration = () => {
-            if (audio.current) {
-                const trackDuration = audio.current.duration;
-                if (!isNaN(trackDuration)) {
-                    setDuration(trackDuration);
-                }
-            }
-        };
-
-        if (audio.current) {
-            audio.current.addEventListener("loadedmetadata", updateDuration);
-            return () => {
-                audio.current?.removeEventListener("loadedmetadata", updateDuration);
-            };
-        }
-    }, []);
+    // useEffect(() => {
+    //     const updateDuration = () => {
+    //         if (audio.current) {
+    //             const trackDuration = audio.current.duration;
+    //             if (!isNaN(trackDuration)) {
+    //                 setDuration(trackDuration);
+    //             }
+    //         }
+    //     };
+    //
+    //     if (audio.current) {
+    //         audio.current.addEventListener("loadedmetadata", updateDuration);
+    //         return () => {
+    //             audio.current?.removeEventListener("loadedmetadata", updateDuration);
+    //         };
+    //     }
+    // }, []);
 
 
     const {
         tracks,
         currentTrackIndex,
+        duration,
         isPlaying,
         currentTime,
+        rotationAngle
     } = useSelector(
         (state: RootState) => state.audio
     );
@@ -165,6 +167,7 @@ export const useAudioPlayer = () => {
         currentTime,
         volume,
         duration,
+        rotationAngle,
         handlePlayPause,
         handleNext,
         handlePrevious,
