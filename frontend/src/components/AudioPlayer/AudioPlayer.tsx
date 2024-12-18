@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./AudioPlayer.scss"
 import {useAudioPlayer} from "../../hooks/useAudioPlayer";
+import {setDuration} from "../../redux/reducers/audioSlice";
+import {useDispatch} from "react-redux";
 
 export const AudioPlayer = () => {
     const {
@@ -16,6 +18,27 @@ export const AudioPlayer = () => {
         handleVolumeChange,
     } = useAudioPlayer();
     const [show, setShow] = useState(false);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const updateDuration = () => {
+            if (audio.current) {
+                const trackDuration = audio.current.duration;
+                if (!isNaN(trackDuration)) {
+                    dispatch(setDuration(trackDuration));
+                }
+            }
+        };
+
+        if (audio.current) {
+            audio.current.addEventListener("loadedmetadata", updateDuration);
+            return () => {
+                audio.current?.removeEventListener("loadedmetadata", updateDuration);
+            };
+        }
+    }, []);
+
+    console.log(audio.current?.duration);
 
     return (
         <div className="footer-player">
