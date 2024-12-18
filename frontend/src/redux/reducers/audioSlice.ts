@@ -93,6 +93,9 @@ const audioSlice = createSlice({
     name: "audio",
     initialState,
     reducers: {
+        setDuration:(state, action: PayloadAction<number>) => {
+            state.duration = action.payload;
+        },
         setCurrentTime: (state, action: PayloadAction<number>) => {
             state.currentTime = action.payload;
             state.duration = state.tracks[action.payload]?.duration || 0;
@@ -161,6 +164,7 @@ export const {
     setRotationAngle,
     clearTracks,
     setCurrentTime,
+    setDuration,
 } = audioSlice.actions;
 
 export default audioSlice.reducer;
