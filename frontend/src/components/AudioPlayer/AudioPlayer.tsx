@@ -15,7 +15,6 @@ export const AudioPlayer = () => {
         handlePrevious,
         handleVolumeChange,
     } = useAudioPlayer();
-
     const [show, setShow] = useState(false);
 
     return (
@@ -72,4 +71,3 @@ export const AudioPlayer = () => {
         </div>
     );
 }
-
