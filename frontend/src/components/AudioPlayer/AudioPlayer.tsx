@@ -38,8 +38,6 @@ export const AudioPlayer = () => {
         }
     }, []);
 
-    console.log(audio.current?.duration);
-
     return (
         <div className="footer-player">
             <div className="playlist-footer">
