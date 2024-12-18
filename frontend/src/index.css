@@ -26,6 +26,8 @@ body {
 footer{
   z-index: 2;
   max-height: 10%;
+  position: sticky;
+  bottom: 0;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
