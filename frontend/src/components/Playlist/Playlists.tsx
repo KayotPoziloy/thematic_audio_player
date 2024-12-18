@@ -5,20 +5,17 @@ import "./Playlists.scss";
 import {usePlaylists} from "../../hooks/usePlaylists";
 import {RootState} from "../../redux/reducers";
 import {setCurrentTime, setRotationAngle} from "../../redux/reducers/audioSlice";
-import {saveAudioState} from "../../utils/localStorage";
 
 export const Playlists = () => {
     const {error, selectedPlaylist} = usePlaylists();
-    const {audio, isPlaying, duration, currentTrackIndex} = useAudioPlayer();
+    const {isPlaying, duration} = useAudioPlayer();
     const dispatch = useDispatch();
 
-    const {currentTime, rotationAngle} = useSelector((state: RootState) => state.audio);
-    const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
+    const {rotationAngle} = useSelector((state: RootState) => state.audio);
 
     const [isDragging, setIsDragging] = useState(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    console.log(duration, isPlaying, currentTime, rotationAngle, audio);
 
     // Обновление угла при воспроизведении
     useEffect(() => {
@@ -30,32 +27,6 @@ export const Playlists = () => {
             return () => clearInterval(interval);
         }
     }, [isPlaying, duration, isDragging, rotationAngle, dispatch]); // Добавили dispatch как зависимость
-
-    useEffect(() => {
-        const handleTimeUpdate = () => {
-            if (audio.current) {
-                dispatch(setCurrentTime(audio.current.currentTime));
-            }
-        };
-
-        if (audio.current) {
-            audio.current.addEventListener("timeupdate", handleTimeUpdate);
-        }
-
-        return () => {
-            if (audio.current) {
-                audio.current.removeEventListener("timeupdate", handleTimeUpdate);
-            }
-        };
-    }, [audio, dispatch]);
-    useEffect(() => {
-        saveAudioState({
-            currentTrackIndex,
-            currentTime,
-            isPlaying,
-            currentPlaylistIndex: selectedPlaylistId,
-        });
-    }, [currentTrackIndex, currentTime, isPlaying, selectedPlaylistId]);
 
     // Обработка начала перетаскивания
     const handleMouseDown = (e: React.MouseEvent) => {
@@ -76,15 +47,8 @@ export const Playlists = () => {
 
         // Перематываем трек в зависимости от угла
         const newTime = (newRotationAngle / 360) * duration;
-        console.log("time");
-        console.log(audio.current);
-        if (audio.current) {
-            audio.current.currentTime = newTime;
-            console.log(newTime);
-            dispatch(setCurrentTime(newTime)); // Обновляем currentTime в Redux
-        }
-
         dispatch(setRotationAngle(newRotationAngle)); // Обновляем угол в Redux
+        dispatch(setCurrentTime(newTime)); // Обновляем время в Redux
     };
 
     const handleMouseUp = () => {
