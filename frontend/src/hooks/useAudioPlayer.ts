@@ -2,13 +2,13 @@ import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {AppDispatch, RootState} from "../redux/reducers";
 import {
-    fetchPlaylistTracks,
     playTrack,
     pauseTrack,
     resumeTrack,
     nextTrack,
     previousTrack,
 } from "../redux/reducers/audioSlice";
+import { fetchPlaylistTracks } from "../model/getMusics";
 import { saveAudioState } from "../utils/localStorage";
 import Bugsnag from "@bugsnag/js";
 import {API_URL} from "../config";

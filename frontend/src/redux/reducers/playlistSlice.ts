@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { clearTracks, fetchPlaylistTracks } from "./audioSlice";
+import { clearTracks } from "./audioSlice";
+import { fetchPlaylistTracks } from "../../model/getMusics";
 import axios from "axios";
 import { AppDispatch } from "./index";
 import { loadAudioState } from "../../utils/localStorage";
