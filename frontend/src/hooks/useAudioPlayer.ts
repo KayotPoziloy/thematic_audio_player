@@ -8,9 +8,8 @@ import {
     nextTrack,
     previousTrack,
 } from "../redux/reducers/audioSlice";
-import { fetchPlaylistTracks } from "../model/getMusics";
+import { fetchPlaylistTracks } from "../model";
 import { saveAudioState } from "../utils/localStorage";
-import Bugsnag from "@bugsnag/js";
 import {API_URL} from "../config";
 
 export const useAudioPlayer = () => {
@@ -50,14 +49,12 @@ export const useAudioPlayer = () => {
         (state: RootState) => state.audio
     );
 
-    // Выборка треков для текущего плейлиста
     useEffect(() => {
         if (selectedPlaylistId) {
             dispatch(fetchPlaylistTracks(selectedPlaylistId));
         }
     }, [selectedPlaylistId, dispatch]);
 
-    // Переключение трека после окончания
     useEffect(() => {
         if (audio.current) {
             const handleTrackEnd = () => {
@@ -68,7 +65,6 @@ export const useAudioPlayer = () => {
                         try {
                             audio.current.play();
                         } catch (error) {
-                            Bugsnag.notify(error as Error)
                             console.error("Error playing next track:", error);
                         }
                     }
@@ -83,7 +79,6 @@ export const useAudioPlayer = () => {
         }
     }, [dispatch]);
 
-    // Загрузка трека, который играет
     useEffect(() => {
         if (tracks.length > 0) {
             const currentTrack = tracks[currentTrackIndex];
@@ -97,7 +92,6 @@ export const useAudioPlayer = () => {
                         try {
                             await audio.current?.play();
                         } catch (error) {
-                            Bugsnag.notify(error as Error)
                             console.error("Error playing audio:", error);
                         }
                     };

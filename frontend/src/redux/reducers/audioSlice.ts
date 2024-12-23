@@ -1,9 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { loadAudioState } from "../../utils/localStorage";
-import Bugsnag from "@bugsnag/js";
-import {API_URL} from "../../config";
-import { fetchPlaylistTracks } from "../../model/getMusics";
+import { fetchPlaylistTracks } from "../../model";
 
 interface Track {
     id: number;
@@ -51,7 +48,6 @@ const audioSlice = createSlice({
         nextTrack: (state) => {
             state.currentTrackIndex =
                 (state.currentTrackIndex + 1) % state.tracks.length;
-            // state.isPlaying = true;
             state.currentTime = 0;
         },
         previousTrack: (state) => {

@@ -1,11 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { clearTracks } from "./audioSlice";
-import { fetchPlaylistTracks } from "../../model/getMusics";
-import axios from "axios";
+import { fetchPlaylistTracks, fetchPlaylists } from "../../model";
 import { AppDispatch } from "./index";
 import { loadAudioState } from "../../utils/localStorage";
-import Bugsnag from "@bugsnag/js";
-import {API_URL} from "../../config";
 
 interface Playlist {
     id: number;
@@ -27,45 +24,6 @@ const initialState: PlaylistState = {
     selectedPlaylistId: savedState?.currentPlaylistIndex || 1,
     error: null,
 }
-
-interface ApiPlaylist {
-    id: number;
-    name: string;
-    tag: string;
-}
-
-export const fetchPlaylists = createAsyncThunk(
-    "playlist/fetchPlaylists",
-    async (_, { rejectWithValue }) => {
-        try {
-            const response = await axios.get(
-                API_URL + "api/music/playlists",
-                { withCredentials: true }
-            );
-            if (response.data.error) {
-                throw new Error(response.data.error);
-            }
-
-            const playlists = response.data.playlists.map((playlist: ApiPlaylist) => {
-                const tag = JSON.parse(playlist.tag);
-                return {
-                    id: playlist.id,
-                    name: playlist.name,
-                    background: tag.background,
-                    pic: tag.pic,
-                };
-            });
-            return playlists;
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                Bugsnag.notify(error.message)
-                return rejectWithValue(error.message);
-            }
-            Bugsnag.notify("Unknown error occurred")
-            return rejectWithValue("Unknown error occurred");
-        }
-    }
-);
 
 const playlistSlice = createSlice({
     name: "playlist",
@@ -90,9 +48,9 @@ const playlistSlice = createSlice({
 export const { setSelectedPlaylist } = playlistSlice.actions;
 
 export const changePlaylist = (playlistId: number) => (dispatch: AppDispatch) => {
-    dispatch(setSelectedPlaylist(playlistId)); // Сохраняем id выбранного плейлиста
-    dispatch(clearTracks()); // Очищаем треки
-    dispatch(fetchPlaylistTracks(playlistId)); // Загружаем новые треки
+    dispatch(setSelectedPlaylist(playlistId));
+    dispatch(clearTracks());
+    dispatch(fetchPlaylistTracks(playlistId));
 };
 
 export default playlistSlice.reducer;
