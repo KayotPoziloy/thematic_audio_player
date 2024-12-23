@@ -29,8 +29,6 @@ const ErrorView = () =>
         <p>Inform users of an error in the component tree.</p>
     </div>
 
-Bugsnag.notify(new Error('ТЕССТТАТАМ'))
-
 root.render(
     <ErrorBoundary FallbackComponent={ErrorView}>
         <React.StrictMode>
