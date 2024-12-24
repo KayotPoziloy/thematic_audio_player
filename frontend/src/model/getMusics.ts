@@ -12,8 +12,6 @@ interface Track {
     tag: string;
 }
 
-export {};
-
 export const fetchPlaylistTracks = createAsyncThunk(
     "audio/fetchPlaylistTracks",
     async (playlistId: number, { rejectWithValue })=> {
@@ -47,3 +45,7 @@ export const fetchPlaylistTracks = createAsyncThunk(
         }
     }
 )
+
+export const getTrackUrl = (filename: string): string => {
+    return API_URL + `api/music/m/${filename}`;
+};

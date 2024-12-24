@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {AppDispatch, RootState} from "../reducers";
+import { AppDispatch, RootState } from "../reducers";
 import {
     playTrack,
     pauseTrack,
@@ -8,9 +8,8 @@ import {
     nextTrack,
     previousTrack,
 } from "../reducers/audioSlice";
-import { fetchPlaylistTracks } from "../model";
+import { fetchPlaylistTracks, getTrackUrl } from "../model";
 import { saveAudioState } from "../utils/localStorage";
-import {API_URL} from "../config";
 
 export const useAudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
@@ -18,6 +17,7 @@ export const useAudioPlayer = () => {
     const [volume, setVolume] = useState(0.5);
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
     const [duration, setDuration] = useState<number>(0);
+    
 
     useEffect(() => {
         const updateDuration = () => {
@@ -80,9 +80,10 @@ export const useAudioPlayer = () => {
     useEffect(() => {
         if (tracks.length > 0) {
             const currentTrack = tracks[currentTrackIndex];
+            const trackUrl = getTrackUrl(currentTrack.filename);
 
             if (audio.current) {
-                audio.current.src = API_URL + `api/music/m/${currentTrack.filename}`;
+                audio.current.src = trackUrl;
                 audio.current.currentTime = currentTime;
 
                 if (isPlaying) {
@@ -114,6 +115,7 @@ export const useAudioPlayer = () => {
             isPlaying,
             currentPlaylistIndex: selectedPlaylistId,
         });
+
     }, [currentTrackIndex, currentTime, isPlaying, selectedPlaylistId]);
 
     const handlePlayPause = () => {
@@ -148,7 +150,7 @@ export const useAudioPlayer = () => {
             audio.current.volume = newVolume;
         }
     }
-
+    
     return {
         audio,
         tracks,

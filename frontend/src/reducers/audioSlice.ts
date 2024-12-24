@@ -11,7 +11,7 @@ interface Track {
     tag: string;
 }
 
-interface AudioState {
+export interface AudioState {
     tracks: Track[];
     currentTrackIndex: number;
     isPlaying: boolean;
@@ -23,7 +23,7 @@ const savedState = loadAudioState();
 
 const initialState: AudioState = {
     tracks: [],
-    currentTrackIndex: savedState?.currentTrackIndex || 1,
+    currentTrackIndex: savedState?.currentTrackIndex || 0,
     isPlaying: false,
     currentTime: savedState?.currentTime || 0,
     error: null,
@@ -53,7 +53,6 @@ const audioSlice = createSlice({
         previousTrack: (state) => {
             state.currentTrackIndex =
                 (state.currentTrackIndex - 1 + state.tracks.length) % state.tracks.length;
-            state.isPlaying = true;
             state.currentTime = 0;
         },
         clearTracks: (state) => {
