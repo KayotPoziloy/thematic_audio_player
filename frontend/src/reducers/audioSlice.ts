@@ -1,17 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { loadAudioState } from "../utils/localStorage";
 import { fetchPlaylistTracks } from "../model";
+import { Track } from "../types";
 
-interface Track {
-    id: number;
-    playlist_id: number;
-    name: string;
-    author: string;
-    filename: string;
-    tag: string;
-}
-
-export interface AudioState {
+interface AudioState {
     tracks: Track[];
     currentTrackIndex: number;
     isPlaying: boolean;
