@@ -5,7 +5,8 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import {Provider} from "react-redux";
-import store from "./redux/reducers";
+import store from "./reducers";
+import { BUGSNAG } from './config';
 import Bugsnag from "@bugsnag/js";
 import BugsnagPerformance from "@bugsnag/browser-performance";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
@@ -15,10 +16,10 @@ const root = ReactDOM.createRoot(
 );
 
 Bugsnag.start({
-    apiKey: 'a7cd7214f76992387f9e0688a7bba7b0',
+    apiKey: BUGSNAG,
     plugins: [new BugsnagPluginReact()]
 })
-BugsnagPerformance.start({ apiKey: 'a7cd7214f76992387f9e0688a7bba7b0' })
+BugsnagPerformance.start({ apiKey: BUGSNAG })
 
 // @ts-expect-error хз почему линтер ругается
 const ErrorBoundary = Bugsnag.getPlugin('react')

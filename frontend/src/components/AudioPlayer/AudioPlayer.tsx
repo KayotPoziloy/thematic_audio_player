@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./AudioPlayer.scss"
-import {useAudioPlayer} from "../../hooks/useAudioPlayer";
+import { useAudioPlayer } from "../../hooks/useAudioPlayer";
 
 export const AudioPlayer = () => {
     const {
@@ -56,16 +56,19 @@ export const AudioPlayer = () => {
                     <img className="footer-icon-img"
                          src="png/Volume.png" alt=""/>
                 </button>
-                {show && <div className="volume-range">
-                    <div className="wrapper"><input
-                        id="volume"
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value={volume}
-                        onChange={handleVolumeChange}
-                    /></div>
+                {show && 
+                <div className="volume-range">
+                    <div className="wrapper">
+                        <input 
+                            id="volume" 
+                            type="range" 
+                            min="0"
+                            max="1" 
+                            step="0.01" 
+                            value={volume} 
+                            onChange={handleVolumeChange}
+                        />
+                    </div>
                 </div>}
                 <audio ref={audio}/>
             </div>
