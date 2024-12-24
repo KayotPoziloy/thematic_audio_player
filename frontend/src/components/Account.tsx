@@ -10,7 +10,7 @@ import Friends from "./Acc_components/Friends";
 import Cooperation from "./Acc_components/Cooperation";
 import Support from "./Acc_components/Support";
 import axios from "axios";
-import { logout } from "../redux/reducers/userReducer";
+import { logout } from "../reducers/userReducer";
 import { useDispatch } from "react-redux";
 import { API_URL } from "../config";
 import Bugsnag from "@bugsnag/js";

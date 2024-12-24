@@ -1,13 +1,13 @@
 import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {AppDispatch, RootState} from "../redux/reducers";
+import {AppDispatch, RootState} from "../reducers";
 import {
     playTrack,
     pauseTrack,
     resumeTrack,
     nextTrack,
     previousTrack,
-} from "../redux/reducers/audioSlice";
+} from "../reducers/audioSlice";
 import { fetchPlaylistTracks } from "../model";
 import { saveAudioState } from "../utils/localStorage";
 import {API_URL} from "../config";
@@ -18,8 +18,6 @@ export const useAudioPlayer = () => {
     const [volume, setVolume] = useState(0.5);
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
     const [duration, setDuration] = useState<number>(0);
-
-    console.log(duration)
 
     useEffect(() => {
         const updateDuration = () => {

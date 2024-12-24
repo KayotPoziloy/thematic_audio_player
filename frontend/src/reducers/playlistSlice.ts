@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { clearTracks } from "./audioSlice";
-import { fetchPlaylistTracks, fetchPlaylists } from "../../model";
+import { fetchPlaylistTracks, fetchPlaylists } from "../model";
 import { AppDispatch } from "./index";
-import { loadAudioState } from "../../utils/localStorage";
+import { loadAudioState } from "../utils/localStorage";
 
 interface Playlist {
     id: number;
