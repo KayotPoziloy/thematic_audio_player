@@ -3,7 +3,7 @@ import {Provider} from "react-redux";
 import {BrowserRouter as Router} from "react-router-dom";
 import axios from "axios";
 import {API_URL} from "../../config";
-import store from "../../redux/reducers";
+import store from "../../reducers";
 import React from 'react';
 import Header from "../../components/Header";
 

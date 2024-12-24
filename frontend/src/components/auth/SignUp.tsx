@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import {signup} from "../../redux/actions/user";
-import {useDispatch} from "react-redux";
-import {AppDispatch} from "../../redux/reducers";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { signup } from "../../model";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../reducers";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp(){
     const [email, setEmail] = useState("");
