@@ -2,15 +2,7 @@ import Bugsnag from "@bugsnag/js";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_URL } from "../config";
-
-interface Track {
-    id: number;
-    playlist_id: number;
-    name: string;
-    author: string;
-    filename: string;
-    tag: string;
-}
+import { Track } from "../types"
 
 export const fetchPlaylistTracks = createAsyncThunk(
     "audio/fetchPlaylistTracks",
@@ -28,6 +20,7 @@ export const fetchPlaylistTracks = createAsyncThunk(
             const tracks = response.data.musics.map((track: Track) => ({
                 id: track.id,
                 playlist_id: track.playlist_id,
+                background: JSON.parse(track.tag).background,
                 name: track.name,
                 author: track.author,
                 filename: track.filename,

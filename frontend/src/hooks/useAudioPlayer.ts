@@ -17,7 +17,19 @@ export const useAudioPlayer = () => {
     const [volume, setVolume] = useState(0.5);
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
     const [duration, setDuration] = useState<number>(0);
-    
+
+    const {
+        tracks,
+        currentTrackIndex,
+        isPlaying,
+        currentTime,
+    } = useSelector(
+        (state: RootState) => state.audio
+    );
+
+    const background = tracks[currentTrackIndex]?.background;
+    const trackName = tracks[currentTrackIndex]?.name;
+    const trackAuthor = tracks[currentTrackIndex]?.author;
 
     useEffect(() => {
         const updateDuration = () => {
@@ -36,16 +48,6 @@ export const useAudioPlayer = () => {
             };
         }
     }, []);
-
-
-    const {
-        tracks,
-        currentTrackIndex,
-        isPlaying,
-        currentTime,
-    } = useSelector(
-        (state: RootState) => state.audio
-    );
 
     useEffect(() => {
         if (selectedPlaylistId) {
@@ -154,7 +156,9 @@ export const useAudioPlayer = () => {
     return {
         audio,
         tracks,
-        currentTrackIndex,
+        background,
+        trackName,
+        trackAuthor,
         isPlaying,
         currentTime,
         volume,
