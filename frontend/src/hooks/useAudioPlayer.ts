@@ -20,8 +20,6 @@ export const useAudioPlayer = () => {
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
     const [duration, setDuration] = useState<number>(0);
 
-    console.log(duration)
-
     useEffect(() => {
         const updateDuration = () => {
             if (audio.current) {
@@ -139,6 +137,7 @@ export const useAudioPlayer = () => {
                 dispatch(resumeTrack());
             }
         }
+        
     };
 
     const handleNext = () => {
@@ -156,6 +155,48 @@ export const useAudioPlayer = () => {
             audio.current.volume = newVolume;
         }
     }
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent ) => {
+            switch (e.code) {
+                case "MediaPlayPause":
+                case "KeyP":
+                case "Space":
+                    e.preventDefault();
+                    handlePlayPause();
+                    break;
+                case "MediaTrackNext":
+                case "ArrowRight":
+                    handleNext();
+                    break;
+                case "MediaTrackPrevious":
+                case "ArrowLeft":
+                    handlePrevious();
+                    break;
+                case "ArrowUp":
+                    setVolume((prev) => {
+                        const newVolume = Math.min(prev + 0.1, 1);
+                        if (audio.current) audio.current.volume = newVolume;
+                        return newVolume;
+                    });
+                    break;
+                case "ArrowDown":
+                    setVolume((prev) => {
+                        const newVolume = Math.min(prev - 0.1, 1);
+                        if (audio.current) audio.current.volume = newVolume;
+                        return newVolume;
+                    });
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [handlePlayPause, handleNext, handlePrevious]);
 
     return {
         audio,
