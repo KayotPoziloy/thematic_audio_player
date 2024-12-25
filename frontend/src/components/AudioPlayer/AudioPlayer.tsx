@@ -37,7 +37,7 @@ export const AudioPlayer = () => {
                 </div>
             </div>
             <div className="btn-group gap-2 d-md-block">
-            <button className="btn" onClick={handlePrevious}>
+                <button className="btn" onClick={handlePrevious}>
                     <img className="footer-icon-img" src="../png/Back.png" alt="Previous"/>
                 </button>
                 <button
@@ -47,7 +47,8 @@ export const AudioPlayer = () => {
                     {isPlaying ? (
                         <img className="footer-icon-img" src="../png/Pause.png" alt="Pause"/>) : currentTime === 0 ? (
                         <img className="footer-icon-img" src="../png/Play.png" alt="Play"/>) : (
-                        <img className="footer-icon-img" src="../png/Play.png" alt="Play"/>)}
+                        <img className="footer-icon-img" src="../png/Play.png" alt="Play"/>)
+                    }
                 </button>
                 <button className="btn " onClick={handleNext}>
                     <img className="footer-icon-img" src="../png/Next.png" alt="Next"/>
