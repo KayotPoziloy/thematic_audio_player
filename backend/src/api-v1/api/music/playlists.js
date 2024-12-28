@@ -1,9 +1,8 @@
 const pool = require("../../../db.js");
-const { authenticateToken } = require("../../../middleware/auth.js");
 
 module.exports = function () {
     let operations = {
-        GET: [authenticateToken, GET]
+        GET
     };
 
     async function GET(req, res) {
@@ -15,7 +14,6 @@ module.exports = function () {
         summary: 'Get all playlists',
         description: 'Retrieves a list of all playlists from the database.',
         responses: {
-            ...authenticateToken.responses,
             200: {
                 description: 'List of playlists returned successfully',
                 content: {
