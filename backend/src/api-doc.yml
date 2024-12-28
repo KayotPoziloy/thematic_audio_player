@@ -13,11 +13,6 @@ info:
     npm install
     npm run start:noinit
     ```
-    # Экспорт OpenAPI json
-    ```bash
-    npm install
-    npm run exportapi
-    ```
     # src/music/config.json
     ```json
     [

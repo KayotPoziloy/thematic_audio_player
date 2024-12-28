@@ -1,9 +1,8 @@
 const pool = require("../../../db.js");
-const { authenticateToken } = require("../../../middleware/auth.js");
 
 module.exports = function () {
     let operations = {
-        POST: [authenticateToken, POST]
+        POST
     };
 
     async function POST(req, res) {
@@ -31,7 +30,6 @@ module.exports = function () {
             }
         },
         responses: {
-            ...authenticateToken.responses,
             200: {
                 description: 'List of music tracks retrieved successfully',
                 content: {
