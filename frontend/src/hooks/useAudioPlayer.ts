@@ -7,7 +7,7 @@ import {
     pauseTrack,
     resumeTrack,
     nextTrack,
-    previousTrack, setDuration,
+    previousTrack,
 } from "../redux/reducers/audioSlice";
 import { fetchPlaylistTracks, getTrackUrl } from "../model";
 import { saveAudioState } from "../utils/localStorage";
