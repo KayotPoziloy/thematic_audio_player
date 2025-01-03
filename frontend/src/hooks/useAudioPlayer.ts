@@ -7,7 +7,7 @@ import {
     pauseTrack,
     resumeTrack,
     nextTrack,
-    previousTrack, setDuration,
+    previousTrack,
 } from "../redux/reducers/audioSlice";
 import { saveAudioState } from "../utils/localStorage";
 import Bugsnag from "@bugsnag/js";
