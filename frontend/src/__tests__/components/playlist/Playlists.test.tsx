@@ -24,7 +24,7 @@ const mockAudioSlice = createSlice({
     },
 });
 
-const { setRotationAngle, setCurrentTime } = mockAudioSlice.actions;
+const {setCurrentTime } = mockAudioSlice.actions;
 
 describe("Playlists Component", () => {
     let store: ReturnType<typeof configureStore>;
