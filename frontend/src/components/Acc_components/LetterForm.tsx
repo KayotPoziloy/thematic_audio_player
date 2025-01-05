@@ -25,10 +25,11 @@ const LetterForm: React.FC<LetterFormProps> = ({ onClose }) => {
                 templateParams,
                 "WA8qUEajyb5-QylPj" // Замени на свой public key (user_id)
             );
-            setIsSent(true);
+            alert("Форма отправлена успешно!");
+            onClose();
         } catch (error) {
             console.error("Ошибка отправки формы:", error);
-            alert("Ошибка отправки. Попробуйте снова.");
+            alert("Ошибка отправки формы. Попробуйте снова.");
         }
     };
 
