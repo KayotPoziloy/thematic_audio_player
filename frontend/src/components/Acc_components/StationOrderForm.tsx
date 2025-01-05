@@ -55,56 +55,52 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-button" onClick={onClose}>✖</button>
-                <h3>Анкета для сотрудничества</h3>
                 <form ref={formRef} onSubmit={handleSubmit}>
-                    <label>
-                        Название станции:
-                        <input
-                            type="text"
-                            name="stationName"
-                            value={formData.stationName}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Список песен для эфира:
+                    <label htmlFor="stationName">Название станции:</label>
+                    <input
+                        id="stationName"
+                        type="text"
+                        name="stationName"
+                        value={formData.stationName}
+                        onChange={handleInputChange}
+                        required
+                    />
+
+
+                        <label htmlFor="songs">Список песен для трансляции:</label>
                         <textarea
+                            id="songs"
                             name="songs"
                             value={formData.songs}
                             onChange={handleInputChange}
                             placeholder="Например: Песня 1, Песня 2, Песня 3..."
                             required
                         />
-                    </label>
-                    <label>
-                        Пожелания по оформлению станции:
+
+
+
+                        <label htmlFor="designNotes">Пожелания по оформлению станции:</label>
                         <textarea
+                            id="designNotes"
                             name="designNotes"
                             value={formData.designNotes}
                             onChange={handleInputChange}
                             placeholder="Опишите ваши пожелания"
                         />
-                    </label>
-                    <label>
-                        Загрузить изображение:
+
+
+
+                        <label htmlFor="email">Электронная почта для дальнейшего сотрудничества:</label>
                         <input
-                            type="file"
-                            name="image"
-                            onChange={handleFileChange}
-                            accept="image/*"
-                        />
-                    </label>
-                    <label>
-                        Электронная почта:
-                        <input
+                            id="email"
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
                             required
                         />
-                    </label>
+
+
                     <button type="submit">Отправить</button>
                 </form>
             </div>
