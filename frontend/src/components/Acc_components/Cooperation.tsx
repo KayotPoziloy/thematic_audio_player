@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import StationOrderForm from "./StationOrderForm";
+import LetterForm from "./LetterForm"; // Импорт нового компонента
 import "../../style_lk/Cooperation.css";
 
 export default function Cooperation() {
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [isLetterFormOpen, setIsLetterFormOpen] = useState(false);
 
     return (
         <div className="support-page">
@@ -26,7 +28,7 @@ export default function Cooperation() {
                     />
                     <span>АНКЕТА ДЛЯ СОТРУДНИЧЕСТВА</span>
                 </div>
-                <div className="support-option">
+                <div className="support-option" onClick={() => setIsLetterFormOpen(true)}>
                     <img
                         src="/png_lk/Cooperation/img_1.png"
                         alt="Почта для Ваших писем"
@@ -37,6 +39,7 @@ export default function Cooperation() {
             </div>
 
             {isFormOpen && <StationOrderForm onClose={() => setIsFormOpen(false)} />}
+            {isLetterFormOpen && <LetterForm onClose={() => setIsLetterFormOpen(false)} />}
         </div>
     );
 }
