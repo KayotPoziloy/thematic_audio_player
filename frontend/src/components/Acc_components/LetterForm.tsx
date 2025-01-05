@@ -8,7 +8,7 @@ interface LetterFormProps {
 
 const LetterForm: React.FC<LetterFormProps> = ({ onClose }) => {
     const [message, setMessage] = useState("");
-    const [isSent, setIsSent] = useState(false);
+    const [isSent] = useState(false);
     const formRef = useRef<HTMLFormElement>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -20,10 +20,10 @@ const LetterForm: React.FC<LetterFormProps> = ({ onClose }) => {
 
         try {
             await emailjs.send(
-                "iliev7236@gmail.com", // Замени на свой service_id
-                "template_k5xmmgh", // Замени на template_id для этой формы
+                "iliev7236@gmail.com", //  service_id
+                "template_k5xmmgh", //  template_id для этой формы
                 templateParams,
-                "WA8qUEajyb5-QylPj" // Замени на свой public key (user_id)
+                "WA8qUEajyb5-QylPj" // public key (user_id)
             );
             alert("Форма отправлена успешно!");
             onClose();
