@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import StationOrderForm from "./StationOrderForm";
 import "../../style_lk/Cooperation.css";
 
 export default function Cooperation() {
+    const [isFormOpen, setIsFormOpen] = useState(false);
+
     return (
         <div className="support-page">
             <div className="support-text">
@@ -15,23 +18,17 @@ export default function Cooperation() {
                 </p>
             </div>
             <div className="support-buttons">
-                <div className="support-option">
+                <div className="support-option" onClick={() => setIsFormOpen(true)}>
                     <img
                         src="/png_lk/Cooperation/img.png"
                         alt="Анкета для сотрудничества"
                         className="support-icon"
                     />
-                    <span>АНКЕТА ДЛЯ СОТРУДНИЧЕТВА</span>
-                </div>
-                <div className="support-option">
-                    <img
-                        src="/png_lk/Cooperation/img_1.png"
-                        alt="Почта для Ваших писем"
-                        className="support-icon"
-                    />
-                    <span>ПОЧТА ДЛЯ ВАШИХ ПИСЕМ</span>
+                    <span>АНКЕТА ДЛЯ СОТРУДНИЧЕСТВА</span>
                 </div>
             </div>
+
+            {isFormOpen && <StationOrderForm onClose={() => setIsFormOpen(false)} />}
         </div>
     );
 }
