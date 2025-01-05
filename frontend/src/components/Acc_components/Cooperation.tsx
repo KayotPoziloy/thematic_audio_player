@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import StationOrderForm from "./StationOrderForm";
-import LetterForm from "./LetterForm"; // Импорт нового компонента
+import LetterForm from "./LetterForm";
 import "../../style_lk/Cooperation.css";
 
 export default function Cooperation() {

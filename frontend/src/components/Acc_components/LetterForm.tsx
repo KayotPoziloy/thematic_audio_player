@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import "../../style_lk/LetterForm.css"; // Подключи CSS для стилей формы
+// import "../../style_lk/LetterForm.css";
 
 interface LetterFormProps {
     onClose: () => void;
@@ -41,17 +41,16 @@ const LetterForm: React.FC<LetterFormProps> = ({ onClose }) => {
                     <p>Ваше сообщение успешно отправлено. Спасибо за обратную связь!</p>
                 ) : (
                     <form ref={formRef} onSubmit={handleSubmit}>
-                        <label>
-                            Ваше сообщение:
-                            <textarea
-                                name="message"
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                                placeholder="Напишите, что вас интересует..."
-                                required
-                                rows={5} // Высота текстового поля
-                            />
-                        </label>
+                        <label htmlFor="message">Ваше сообщение:</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            placeholder="Напишите, что вас интересует..."
+                            required
+                            rows={5} // Высота текстового поля
+                        />
                         <button type="submit">Отправить</button>
                     </form>
                 )}
