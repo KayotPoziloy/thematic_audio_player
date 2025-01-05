@@ -26,6 +26,14 @@ export default function Cooperation() {
                     />
                     <span>АНКЕТА ДЛЯ СОТРУДНИЧЕСТВА</span>
                 </div>
+                <div className="support-option">
+                    <img
+                        src="/png_lk/Cooperation/img_1.png"
+                        alt="Почта для Ваших писем"
+                        className="support-icon"
+                    />
+                    <span>ПОЧТА ДЛЯ ВАШИХ ПИСЕМ</span>
+                </div>
             </div>
 
             {isFormOpen && <StationOrderForm onClose={() => setIsFormOpen(false)} />}
