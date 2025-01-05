@@ -21,12 +21,6 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target?.files; // Проверяем наличие `files`
-        if (files && files.length > 0) {
-            setFormData((prev) => ({ ...prev, image: files[0] }));
-        }
-    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -38,10 +32,10 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
 
         try {
             await emailjs.sendForm(
-                "iliev7236@gmail.com", // Ваш service_id
-                "template_5bj1k92", // Ваш template_id
-                formRef.current, // Передаем HTML-форму через референс
-                "WA8qUEajyb5-QylPj" // Ваш user_id
+                "iliev7236@gmail.com", // service_id
+                "template_5bj1k92", // template_id
+                formRef.current,
+                "WA8qUEajyb5-QylPj" //user_id
             );
             alert("Форма отправлена успешно!");
             onClose();
