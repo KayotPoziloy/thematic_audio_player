@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import emailjs from "emailjs-com";
-import "./StationOrderForm.css"; // Подключаем стили
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import "../../style_lk/StationOrderForm.css";
 
 interface StationOrderFormProps {
     onClose: () => void;
 }
 
 const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
+    const formRef = useRef<HTMLFormElement | null>(null); // Референс для формы
     const [formData, setFormData] = useState({
         stationName: "",
         songs: "",
         designNotes: "",
         email: "",
-        phone: "",
-        image: null,
+        image: null as File | null,
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -22,30 +22,26 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setFormData((prev) => ({ ...prev, image: e.target.files[0] }));
+        const files = e.target?.files; // Проверяем наличие `files`
+        if (files && files.length > 0) {
+            setFormData((prev) => ({ ...prev, image: files[0] }));
         }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const formDataToSend = new FormData();
-        formDataToSend.append("stationName", formData.stationName);
-        formDataToSend.append("songs", formData.songs);
-        formDataToSend.append("designNotes", formData.designNotes);
-        formDataToSend.append("email", formData.email);
-        formDataToSend.append("phone", formData.phone);
-        if (formData.image) {
-            formDataToSend.append("image", formData.image);
+        if (!formRef.current) {
+            console.error("Форма не найдена");
+            return;
         }
 
         try {
             await emailjs.sendForm(
-                "service_id", // Замените на ваш ID сервиса
-                "template_id", // Замените на ваш ID шаблона
-                formDataToSend,
-                "user_id" // Замените на ваш User ID из EmailJS
+                "iliev7236@gmail.com", // Ваш service_id
+                "template_5bj1k92", // Ваш template_id
+                formRef.current, // Передаем HTML-форму через референс
+                "WA8qUEajyb5-QylPj" // Ваш user_id
             );
             alert("Форма отправлена успешно!");
             onClose();
@@ -60,7 +56,7 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-button" onClick={onClose}>✖</button>
                 <h3>Анкета для сотрудничества</h3>
-                <form onSubmit={handleSubmit}>
+                <form ref={formRef} onSubmit={handleSubmit}>
                     <label>
                         Название станции:
                         <input
@@ -105,16 +101,6 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
                             type="email"
                             name="email"
                             value={formData.email}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Номер телефона:
-                        <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
                             onChange={handleInputChange}
                             required
                         />
