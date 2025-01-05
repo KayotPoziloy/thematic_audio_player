@@ -90,7 +90,7 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
 
 
 
-                        <label htmlFor="email">Электронная почта для дальнейшего сотрудничества:</label>
+                        <label htmlFor="email">Электронная почта для дальнейшего сотрудничества (после заполнения анкеты с Вами свяжется администратор):</label>
                         <input
                             id="email"
                             type="email"
