@@ -1,8 +1,11 @@
 import React from "react";
 import "../../style_lk/Support.css";
 
-
 export default function Support() {
+    const handleBoostyRedirect = () => {
+        window.open("https://boosty.to/thematic_audio_player/donate", "_blank");
+    };
+
     return (
         <div className="support-page">
             <div className="support-text">
@@ -15,7 +18,7 @@ export default function Support() {
                 </p>
             </div>
             <div className="support-buttons">
-                <div className="support-option">
+                <div className="support-option" onClick={handleBoostyRedirect}>
                     <img
                         src="/png_lk/Support/img.png"
                         alt="Поддержать проект"
