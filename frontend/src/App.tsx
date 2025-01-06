@@ -1,41 +1,30 @@
-import React from 'react';
-import './App.css';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import React from "react";
+import "./App.css"; // Обновлённый CSS файл
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
-import {usePlaylists} from "./hooks/usePlaylists";
+import { usePlaylists } from "./hooks/usePlaylists";
 import Account from "./components/Account";
-import {Routes} from "react-router";
+import { Routes } from "react-router";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
-
-
 
 function App() {
     const { selectedPlaylist } = usePlaylists();
 
     return (
-        <>
+        <div className="app-container">
             <Router>
-                <div className="bg-image">
-                    {selectedPlaylist && (
+                {selectedPlaylist && (
+                    <div className="bg-image">
                         <img
                             src={selectedPlaylist.background}
                             alt={`${selectedPlaylist.name} pic`}
-                            style={{
-                                position: "fixed",
-                                top: 0,
-                                left: 0,
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "cover",
-                                zIndex: -1, // Фон за другими элементами
-                            }}
                         />
-                    )}
-                </div>
-                <div className="d-flex flex-column vh-100">
+                    </div>
+                )}
+                <div className="main-layout">
                     <Header />
                     <Routes>
                         <Route path="/" element={<Content />} />
@@ -46,7 +35,7 @@ function App() {
                     <Footer />
                 </div>
             </Router>
-        </>
+        </div>
     );
 }
 
