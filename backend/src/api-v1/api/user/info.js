@@ -3,47 +3,54 @@ const { authenticateToken } = require("../../../middleware/auth.js");
 
 module.exports = function () {
     let operations = {
-        GET: [authenticateToken, GET]
+        GET: [authenticateToken, GET],
     };
 
     async function GET(req, res) {
-        const user = await pool.query("SELECT * FROM users WHERE id = $1", [req.user.id]);
-        res.json({ error: null, id: user.rows[0].id, login: user.rows[0].login, name: user.rows[0].name, privilege: user.rows[0].privilege });
+        try {
+            const user = await pool.query("SELECT id, login, name FROM users WHERE id = $1", [req.user.id]);
+            if (user.rows.length === 0) {
+                return res.status(404).json({ error: { msg: "Пользователь не найден" } });
+            }
+
+            res.status(200).json({
+                id: user.rows[0].id,
+                login: user.rows[0].login,
+                name: user.rows[0].name,
+            });
+        } catch (err) {
+            console.error("Ошибка при получении данных пользователя:", err);
+            res.status(500).json({ error: { msg: "Ошибка сервера" } });
+        }
     }
 
     GET.apiDoc = {
-        summary: 'Get user information',
-        description: 'Returns information about the authenticated user',
+        summary: "Получить данные пользователя",
+        description: "Возвращает данные о текущем пользователе",
         responses: {
-            ...authenticateToken.responses,
             200: {
-                description: 'User information returned successfully',
+                description: "Успешный ответ",
                 content: {
-                    'application/json': {
+                    "application/json": {
                         schema: {
-                            type: 'object',
+                            type: "object",
                             properties: {
-                                error: { type: 'object', nullable: true },
-                                id: { type: 'integer' },
-                                login: { type: 'string' },
-                                name: { type: 'string' },
-                                privilege: { type: 'integer' }
-                            }
-                        },
-                        examples: {
-                            'Admin': {
-                                value: { error: null, id: 1, login: 'admin', name: 'admin', privilege: 5 }
+                                id: { type: "integer" },
+                                login: { type: "string" },
+                                name: { type: "string" },
                             },
-                            'User': {
-                                value: { error: null, id: 2, login: 'user', name: 'user', privilege: 4 }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                        },
+                    },
+                },
+            },
+            404: {
+                description: "Пользователь не найден",
+            },
+            500: {
+                description: "Ошибка сервера",
+            },
+        },
     };
 
     return operations;
 };
-
