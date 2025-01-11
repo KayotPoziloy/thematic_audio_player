@@ -1,5 +1,7 @@
 import React from "react";
 import "../../style_lk/Account.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/reducers";
 
 type UserHeaderProps = {
     backgroundImage?: string | null;
@@ -7,6 +9,8 @@ type UserHeaderProps = {
 };
 
 const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage }) => {
+    const { currentUser, isAuth } = useSelector((state: RootState) => state.user);
+
     return (
         <div
             className="account-top-section"
@@ -14,16 +18,14 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
         >
             <div className="avatar-container">
                 <img
-                    src={avatarImage || "/png_lk/1.png"} // Используем импортированное изображение
+                    src={avatarImage || "/png_lk/1.png"}
                     alt="Аватар пользователя"
                     className="avatar"
                 />
             </div>
             <div className="user-info">
-                <h3>Имя: Иван</h3>
-                <h4>Фамилия: Иванов</h4>
-                <p>Email: ivanov@example.com</p>
-                <p>Телефон: +7 (123) 456-78-90</p>
+                <h3>Имя: {`${currentUser || "Неизвестно"}`}</h3>
+                <p>Email: {isAuth ? "Электронная почта доступна" : "Электронная почта недоступна"}</p>
                 <div className="icons">
                     <span>⭐</span>
                     <span>🔊</span>
