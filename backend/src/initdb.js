@@ -12,7 +12,8 @@ async function initializeDatabase() {
                 password VARCHAR(255) NOT NULL,
                 name VARCHAR(255) NOT NULL,
                 privilege INTEGER NOT NULL,
-                avatar_url TEXT
+                avatar_url TEXT,
+                background_url TEXT
             );`,
 
             `CREATE TABLE IF NOT EXISTS playlist (
