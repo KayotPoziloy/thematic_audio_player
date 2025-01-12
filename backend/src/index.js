@@ -7,6 +7,10 @@ const updateAvatarRoutes = require("./api-v1/api/user/updateAvatar.js");
 
 const app = express();
 
+// Увеличиваем лимит размера тела запроса для JSON и URL-encoded данных
+app.use(express.json({ limit: "5mb" })); // Лимит тела запроса для JSON - 5 МБ
+app.use(express.urlencoded({ extended: true, limit: "5mb" })); // Для URL-encoded данных
+
 app.use(cookieParser());
 app.use(cors({
     origin: "http://localhost:3000",
@@ -15,8 +19,6 @@ app.use(cors({
 
 // Глобальная обработка preflight-запросов (OPTIONS)
 app.options("*", cors());
-
-app.use(express.json());
 
 // Подключаем PUT для обновления аватарки
 app.put("/api/user/update-avatar", ...updateAvatarRoutes.PUT);
@@ -40,6 +42,7 @@ initialize({
 }).then((s) => {
     require("./exportapi.js")(s, PORT);
 
+    // Глобальный обработчик ошибок OpenAPI
     app.use((err, req, res, next) => {
         if (err.status && err.errors) {
             res.status(err.status).json({
@@ -51,6 +54,7 @@ initialize({
         } else next();
     });
 
+    // Проверка аргументов командной строки и запуск
     if (process.argv.includes("--initdb")) {
         const { fillDatabase, initializeDatabase } = require("./initdb.js");
         initializeDatabase().then(() => fillDatabase().then(start_server));
