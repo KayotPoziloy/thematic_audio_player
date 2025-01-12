@@ -1,5 +1,6 @@
 const path = require('path');
 const multer = require('multer');
+const pool = require("../../../db.js");
 const SharpMulter = require("sharp-multer");
 const { authenticateToken } = require("../../../middleware/auth.js");
 
@@ -28,8 +29,8 @@ module.exports = function () {
         POST: [authenticateToken, upload.single('file'), POST]
     };
 
-    function POST(req, res) {
-        console.log(req._filename);
+    async function POST(req, res) {
+        await pool.query("UPDATE users SET header = $1 WHERE id = $2", [req._filename, req.user.id]);
         res.status(200).json({ error: null });
     }
 

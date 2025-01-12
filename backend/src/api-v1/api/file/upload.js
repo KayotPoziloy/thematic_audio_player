@@ -11,7 +11,8 @@ const storage = multer.diskStorage({
         const ext = path.extname(file.originalname);
         if (file.fieldname != 'file')
             return cb('fieldname != file');
-        cb(null, `_f${ uniqueSuffix }${ ext }`);
+        req.saved_filename = `_f${ uniqueSuffix }${ ext }`;
+        cb(null, req.saved_filename);
     }
 });
 
@@ -23,7 +24,7 @@ module.exports = function () {
     };
 
     function POST(req, res) {
-        res.status(200).json({ error: null });
+        res.status(200).json({ error: null, filename: req.saved_filename });
     }
 
     POST.apiDoc = {
