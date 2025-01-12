@@ -3,14 +3,15 @@ import "../../style_lk/Account.css";
 import axios from "axios";
 
 type UserHeaderProps = {
-    backgroundImage?: string | null;
+    backgroundImage?: string | null; // Локально загружаемая шапка, имеет приоритет
     avatarImage?: string | null; // Локально загружаемая аватарка, имеет приоритет
 };
 
 type UserData = {
     name: string;
     login: string;
-    avatar_url?: string | null; // Добавлено поле для аватарки с сервера
+    avatar_url?: string | null; // Аватарка с сервера
+    background_url?: string | null; // Шапка с сервера
 };
 
 // Функция для получения данных пользователя с сервера
@@ -53,7 +54,9 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
     return (
         <div
             className="account-top-section"
-            style={{ backgroundImage: `url(${backgroundImage || ""})` }}
+            style={{
+                backgroundImage: `url(${backgroundImage || user?.background_url || "/default_background.png"})`,
+            }}
         >
             <div className="avatar-container">
                 <img

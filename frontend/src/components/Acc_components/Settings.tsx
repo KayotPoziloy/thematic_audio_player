@@ -47,16 +47,18 @@ export default function Settings() {
         reader.onload = async () => {
             const base64Image = reader.result as string;
             setBackgroundImage(base64Image); // Для предварительного просмотра
-            setLoadingBackground(true);
 
             try {
-                // Здесь можно добавить аналогичный API-запрос для загрузки фона
-                alert("Функционал для обновления фона еще не реализован.");
+                // Отправка данных на сервер
+                await axios.put(
+                    "http://localhost:4000/api/user/update-background",
+                    { backgroundUrl: base64Image },
+                    { withCredentials: true }
+                );
+                alert("Шапка успешно обновлена!");
             } catch (error) {
-                console.error("Ошибка при загрузке фона:", error);
-                alert("Не удалось обновить фон.");
-            } finally {
-                setLoadingBackground(false);
+                console.error("Ошибка при загрузке шапки:", error);
+                alert("Не удалось обновить шапку.");
             }
         };
         reader.readAsDataURL(file);

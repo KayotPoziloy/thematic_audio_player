@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const { initialize } = require("express-openapi");
 const bodyParser = require("body-parser");
 const updateAvatarRoutes = require("./api-v1/api/user/updateAvatar.js");
+const updateBackgroundRoutes = require("./api-v1/api/user/updateBackground.js");
 
 const app = express();
 
@@ -17,11 +18,12 @@ app.use(cors({
     credentials: true,
 }));
 
-// Глобальная обработка preflight-запросов (OPTIONS)
+
 app.options("*", cors());
 
 // Подключаем PUT для обновления аватарки
 app.put("/api/user/update-avatar", ...updateAvatarRoutes.PUT);
+app.put("/api/user/update-background", ...updateBackgroundRoutes.PUT);
 
 const PORT = process.env.PORT || 4000;
 
