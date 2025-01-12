@@ -8,7 +8,7 @@ module.exports = function () {
 
     async function GET(req, res) {
         try {
-            const user = await pool.query("SELECT id, login, name FROM users WHERE id = $1", [req.user.id]);
+            const user = await pool.query("SELECT id, login, name, avatar_url FROM users WHERE id = $1", [req.user.id]);
             if (user.rows.length === 0) {
                 return res.status(404).json({ error: { msg: "Пользователь не найден" } });
             }
@@ -17,6 +17,7 @@ module.exports = function () {
                 id: user.rows[0].id,
                 login: user.rows[0].login,
                 name: user.rows[0].name,
+                avatar_url: user.rows[0].avatar_url,
             });
         } catch (err) {
             console.error("Ошибка при получении данных пользователя:", err);
@@ -38,6 +39,7 @@ module.exports = function () {
                                 id: { type: "integer" },
                                 login: { type: "string" },
                                 name: { type: "string" },
+                                avatar_url: { type: "string", nullable: true },
                             },
                         },
                     },
