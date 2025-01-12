@@ -1,23 +1,19 @@
 const path = require('path');
 const multer = require('multer');
-const pool = require("../../../db.js");
-const SharpMulter = require("sharp-multer");
-const { authenticateToken } = require("../../../middleware/auth.js");
+const { adminToken } = require("../../../middleware/auth.js");
 
-const storage = SharpMulter({
+const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../../../files'));
+        cb(null, path.join(__dirname, '../../../music'));
     },
-    filename: function (originalname, options, req) {
+    filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        const ext = path.extname(originalname);
-        req._filename = `_a${uniqueSuffix}${ext}`;
-        return `_a${uniqueSuffix}${ext}`;
-    },
-    imageOptions: {
-        fileFormat: "jpg",
-        quality: 80,
-        resize: { width: 200, height: 200 },
+        const base = path.basename(file.originalname, path.extname(file.originalname));
+        const ext = path.extname(file.originalname);
+        if (file.fieldname != 'file')
+            return cb('fieldname != file');
+        req.saved_filename = `_m ${ base } - ${ uniqueSuffix }${ ext }`;
+        cb(null, req.saved_filename);
     }
 });
 
@@ -25,16 +21,15 @@ const upload = multer({ storage });
 
 module.exports = function () {
     let operations = {
-        POST: [authenticateToken, upload.single('file'), POST]
+        POST: [adminToken, upload.single('file'), POST]
     };
 
-    async function POST(req, res) {
-        await pool.query("UPDATE users SET avatar = $1 WHERE id = $2", [req._filename, req.user.id]);
-        res.status(200).json({ error: null });
+    function POST(req, res) {
+        res.status(200).json({ error: null, filename: req.saved_filename });
     }
 
     POST.apiDoc = {
-        description: 'Upload a file',
+        description: 'Upload a music',
         requestBody: {
             content: {
                 'multipart/form-data': {
@@ -51,7 +46,7 @@ module.exports = function () {
             }
         },
         responses: {
-            ...authenticateToken.responses,
+            ...adminToken.responses,
             200: {
                 description: 'File uploaded successfully.',
                 content: {
@@ -72,7 +67,7 @@ module.exports = function () {
                         schema: {
                             type: 'object',
                             properties: {
-                                error: { type: 'object' }
+                                error: { type: 'string' }
                             }
                         }
                     }

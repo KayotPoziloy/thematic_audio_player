@@ -8,7 +8,7 @@ module.exports = function () {
 
     async function GET(req, res) {
         const user = await pool.query("SELECT * FROM users WHERE id = $1", [req.user.id]);
-        res.json({ error: null, id: user.rows[0].id, login: user.rows[0].login, name: user.rows[0].name, privilege: user.rows[0].privilege });
+        res.json({ error: null, id: user.rows[0].id, login: user.rows[0].login, name: user.rows[0].name, privilege: user.rows[0].privilege, avatar: user.rows[0].avatar, header: user.rows[0].header });
     }
 
     GET.apiDoc = {
