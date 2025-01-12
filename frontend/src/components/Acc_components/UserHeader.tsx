@@ -4,12 +4,13 @@ import axios from "axios";
 
 type UserHeaderProps = {
     backgroundImage?: string | null;
-    avatarImage?: string | null;
+    avatarImage?: string | null; // Локально загружаемая аватарка, имеет приоритет
 };
 
 type UserData = {
     name: string;
     login: string;
+    avatar_url?: string | null; // Добавлено поле для аватарки с сервера
 };
 
 // Функция для получения данных пользователя с сервера
@@ -56,7 +57,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
         >
             <div className="avatar-container">
                 <img
-                    src={avatarImage || "/png_lk/1.png"}
+                    src={avatarImage || user?.avatar_url || "/png_lk/1.png"} // Приоритет: локальная -> серверная -> дефолтная
                     alt="Аватар пользователя"
                     className="avatar"
                 />
@@ -65,9 +66,9 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
                 <h3>{user?.name || "Неизвестно"}</h3>
                 <p>{user?.login || "Неизвестно"}</p>
                 <div className="icons">
-                    {/*<span>⭐</span>*/}
-                    {/*<span>🔊</span>*/}
-                    {/*<span>👥</span>*/}
+                    {/* <span>⭐</span> */}
+                    {/* <span>🔊</span> */}
+                    {/* <span>👥</span> */}
                 </div>
             </div>
         </div>
