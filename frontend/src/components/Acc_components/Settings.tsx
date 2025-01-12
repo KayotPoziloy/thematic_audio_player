@@ -7,7 +7,7 @@ export default function Settings() {
     const [avatarImage, setAvatarImage] = useState<string | null>(null);
     const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
     const [loadingAvatar, setLoadingAvatar] = useState<boolean>(false);
-    const [loadingBackground, setLoadingBackground] = useState<boolean>(false);
+    const [loadingBackground] = useState<boolean>(false);
 
     // Обработчик загрузки аватарки
     const handleAvatarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {

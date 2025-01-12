@@ -37,8 +37,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
                 setLoading(true);
                 const data = await fetchUserData();
                 setUser(data); // Устанавливаем данные пользователя
-            } catch (error) {
-                console.error("Не удалось загрузить данные пользователя.");
+            } catch  { console.error("Не удалось загрузить данные пользователя.");
             } finally {
                 setLoading(false); // Устанавливаем флаг загрузки в false
             }
