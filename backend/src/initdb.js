@@ -4,14 +4,15 @@ async function initializeDatabase() {
     try {
         await pool.query('DROP TABLE IF EXISTS users, music, likes, playlist;');
         console.log("Drop database successfully.");
-        
+
         for (let q of [
             `CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,
                 login VARCHAR(255) UNIQUE NOT NULL,
                 password VARCHAR(255) NOT NULL,
                 name VARCHAR(255) NOT NULL,
-                privilege INTEGER NOT NULL
+                privilege INTEGER NOT NULL,
+                avatar_url TEXT
             );`,
 
             `CREATE TABLE IF NOT EXISTS playlist (

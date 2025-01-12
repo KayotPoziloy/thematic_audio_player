@@ -2,22 +2,27 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { initialize } = require("express-openapi");
-const bodyParser = require('body-parser');
-
+const bodyParser = require("body-parser");
+const updateAvatarRoutes = require("./api-v1/api/user/updateAvatar.js");
 
 const app = express();
+
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
+    origin: "http://localhost:3000",
+    credentials: true,
 }));
 
 // Глобальная обработка preflight-запросов (OPTIONS)
-app.options('*', cors());
+app.options("*", cors());
 
 app.use(express.json());
 
+// Подключаем PUT для обновления аватарки
+app.put("/api/user/update-avatar", ...updateAvatarRoutes.PUT);
+
 const PORT = process.env.PORT || 4000;
+
 function start_server() {
     app.listen(PORT, () => {
         console.log(`Server running on port ${PORT}`);
@@ -26,20 +31,24 @@ function start_server() {
 
 initialize({
     app,
-    apiDoc: './api-doc.yml',
+    apiDoc: "./api-doc.yml",
     consumesMiddleware: {
-        'application/json': bodyParser.json(),
-        'text/text': bodyParser.text()
+        "application/json": bodyParser.json(),
+        "text/text": bodyParser.text(),
     },
-    paths: './api-v1',
+    paths: "./api-v1",
 }).then((s) => {
     require("./exportapi.js")(s, PORT);
 
     app.use((err, req, res, next) => {
-        if (err.status && err.errors)
-            res.status(err.status).json({ "error": { "error_code": err.status, "msg": err.errors.map(x => x.message).join(', ') + `. Use http://localhost:${PORT}/api` } });
-        else
-            next();
+        if (err.status && err.errors) {
+            res.status(err.status).json({
+                error: {
+                    error_code: err.status,
+                    msg: err.errors.map((x) => x.message).join(", ") + `. Use http://localhost:${PORT}/api`,
+                },
+            });
+        } else next();
     });
 
     if (process.argv.includes("--initdb")) {
