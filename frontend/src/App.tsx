@@ -24,7 +24,7 @@ function App() {
                         />
                     </div>
                 )}
-                <div className="main-layout">
+                <div className="d-flex flex-column vh-100">
                     <Header />
                     <Routes>
                         <Route path="/" element={<Content />} />

@@ -58,7 +58,7 @@ p {
   z-index: -1; /* Фон за другими элементами */
 }
 
-.main-layout {
+.d-flex flex-column vh-100 {
   display: flex;
   flex-direction: column;
   height: 100vh;
