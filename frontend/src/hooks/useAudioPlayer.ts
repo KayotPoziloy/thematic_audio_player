@@ -167,13 +167,16 @@ export const useAudioPlayer = () => {
                     break;
                 case "MediaTrackNext":
                 case "ArrowRight":
+                case "KeyL":
                     handleNext();
                     break;
                 case "MediaTrackPrevious":
                 case "ArrowLeft":
+                case "KeyJ":
                     handlePrevious();
                     break;
                 case "ArrowUp":
+                case "KeyI":
                     setVolume((prev) => {
                         const newVolume = Math.min(prev + 0.1, 1);
                         if (audio.current) audio.current.volume = newVolume;
@@ -181,8 +184,9 @@ export const useAudioPlayer = () => {
                     });
                     break;
                 case "ArrowDown":
+                case "KeyK":
                     setVolume((prev) => {
-                        const newVolume = Math.min(prev - 0.1, 1);
+                        const newVolume = Math.max(prev - 0.1, 0);
                         if (audio.current) audio.current.volume = newVolume;
                         return newVolume;
                     });
