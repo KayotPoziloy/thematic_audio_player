@@ -1,17 +1,15 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {AppDispatch, RootState} from "../redux/reducers";
+import { AppDispatch, RootState } from "../reducers";
 import {
-    fetchPlaylistTracks,
     playTrack,
     pauseTrack,
     resumeTrack,
     nextTrack,
     previousTrack,
-} from "../redux/reducers/audioSlice";
+} from "../reducers/audioSlice";
+import { fetchPlaylistTracks, getTrackUrl } from "../model";
 import { saveAudioState } from "../utils/localStorage";
-import Bugsnag from "@bugsnag/js";
-import {API_URL} from "../config";
 
 export const useAudioPlayer = () => {
     const audio = useRef<HTMLAudioElement | null>(null);
@@ -19,6 +17,19 @@ export const useAudioPlayer = () => {
     const [volume, setVolume] = useState(0.5);
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
     const [duration, setDuration] = useState<number>(0);
+
+    const {
+        tracks,
+        currentTrackIndex,
+        isPlaying,
+        currentTime,
+    } = useSelector(
+        (state: RootState) => state.audio
+    );
+
+    const background = tracks[currentTrackIndex]?.background;
+    const trackName = tracks[currentTrackIndex]?.name;
+    const trackAuthor = tracks[currentTrackIndex]?.author;
 
     useEffect(() => {
         const updateDuration = () => {
@@ -38,24 +49,12 @@ export const useAudioPlayer = () => {
         }
     }, []);
 
-
-    const {
-        tracks,
-        currentTrackIndex,
-        isPlaying,
-        currentTime,
-    } = useSelector(
-        (state: RootState) => state.audio
-    );
-
-    // Выборка треков для текущего плейлиста
     useEffect(() => {
         if (selectedPlaylistId) {
             dispatch(fetchPlaylistTracks(selectedPlaylistId));
         }
     }, [selectedPlaylistId, dispatch]);
 
-    // Переключение трека после окончания
     useEffect(() => {
         if (audio.current) {
             const handleTrackEnd = () => {
@@ -66,7 +65,6 @@ export const useAudioPlayer = () => {
                         try {
                             audio.current.play();
                         } catch (error) {
-                            Bugsnag.notify(error as Error)
                             console.error("Error playing next track:", error);
                         }
                     }
@@ -81,13 +79,13 @@ export const useAudioPlayer = () => {
         }
     }, [dispatch]);
 
-    // Загрузка трека, который играет
     useEffect(() => {
         if (tracks.length > 0) {
             const currentTrack = tracks[currentTrackIndex];
+            const trackUrl = getTrackUrl(currentTrack.filename);
 
             if (audio.current) {
-                audio.current.src = API_URL + `api/music/m/${currentTrack.filename}`;
+                audio.current.src = trackUrl;
                 audio.current.currentTime = currentTime;
 
                 if (isPlaying) {
@@ -95,7 +93,6 @@ export const useAudioPlayer = () => {
                         try {
                             await audio.current?.play();
                         } catch (error) {
-                            Bugsnag.notify(error as Error)
                             console.error("Error playing audio:", error);
                         }
                     };
@@ -120,6 +117,7 @@ export const useAudioPlayer = () => {
             isPlaying,
             currentPlaylistIndex: selectedPlaylistId,
         });
+
     }, [currentTrackIndex, currentTime, isPlaying, selectedPlaylistId]);
 
     const handlePlayPause = () => {
@@ -201,11 +199,13 @@ export const useAudioPlayer = () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [handlePlayPause, handleNext, handlePrevious]);
-
+  
     return {
         audio,
         tracks,
-        currentTrackIndex,
+        background,
+        trackName,
+        trackAuthor,
         isPlaying,
         currentTime,
         volume,
