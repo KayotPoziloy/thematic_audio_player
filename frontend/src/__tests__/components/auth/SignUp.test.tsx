@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import SignUp from '../../../components/auth/SignUp';
 import { MemoryRouter } from 'react-router-dom';
-import userReducer from '../../../redux/reducers/userReducer';
+import userReducer from '../../../reducers/userReducer';
 import {configureStore} from "@reduxjs/toolkit";
 
 
