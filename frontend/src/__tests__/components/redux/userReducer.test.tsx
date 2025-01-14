@@ -1,4 +1,4 @@
-import userReducer, { setUser, logout, UserState } from "../../../redux/reducers/userReducer";
+import userReducer, { setUser, logout, UserState } from "../../../reducers/userReducer";
 import {Action} from "redux";
 
 describe('userReducer', () => {
