@@ -135,6 +135,7 @@ export const useAudioPlayer = () => {
                 dispatch(resumeTrack());
             }
         }
+        
     };
 
     const handleNext = () => {
@@ -152,7 +153,53 @@ export const useAudioPlayer = () => {
             audio.current.volume = newVolume;
         }
     }
-    
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent ) => {
+            switch (e.code) {
+                case "MediaPlayPause":
+                case "KeyP":
+                case "Space":
+                    e.preventDefault();
+                    handlePlayPause();
+                    break;
+                case "MediaTrackNext":
+                case "ArrowRight":
+                case "KeyL":
+                    handleNext();
+                    break;
+                case "MediaTrackPrevious":
+                case "ArrowLeft":
+                case "KeyJ":
+                    handlePrevious();
+                    break;
+                case "ArrowUp":
+                case "KeyI":
+                    setVolume((prev) => {
+                        const newVolume = Math.min(prev + 0.1, 1);
+                        if (audio.current) audio.current.volume = newVolume;
+                        return newVolume;
+                    });
+                    break;
+                case "ArrowDown":
+                case "KeyK":
+                    setVolume((prev) => {
+                        const newVolume = Math.max(prev - 0.1, 0);
+                        if (audio.current) audio.current.volume = newVolume;
+                        return newVolume;
+                    });
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [handlePlayPause, handleNext, handlePrevious]);
+  
     return {
         audio,
         tracks,
