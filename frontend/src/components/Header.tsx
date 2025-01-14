@@ -1,7 +1,7 @@
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {UserState} from "../redux/reducers/userReducer"
+import {UserState} from "../reducers/userReducer"
 import {Dropdown} from "./DropdownMenu";
 
 
