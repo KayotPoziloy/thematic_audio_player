@@ -39,28 +39,24 @@ export default function SignUp(){
             <form onSubmit={handleSubmit}>
                 <h1 className="h3 mb-3 fw-normal">Регистрация</h1>
 
-                <div className="form-floating">
+                <div className="mb-3">
                     <input type="email" className="form-control" id="email" name="email"
-                           placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
-                    <label htmlFor="email">Введите почту</label>
+                           placeholder="Введите email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
                 </div>
 
-                <div className="form-floating">
+                <div className="mb-3">
                     <input type="password" className="form-control" id="password" name="password"
-                           placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
-                    <label htmlFor="password">Введите пароль</label>
+                           placeholder="Введите пароль" value={password} onChange={(e)=> setPassword(e.target.value)}/>
                 </div>
 
-                <div className="form-floating">
+                <div className="mb-3">
                     <input type="password" className="form-control" id="passwordConfirm" name="passwordConfirm"
-                           placeholder="Password" value={passwordConfirm} onChange={(e)=> setPasswordConfirm(e.target.value)}/>
-                    <label htmlFor="passwordConfirm">Повторите пароль</label>
+                           placeholder="Подтвердите пароль" value={passwordConfirm} onChange={(e)=> setPasswordConfirm(e.target.value)}/>
                 </div>
 
-                <div className="form-floating">
+                <div className="mb-3">
                     <input type="text" className="form-control" id="name" name="name"
-                           placeholder="name" value={name} onChange={(e)=> setName(e.target.value)}/>
-                    <label htmlFor="name">Введите имя пользователя</label>
+                           placeholder="Введите имя" value={name} onChange={(e)=> setName(e.target.value)}/>
                 </div>
 
                 <button className="btn btn-primary w-100 py-2" type="submit">Зарегистрироваться</button>
