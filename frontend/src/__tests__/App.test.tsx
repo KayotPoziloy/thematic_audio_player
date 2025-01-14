@@ -3,7 +3,7 @@ import {render, screen} from '@testing-library/react';
 import App from '../App';
 import { Provider } from 'react-redux';
 import {combineReducers, createStore} from 'redux';
-import userReducer from '../redux/reducers/userReducer';
+import userReducer from '../reducers/userReducer';
 
 const renderWithState = (isAuth: boolean) => {
   const initialState = {

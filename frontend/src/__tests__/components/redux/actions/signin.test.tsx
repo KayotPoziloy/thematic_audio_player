@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import { Dispatch } from 'redux';
 import { NavigateFunction } from 'react-router-dom';
-import {setUser} from "../../../../redux/reducers/userReducer";
-import {signin} from "../../../../redux/actions/user";
+import {setUser} from "../../../../reducers/userReducer";
+import {signin} from "../../../../model";
 import {API_URL} from "../../../../config";
 
 jest.mock('axios');

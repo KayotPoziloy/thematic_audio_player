@@ -1,4 +1,3 @@
-const { authenticateToken } = require("../../../../middleware/auth.js");
 const fs = require('fs');
 
 module.exports = function () {
@@ -10,6 +9,7 @@ module.exports = function () {
         // https://dev.to/gleidsonleite/symphony-in-bytes-mastering-audio-streaming-with-nodejs-2ipf
         const filename = req.params.filename;
         const filePath = `./music/${filename}`;
+
         fs.stat(filePath, (err, stats) => {
             if (err) {
                 return res.status(404).send({ error: { error_code: 404, msg: 'File not found' } });
@@ -62,7 +62,6 @@ module.exports = function () {
             }
         ],
         responses: {
-            ...authenticateToken.responses,
             200: {
                 description: 'Audio file streamed successfully',
                 content: {
