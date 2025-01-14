@@ -13,8 +13,10 @@ async function initializeDatabase() {
                 name VARCHAR(255) NOT NULL,
                 privilege INTEGER NOT NULL,
                 avatar_url TEXT,
-                background_url TEXT
-            );`,
+                background_url TEXT,
+                avatar VARCHAR(255) NOT NULL DEFAULT 'def.png',
+                header VARCHAR(255) NOT NULL DEFAULT ''
+                );`,
 
             `CREATE TABLE IF NOT EXISTS playlist (
                 id SERIAL PRIMARY KEY,

@@ -26,7 +26,7 @@ export default function Dropdown() {
                             <a>NFS RIVALS</a>
                         </li>
                         <li className="dropdown-item" onClick={() => handleSelect(3)}>
-                            <a>THE WITHER</a>
+                            <a>THE WITCHER</a>
                         </li>
                     </ul>
                 </li>
