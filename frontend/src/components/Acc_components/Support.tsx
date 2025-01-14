@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import LetterForm from "./LetterForm";
 import "../../style_lk/Support.css";
 
-
 export default function Support() {
+    const [isLetterFormOpen, setIsLetterFormOpen] = useState(false);
+
     return (
         <div className="support-page">
             <div className="support-text">
@@ -23,7 +25,7 @@ export default function Support() {
                     />
                     <span>ПОДДЕРЖАТЬ ПРОЕКТ</span>
                 </div>
-                <div className="support-option">
+                <div className="support-option" onClick={() => setIsLetterFormOpen(true)}>
                     <img
                         src="/png_lk/Support/img_1.png"
                         alt="Почта для Ваших писем"
@@ -32,6 +34,8 @@ export default function Support() {
                     <span>ПОЧТА ДЛЯ ВАШИХ ПИСЕМ</span>
                 </div>
             </div>
+
+            {isLetterFormOpen && <LetterForm onClose={() => setIsLetterFormOpen(false)} />}
         </div>
     );
 }
