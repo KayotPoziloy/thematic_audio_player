@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import LetterForm from "./LetterForm";
 import "../../style_lk/Support.css";
 
 export default function Support() {
+    // Обработчик редиректа на Boosty
     const handleBoostyRedirect = () => {
         window.open("https://boosty.to/thematic_audio_player/donate", "_blank");
     };
+
+    // Состояние для отображения формы
+    const [isLetterFormOpen, setIsLetterFormOpen] = useState(false);
 
     return (
         <div className="support-page">
@@ -26,7 +31,7 @@ export default function Support() {
                     />
                     <span>ПОДДЕРЖАТЬ ПРОЕКТ</span>
                 </div>
-                <div className="support-option">
+                <div className="support-option" onClick={() => setIsLetterFormOpen(true)}>
                     <img
                         src="/png_lk/Support/img_1.png"
                         alt="Почта для Ваших писем"
@@ -35,6 +40,7 @@ export default function Support() {
                     <span>ПОЧТА ДЛЯ ВАШИХ ПИСЕМ</span>
                 </div>
             </div>
+            {isLetterFormOpen && <LetterForm onClose={() => setIsLetterFormOpen(false)} />}
         </div>
     );
 }
