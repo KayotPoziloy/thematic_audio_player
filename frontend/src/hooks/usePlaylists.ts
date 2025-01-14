@@ -1,7 +1,7 @@
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../redux/reducers";
-import {useEffect} from "react";
-import {fetchPlaylists} from "../redux/reducers/playlistSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../reducers";
+import { useEffect } from "react";
+import { fetchPlaylists } from "../model";
 
 export const usePlaylists = () => {
     const dispatch = useDispatch<AppDispatch>();
