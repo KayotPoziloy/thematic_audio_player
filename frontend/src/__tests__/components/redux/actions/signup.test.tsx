@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NavigateFunction } from 'react-router-dom';
-import {API_URL} from "../../../../config";
-import {signup} from "../../../../redux/actions/user";
+import { API_URL } from "../../../../config";
+import { signup } from "../../../../model";
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;

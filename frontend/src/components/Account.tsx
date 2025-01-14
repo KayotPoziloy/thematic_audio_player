@@ -1,43 +1,19 @@
 import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import "../style_lk/Account.css"; // Подключение CSS для оформления
-import UserHeader from "./Acc_components/UserHeader"; // Шапка профиля
-
-// Импорт компонентов для маршрутов
+import "../style_lk/Account.css";
+import UserHeader from "./Acc_components/UserHeader";
 import Settings from "./Acc_components/Settings";
 import Privacy from "./Acc_components/Privacy";
 import Friends from "./Acc_components/Friends";
 import Cooperation from "./Acc_components/Cooperation";
 import Support from "./Acc_components/Support";
-import axios from "axios";
-import { logout } from "../redux/reducers/userReducer";
-import { useDispatch } from "react-redux";
-import { API_URL } from "../config";
-import Bugsnag from "@bugsnag/js";
+import { useHandleLogout } from "../model";
 
 export default function Account() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const [backgroundImage] = useState<string | null>(null); // Состояние для фона
-    const [avatarImage] = useState<string | null>(null); // Состояние для аватара
-
-    const handleLogout = async () => {
-        try {
-            await axios.get(`${API_URL}api/user/logout`, {
-                withCredentials: true,
-            });
-            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-            dispatch(logout());
-            navigate("/login");
-        } catch (e: unknown) {
-            if (axios.isAxiosError(e) && e.response?.data?.error?.msg) {
-                Bugsnag.notify(e.response.data.error.msg);
-                return "Ошибка: " + e.response.data.error.msg;
-            }
-            Bugsnag.notify("Произошла ошибка");
-            return "Произошла ошибка";
-        }
-    };
+    const { handleLogout } = useHandleLogout();
+    const [backgroundImage] = useState<string | null>(null);
+    const [avatarImage] = useState<string | null>(null);
 
     return (
         <div className="account-container" style={{ position: "relative", zIndex: 1 }}>
@@ -91,7 +67,6 @@ export default function Account() {
                                     />
                                     <p className="icon-label">АВТОРСКИЕ ПРАВА</p>
                                 </div>
-                                {/* Кнопка выхода с обработчиком */}
                                 <div className="icon-item" onClick={handleLogout}>
                                     <img
                                         src="/png_lk/img_2.png"
