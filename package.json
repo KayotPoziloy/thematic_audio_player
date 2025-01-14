@@ -3,6 +3,7 @@
     "cypress": "^13.15.0"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "cors": "^2.8.5",
     "react-router-dom": "^7.0.2"
   }
