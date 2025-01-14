@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './userReducer';
-import audioReducer from './audioSlice'
-import playlistReducer from './playlistSlice'
+import audioReducer from './audioSlice';
+import playlistReducer from './playlistSlice';
 
 const store = configureStore({
     reducer: {
