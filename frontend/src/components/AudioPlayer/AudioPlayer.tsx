@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./AudioPlayer.scss"
-import {useAudioPlayer} from "../../hooks/useAudioPlayer";
+import { useAudioPlayer } from "../../hooks/useAudioPlayer";
 
 export const AudioPlayer = () => {
     const {
         audio,
         tracks,
-        currentTrackIndex,
+        background,
+        trackName,
+        trackAuthor,
         isPlaying,
         currentTime,
         volume,
@@ -24,16 +26,15 @@ export const AudioPlayer = () => {
                 {tracks.length > 0 && (
                     <div className="track-cover">
                         <img
-                            src={JSON.parse(tracks[currentTrackIndex].tag).background}
+                            src={background}
                             alt="Track Cover"
                             className="cover-image"
                         />
                     </div>
                 )}
-
                 <div className="track-name">
-                    <p><b>{tracks.length > 0 && tracks[currentTrackIndex].name}</b></p>
-                    <p>{tracks.length > 0 && tracks[currentTrackIndex].author}</p>
+                    <p><b>{tracks.length > 0 && trackName}</b></p>
+                    <p>{tracks.length > 0 && trackAuthor}</p>
                 </div>
             </div>
             <div className="btn-group gap-2 d-md-block">
@@ -56,16 +57,19 @@ export const AudioPlayer = () => {
                     <img className="footer-icon-img"
                          src="png/Volume.png" alt=""/>
                 </button>
-                {show && <div className="volume-range">
-                    <div className="wrapper"><input
-                        id="volume"
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value={volume}
-                        onChange={handleVolumeChange}
-                    /></div>
+                {show && 
+                <div className="volume-range">
+                    <div className="wrapper">
+                        <input 
+                            id="volume" 
+                            type="range" 
+                            min="0"
+                            max="1" 
+                            step="0.01" 
+                            value={volume} 
+                            onChange={handleVolumeChange}
+                        />
+                    </div>
                 </div>}
                 <audio ref={audio}/>
             </div>
