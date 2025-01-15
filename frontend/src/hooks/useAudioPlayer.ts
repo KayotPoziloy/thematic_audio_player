@@ -8,8 +8,8 @@ import {
     resumeTrack,
     nextTrack,
     previousTrack,
-} from "../redux/reducers/audioSlice";
-import { fetchPlaylistTracks, getTrackUrl } from "../model";
+} from "../reducers/audioSlice";
+import {getTrackUrl } from "../model";
 import { saveAudioState } from "../utils/localStorage";
 
 export const useAudioPlayer = () => {
@@ -20,19 +20,6 @@ export const useAudioPlayer = () => {
     // const [duration, setDuration] = useState<number>(0);
 
     // console.log(duration)
-    const {
-        tracks,
-        currentTrackIndex,
-        isPlaying,
-        currentTime,
-    } = useSelector(
-        (state: RootState) => state.audio
-    );
-
-    const background = tracks[currentTrackIndex]?.background;
-    const trackName = tracks[currentTrackIndex]?.name;
-    const trackAuthor = tracks[currentTrackIndex]?.author;
-
     // useEffect(() => {
     //     const updateDuration = () => {
     //         if (audio.current) {
@@ -62,6 +49,9 @@ export const useAudioPlayer = () => {
     } = useSelector(
         (state: RootState) => state.audio
     );
+    const background = tracks[currentTrackIndex]?.background;
+    const trackName = tracks[currentTrackIndex]?.name;
+    const trackAuthor = tracks[currentTrackIndex]?.author;
 
     // Выборка треков для текущего плейлиста
     useEffect(() => {

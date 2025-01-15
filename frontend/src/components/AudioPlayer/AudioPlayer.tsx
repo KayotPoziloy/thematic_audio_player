@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./AudioPlayer.scss"
 import {useAudioPlayer} from "../../hooks/useAudioPlayer";
-import {setDuration} from "../../redux/reducers/audioSlice";
+import {setDuration} from "../../reducers/audioSlice";
 import {useDispatch} from "react-redux";
 
 export const AudioPlayer = () => {

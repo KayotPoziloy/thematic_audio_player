@@ -3,8 +3,8 @@ import {useAudioPlayer} from "../../hooks/useAudioPlayer";
 import {useDispatch, useSelector} from "react-redux";
 import "./Playlists.scss";
 import {usePlaylists} from "../../hooks/usePlaylists";
-import {RootState} from "../../redux/reducers";
-import {setCurrentTime, setRotationAngle} from "../../redux/reducers/audioSlice";
+import {RootState} from "../../reducers";
+import {setCurrentTime, setRotationAngle} from "../../reducers/audioSlice";
 
 export const Playlists = () => {
     const {error, selectedPlaylist} = usePlaylists();
