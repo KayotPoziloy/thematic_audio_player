@@ -1,17 +1,10 @@
 import { loadAudioState } from "../utils/localStorage";
-import { fetchPlaylistTracks } from "../model";
+// import { fetchPlaylistTracks } from "../model";
 import { Track } from "../types";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-
-interface Track {
-    id: number;
-    playlist_id: number;
-    name: string;
-    author: string;
-    filename: string;
-    tag: string;
-    duration: number;
-}
+import axios from "axios";
+import {API_URL} from "../config";
+import Bugsnag from "@bugsnag/js";
 
 interface AudioState {
     tracks: Track[];
