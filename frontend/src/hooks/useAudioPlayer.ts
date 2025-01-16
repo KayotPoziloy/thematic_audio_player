@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../reducers";
 import {
+    fetchPlaylistTracks,
     playTrack,
     pauseTrack,
     resumeTrack,
     nextTrack,
     previousTrack,
 } from "../reducers/audioSlice";
-import { fetchPlaylistTracks, getTrackUrl } from "../model";
+import {getTrackUrl } from "../model";
 import { saveAudioState } from "../utils/localStorage";
 
 export const useAudioPlayer = () => {
@@ -16,39 +17,43 @@ export const useAudioPlayer = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [volume, setVolume] = useState(0.5);
     const {selectedPlaylistId} = useSelector((state: RootState) => state.playlist);
-    const [duration, setDuration] = useState<number>(0);
+    // const [duration, setDuration] = useState<number>(0);
+
+    // console.log(duration)
+    // useEffect(() => {
+    //     const updateDuration = () => {
+    //         if (audio.current) {
+    //             const trackDuration = audio.current.duration;
+    //             if (!isNaN(trackDuration)) {
+    //                 setDuration(trackDuration);
+    //             }
+    //         }
+    //     };
+    //
+    //     if (audio.current) {
+    //         audio.current.addEventListener("loadedmetadata", updateDuration);
+    //         return () => {
+    //             audio.current?.removeEventListener("loadedmetadata", updateDuration);
+    //         };
+    //     }
+    // }, []);
+
 
     const {
         tracks,
         currentTrackIndex,
+        duration,
         isPlaying,
         currentTime,
+        rotationAngle
     } = useSelector(
         (state: RootState) => state.audio
     );
-
     const background = tracks[currentTrackIndex]?.background;
     const trackName = tracks[currentTrackIndex]?.name;
     const trackAuthor = tracks[currentTrackIndex]?.author;
 
-    useEffect(() => {
-        const updateDuration = () => {
-            if (audio.current) {
-                const trackDuration = audio.current.duration;
-                if (!isNaN(trackDuration)) {
-                    setDuration(trackDuration);
-                }
-            }
-        };
-
-        if (audio.current) {
-            audio.current.addEventListener("loadedmetadata", updateDuration);
-            return () => {
-                audio.current?.removeEventListener("loadedmetadata", updateDuration);
-            };
-        }
-    }, []);
-
+    // Выборка треков для текущего плейлиста
     useEffect(() => {
         if (selectedPlaylistId) {
             dispatch(fetchPlaylistTracks(selectedPlaylistId));
@@ -135,7 +140,7 @@ export const useAudioPlayer = () => {
                 dispatch(resumeTrack());
             }
         }
-        
+
     };
 
     const handleNext = () => {
@@ -199,7 +204,7 @@ export const useAudioPlayer = () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [handlePlayPause, handleNext, handlePrevious]);
-  
+
     return {
         audio,
         tracks,
@@ -210,6 +215,7 @@ export const useAudioPlayer = () => {
         currentTime,
         volume,
         duration,
+        rotationAngle,
         handlePlayPause,
         handleNext,
         handlePrevious,
