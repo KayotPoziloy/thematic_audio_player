@@ -26,7 +26,7 @@ body {
 footer{
   z-index: 2;
   max-height: 10%;
-  position: sticky;
+  position: absolute;
   bottom: 0;
 }
 nav{
