@@ -3,6 +3,12 @@ import LetterForm from "./LetterForm";
 import "../../style_lk/Support.css";
 
 export default function Support() {
+    // Обработчик редиректа на Boosty
+    const handleBoostyRedirect = () => {
+        window.open("https://boosty.to/thematic_audio_player/donate", "_blank");
+    };
+
+    // Состояние для отображения формы
     const [isLetterFormOpen, setIsLetterFormOpen] = useState(false);
 
     return (
@@ -17,7 +23,7 @@ export default function Support() {
                 </p>
             </div>
             <div className="support-buttons">
-                <div className="support-option">
+                <div className="support-option" onClick={handleBoostyRedirect}>
                     <img
                         src="/png_lk/Support/img.png"
                         alt="Поддержать проект"
@@ -34,7 +40,6 @@ export default function Support() {
                     <span>ПОЧТА ДЛЯ ВАШИХ ПИСЕМ</span>
                 </div>
             </div>
-
             {isLetterFormOpen && <LetterForm onClose={() => setIsLetterFormOpen(false)} />}
         </div>
     );
