@@ -6,4 +6,5 @@ export interface Track {
     author: string;
     filename: string;
     tag: string;
+    duration: number;
 }
