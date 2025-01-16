@@ -10,7 +10,7 @@
 .account-top-section {
     background-color: #f0f0f0;
     padding: 20px;
-    position: fixed;
+    /*position: fixed;*/
     top: 60px; /* Отступ от верхней навигационной строки */
     width: 100%;
     z-index: 1000;
@@ -45,8 +45,8 @@
     padding: 20px;
     justify-content: center; /* Центрирование сетки */
     align-items: center;
-    margin: 230px auto 0; /* Отступ сверху для опускания сетки вниз */
-    max-width: px; /* Ограничение ширины для центрирования */
+    /*margin: 230px auto 0; !* Отступ сверху для опускания сетки вниз *!*/
+    /*max-width: px; !* Ограничение ширины для центрирования *!*/
 
 }
 
