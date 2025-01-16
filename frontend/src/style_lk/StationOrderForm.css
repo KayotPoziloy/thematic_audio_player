@@ -1,4 +1,4 @@
-.modal-overlay {
+.modal-container .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -7,23 +7,23 @@
     background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
-    align-items: flex-start;;
+    align-items: flex-start;
     z-index: 1000;
 }
 
-.modal-content {
+.modal-container .modal-content {
     background: #fff;
     border-radius: 10px;
     padding: 20px;
-    width: 90%; /* Уменьшаем ширину для адаптивности */
-    max-width: 1200px; /* Ограничиваем максимальную ширину */
-    max-height: 90%; /* Увеличиваем высоту, чтобы кнопка помещалась */
-    overflow-y: auto; /* Скроллинг при необходимости */
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90%;
+    overflow-y: auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 
-.close-button {
+.modal-container .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -33,31 +33,30 @@
     cursor: pointer;
 }
 
-h3 {
+.modal-container h3 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-form {
+.modal-container form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    max-width: 100%; /* Убираем фиксированную ширину формы */
+    max-width: 100%;
 }
 
-label {
+.modal-container label {
     font-size: 16px;
     font-weight: bold;
-    display: inline-block; /* Убираем блочный стиль */
-    white-space: nowrap; /* Отключаем перенос текста */
-    margin-bottom: 5px; /* Отступ снизу */
-    text-align: left; /* Выравнивание текста влево */
-    margin-left: 0; /* Убираем возможные отступы слева */
+    display: inline-block;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    text-align: left;
 }
 
-input,
-textarea {
-    width: 100%; /* Поля растягиваются на всю ширину */
+.modal-container input,
+.modal-container textarea {
+    width: 100%;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #f5f5f5;
@@ -65,11 +64,11 @@ textarea {
     box-sizing: border-box;
 }
 
-textarea {
+.modal-container textarea {
     resize: vertical;
 }
 
-button[type="submit"] {
+.modal-container button[type="submit"] {
     background-color: #28a745;
     color: white;
     padding: 16px;
@@ -78,22 +77,22 @@ button[type="submit"] {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    align-self: center; /* Центрируем кнопку */
-    width: 200px; /* Фиксированная ширина кнопки */
+    align-self: center;
+    width: 200px;
 }
 
-button[type="submit"]:hover {
+.modal-container button[type="submit"]:hover {
     background-color: #218838;
 }
 
 @media (max-width: 768px) {
-    .modal-content {
-        width: 95%; /* Для мобильных устройств */
+    .modal-container .modal-content {
+        width: 95%;
         padding: 15px;
     }
 
-    input,
-    textarea {
+    .modal-container input,
+    .modal-container textarea {
         font-size: 14px;
     }
 }
