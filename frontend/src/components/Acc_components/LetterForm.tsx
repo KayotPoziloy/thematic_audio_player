@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-// import "../../style_lk/LetterForm.css";
 
 interface LetterFormProps {
     onClose: () => void;
@@ -8,7 +7,6 @@ interface LetterFormProps {
 
 const LetterForm: React.FC<LetterFormProps> = ({ onClose }) => {
     const [message, setMessage] = useState("");
-    const [isSent] = useState(false);
     const formRef = useRef<HTMLFormElement>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -20,8 +18,8 @@ const LetterForm: React.FC<LetterFormProps> = ({ onClose }) => {
 
         try {
             await emailjs.send(
-                "iliev7236@gmail.com", //  service_id
-                "template_k5xmmgh", //  template_id для этой формы
+                "iliev7236@gmail.com", // service_id
+                "template_k5xmmgh", // template_id для этой формы
                 templateParams,
                 "WA8qUEajyb5-QylPj" // public key (user_id)
             );
@@ -34,13 +32,13 @@ const LetterForm: React.FC<LetterFormProps> = ({ onClose }) => {
     };
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <button className="close-button" onClick={onClose}>✖</button>
-                <h3>Напишите нам!</h3>
-                {isSent ? (
-                    <p>Ваше сообщение успешно отправлено. Спасибо за обратную связь!</p>
-                ) : (
+        <div className="modal-container">
+            <div className="modal-overlay" onClick={onClose}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <button className="close-button" onClick={onClose}>
+                        ✖
+                    </button>
+                    <h3>Напишите нам!</h3>
                     <form ref={formRef} onSubmit={handleSubmit}>
                         <label htmlFor="message">Ваше сообщение:</label>
                         <textarea
@@ -54,7 +52,7 @@ const LetterForm: React.FC<LetterFormProps> = ({ onClose }) => {
                         />
                         <button type="submit">Отправить</button>
                     </form>
-                )}
+                </div>
             </div>
         </div>
     );
