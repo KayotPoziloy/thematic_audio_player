@@ -10,6 +10,7 @@ import Friends from "./Acc_components/Friends";
 import Cooperation from "./Acc_components/Cooperation";
 import Support from "./Acc_components/Support";
 import { useHandleLogout } from "../model";
+import Admin from "../admin/Admin";
 
 export default function Account() {
     const navigate = useNavigate();
@@ -37,13 +38,13 @@ export default function Account() {
                                     />
                                     <p className="icon-label">НАСТРОЙКИ ПРОФИЛЯ</p>
                                 </div>
-                                <div className="icon-item" onClick={() => navigate("friends")}>
+                                <div className="icon-item" onClick={() => navigate("admin")}>
                                     <img
                                         src="/png_lk/img_5.png"
-                                        alt="Список друзей"
+                                        alt="АДМИН"
                                         className="icon-image"
                                     />
-                                    <p className="icon-label">СПИСОК ДРУЗЕЙ</p>
+                                    <p className="icon-label">АДМИН</p>
                                 </div>
                                 <div className="icon-item" onClick={() => navigate("help")}>
                                     <img
@@ -95,7 +96,7 @@ export default function Account() {
                     }
                 />
                 <Route path="privacy" element={<Privacy />} />
-                <Route path="friends" element={<Friends />} />
+                <Route path="admin/*" element={<Admin />} />
                 <Route path="help" element={<Cooperation />} />
                 <Route path="support" element={<Support />} />
             </Routes>
