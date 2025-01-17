@@ -8,6 +8,7 @@ module.exports = function () {
         DELETE: [adminToken, DELETE],
     };
 
+
     async function POST(req, res) {
         const { playlist_id, name, author, filename, tag } = req.body;
 
@@ -160,7 +161,7 @@ module.exports = function () {
                             },
                             'Music error': {
                                 value: {
-                                     error: { error_code: 0, msg: "Error while update music" }
+                                    error: { error_code: 0, msg: "Error while update music" }
                                 }
                             }
                         }
@@ -237,7 +238,7 @@ module.exports = function () {
                             },
                             'Music error': {
                                 value: {
-                                     error: { error_code: 0, msg: "Error while update music" }
+                                    error: { error_code: 0, msg: "Error while update music" }
                                 }
                             }
                         }
@@ -312,7 +313,7 @@ module.exports = function () {
                             },
                             'Music error': {
                                 value: {
-                                     error: { error_code: 0, msg: "Error while creating music" }
+                                    error: { error_code: 0, msg: "Error while creating music" }
                                 }
                             }
                         }
