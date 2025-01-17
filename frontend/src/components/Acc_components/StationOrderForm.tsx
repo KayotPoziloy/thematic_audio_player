@@ -7,20 +7,18 @@ interface StationOrderFormProps {
 }
 
 const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
-    const formRef = useRef<HTMLFormElement | null>(null); // Референс для формы
+    const formRef = useRef<HTMLFormElement | null>(null);
     const [formData, setFormData] = useState({
         stationName: "",
         songs: "",
         designNotes: "",
         email: "",
-        image: null as File | null,
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
-
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -35,7 +33,7 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
                 "iliev7236@gmail.com", // service_id
                 "template_5bj1k92", // template_id
                 formRef.current,
-                "WA8qUEajyb5-QylPj" //user_id
+                "WA8qUEajyb5-QylPj" // user_id
             );
             alert("Форма отправлена успешно!");
             onClose();
@@ -46,20 +44,22 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
     };
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <button className="close-button" onClick={onClose}>✖</button>
-                <form ref={formRef} onSubmit={handleSubmit}>
-                    <label htmlFor="stationName">Название станции:</label>
-                    <input
-                        id="stationName"
-                        type="text"
-                        name="stationName"
-                        value={formData.stationName}
-                        onChange={handleInputChange}
-                        required
-                    />
-
+        <div className="modal-container">
+            <div className="modal-overlay" onClick={onClose}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <button className="close-button" onClick={onClose}>
+                        ✖
+                    </button>
+                    <form ref={formRef} onSubmit={handleSubmit}>
+                        <label htmlFor="stationName">Название станции:</label>
+                        <input
+                            id="stationName"
+                            type="text"
+                            name="stationName"
+                            value={formData.stationName}
+                            onChange={handleInputChange}
+                            required
+                        />
 
                         <label htmlFor="songs">Список песен для трансляции:</label>
                         <textarea
@@ -71,8 +71,6 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
                             required
                         />
 
-
-
                         <label htmlFor="designNotes">Пожелания по оформлению станции:</label>
                         <textarea
                             id="designNotes"
@@ -82,9 +80,7 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
                             placeholder="Опишите ваши пожелания"
                         />
 
-
-
-                        <label htmlFor="email">Электронная почта для дальнейшего сотрудничества (после заполнения анкеты с Вами свяжется администратор):</label>
+                        <label htmlFor="email">Электронная почта для дальнейшего сотрудничества:</label>
                         <input
                             id="email"
                             type="email"
@@ -94,9 +90,9 @@ const StationOrderForm: React.FC<StationOrderFormProps> = ({ onClose }) => {
                             required
                         />
 
-
-                    <button type="submit">Отправить</button>
-                </form>
+                        <button type="submit">Отправить</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
