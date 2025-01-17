@@ -76,7 +76,7 @@ export const AudioPlayer = () => {
                 </button>
                 <button className="btn" onClick={() => setShow(!show)}>
                     <img className="footer-icon-img"
-                         src="png/Volume.png" alt=""/>
+                         src="/png/Volume.png" alt=""/>
                 </button>
                 {show &&
                     <div className="volume-range">
