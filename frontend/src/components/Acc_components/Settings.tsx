@@ -66,7 +66,6 @@ export default function Settings() {
 
     return (
         <div>
-            <UserHeader avatarImage={avatarImage} backgroundImage={backgroundImage} />
             <div className="settings-page">
                 <div className="settings-options">
                     <div className="option">
