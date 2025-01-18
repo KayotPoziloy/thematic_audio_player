@@ -28,11 +28,15 @@ export default function Settings() {
             alert("Пароль успешно обновлен!");
             setOldPassword("");
             setNewPassword("");
-        } catch (error: any) {
-            console.error("Ошибка при обновлении пароля:", error);
-            alert(
-                (error.response?.data?.error?.msg as string) || "Не удалось обновить пароль."
-            );
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error) && error.response?.data?.error?.msg) {
+                // Если ошибка от Axios с сообщением
+                alert(error.response.data.error.msg);
+            } else {
+                // Общая ошибка
+                console.error("Ошибка при обновлении пароля:", error);
+                alert("Не удалось обновить пароль.");
+            }
         }
     };
 
