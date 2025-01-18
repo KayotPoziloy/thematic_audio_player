@@ -92,7 +92,7 @@
 }
 
 .btn-save {
-    padding: 10px 20px;
+    padding: 8px 100px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -104,3 +104,17 @@
 .btn-save:hover {
     background-color: #0056b3;
 }
+
+.collapsible-header {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: color 0.2s ease-in-out;
+}
+
+.collapsible-header:hover {
+    color: #007bff;
+}
+
+

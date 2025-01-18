@@ -10,7 +10,31 @@ export default function Settings() {
     const [loadingBackground] = useState<boolean>(false);
     const [isEditPanelVisible, setIsEditPanelVisible] = useState<boolean>(false);
     const [userName, setUserName] = useState<string>("");
+    const [oldPassword, setOldPassword] = useState<string>("");
+    const [newPassword, setNewPassword] = useState<string>("");
+    const [isNameSectionVisible, setIsNameSectionVisible] = useState<boolean>(false);
+    const [isPasswordSectionVisible, setIsPasswordSectionVisible] = useState<boolean>(false);
 
+    const handleChangePassword = async () => {
+        try {
+            await axios.put(
+                "http://localhost:4000/api/user/update-password",
+                {
+                    oldPassword,
+                    newPassword,
+                },
+                { withCredentials: true }
+            );
+            alert("Пароль успешно обновлен!");
+            setOldPassword("");
+            setNewPassword("");
+        } catch (error: any) {
+            console.error("Ошибка при обновлении пароля:", error);
+            alert(
+                (error.response?.data?.error?.msg as string) || "Не удалось обновить пароль."
+            );
+        }
+    };
 
     // Обработчик загрузки аватарки
     const handleAvatarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,6 +111,7 @@ export default function Settings() {
             <UserHeader avatarImage={avatarImage} backgroundImage={backgroundImage} />
             <div className="settings-page">
                 <div className="settings-options">
+                    {/* Добавить аватарку */}
                     <div className="option">
                         <label className="settings-button">
                             <img
@@ -103,6 +128,8 @@ export default function Settings() {
                             />
                         </label>
                     </div>
+
+                    {/* Добавить шапку */}
                     <div className="option">
                         <label className="settings-button">
                             <img
@@ -119,6 +146,8 @@ export default function Settings() {
                             />
                         </label>
                     </div>
+
+                    {/* Редактировать данные */}
                     <div className="option">
                         <button
                             className="settings-button"
@@ -133,26 +162,77 @@ export default function Settings() {
                         </button>
                     </div>
                 </div>
+
+                {/* Сообщения загрузки */}
                 {loadingAvatar && <p>Загрузка аватарки...</p>}
                 {loadingBackground && <p>Загрузка фона...</p>}
 
-                {/* Панель редактирования данных */}
+                {/* Панель редактирования */}
                 {isEditPanelVisible && (
                     <div className="edit-panel">
-                        <h2>Редактировать данные</h2>
-                        <div className="form-group">
-                            <label htmlFor="userName">Имя пользователя:</label>
-                            <input
-                                type="text"
-                                id="userName"
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
-                                placeholder="Введите новое имя"
-                            />
+                        <h2 className="edit-panel-title">Редактировать данные</h2>
+
+                        {/* Изменение имени */}
+                        <div className="form-section">
+                            <h3
+                                className="collapsible-header"
+                                onClick={() => setIsNameSectionVisible(!isNameSectionVisible)}
+                            >
+                                Имя пользователя
+                            </h3>
+                            {isNameSectionVisible && (
+                                <div className="form-group">
+                                    <label htmlFor="userName">Новое имя:</label>
+                                    <input
+                                        type="text"
+                                        id="userName"
+                                        value={userName}
+                                        onChange={(e) => setUserName(e.target.value)}
+                                        placeholder="Введите новое имя"
+                                    />
+                                    <button onClick={handleSaveUserName} className="btn-save">
+                                        Сохранить имя
+                                    </button>
+                                </div>
+                            )}
                         </div>
-                        <button onClick={handleSaveUserName} className="btn-save">
-                            Сохранить
-                        </button>
+
+                        {/* Изменение пароля */}
+                        <div className="form-section">
+                            <h3
+                                className="collapsible-header"
+                                onClick={() => setIsPasswordSectionVisible(!isPasswordSectionVisible)}
+                            >
+                                Смена пароля
+                            </h3>
+                            {isPasswordSectionVisible && (
+                                <div>
+                                    <div className="form-group">
+                                        <label htmlFor="oldPassword">Текущий пароль:</label>
+                                        <input
+                                            type="password"
+                                            id="oldPassword"
+                                            value={oldPassword}
+                                            onChange={(e) => setOldPassword(e.target.value)}
+                                            placeholder="Введите текущий пароль"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="newPassword">Новый пароль:</label>
+                                        <input
+                                            type="password"
+                                            id="newPassword"
+                                            value={newPassword}
+                                            onChange={(e) => setNewPassword(e.target.value)}
+                                            placeholder="Введите новый пароль"
+                                        />
+                                    </div>
+                                    <button onClick={handleChangePassword} className="btn-save">
+                                        Сохранить пароль
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 )}
             </div>
