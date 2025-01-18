@@ -6,7 +6,6 @@ import UserHeader from "./Acc_components/UserHeader"; // Шапка профил
 // Импорт компонентов для маршрутов
 import Settings from "./Acc_components/Settings";
 import Privacy from "./Acc_components/Privacy";
-import Friends from "./Acc_components/Friends";
 import Cooperation from "./Acc_components/Cooperation";
 import Support from "./Acc_components/Support";
 import { useHandleLogout } from "../model";
