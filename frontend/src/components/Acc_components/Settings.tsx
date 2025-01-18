@@ -11,6 +11,7 @@ export default function Settings() {
     const [isEditPanelVisible, setIsEditPanelVisible] = useState<boolean>(false);
     const [userName, setUserName] = useState<string>("");
 
+
     // Обработчик загрузки аватарки
     const handleAvatarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
