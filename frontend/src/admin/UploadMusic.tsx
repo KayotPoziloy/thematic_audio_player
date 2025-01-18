@@ -11,7 +11,7 @@ export default function UploadMusic() {
         tag: "",
     });
 
-    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [, setImageFile] = useState<File | null>(null);
     const [audioFile, setAudioFile] = useState<File | null>(null);
     const [message, setMessage] = useState<string | null>(null);
 
@@ -54,7 +54,7 @@ export default function UploadMusic() {
                 console.log("Audio uploaded:", uploadedFilename);
             }
 
-            const musicResponse = await axios.post(
+            await axios.post(
                 `${API_URL}api/music/music`,
                 {
                     ...formData,

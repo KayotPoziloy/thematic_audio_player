@@ -6,10 +6,11 @@ export default function MusicList() {
     const [playlists, setPlaylists] = useState<Array<{ id: number; name: string }>>([]);
     const [musics, setMusics] = useState<Array<{ id: number; playlist_id: number; name: string; author: string; filename: string; tag: string }>>([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState<number | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [selectedMusic, setSelectedMusic] = useState<{ id: number; name: string; author: string; filename: string; tag: string } | null>(null);
-    const [originalMusic, setOriginalMusic] = useState<{ id: number; name: string; author: string; filename: string; tag: string } | null>(null);
+    const [, setOriginalMusic] = useState<{ id: number; name: string; author: string; filename: string; tag: string } | null>(null);
+
 
     useEffect(() => {
         const fetchPlaylists = async () => {
@@ -18,7 +19,7 @@ export default function MusicList() {
                 const response = await axios.get(`${API_URL}api/music/playlists`);
                 setPlaylists(response.data.playlists || []);
             } catch (err) {
-                setError("Ошибка при загрузке плейлистов");
+                setError("Ошибка при загрузке плейлистов:"+ err);
             } finally {
                 setLoading(false);
             }

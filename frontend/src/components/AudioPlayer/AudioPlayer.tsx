@@ -79,8 +79,8 @@ export const AudioPlayer = () => {
                          src="/png/Volume.png" alt=""/>
                 </button>
                 {show &&
-                    <div className="volume-range">
-                        <div className="wrapper">
+                 <div className="volume-range">
+                     <div className="wrapper">
                             <input
                                 id="volume"
                                 type="range"
@@ -90,8 +90,8 @@ export const AudioPlayer = () => {
                                 value={volume}
                                 onChange={handleVolumeChange}
                             />
-                        </div>
-                    </div>}
+                     </div>
+                 </div>}
                 <audio ref={audio}/>
             </div>
         </div>
