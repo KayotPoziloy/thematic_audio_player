@@ -8,6 +8,8 @@ export default function Settings() {
     const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
     const [loadingAvatar, setLoadingAvatar] = useState<boolean>(false);
     const [loadingBackground] = useState<boolean>(false);
+    const [isEditPanelVisible, setIsEditPanelVisible] = useState<boolean>(false);
+    const [userName, setUserName] = useState<string>("");
 
     // Обработчик загрузки аватарки
     const handleAvatarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +66,21 @@ export default function Settings() {
         reader.readAsDataURL(file);
     };
 
+    // Обработчик сохранения имени пользователя
+    const handleSaveUserName = async () => {
+        try {
+            await axios.put(
+                "http://localhost:4000/api/user/update-name",
+                { name: userName },
+                { withCredentials: true }
+            );
+            alert("Имя пользователя успешно обновлено!");
+        } catch (error) {
+            console.error("Ошибка при обновлении имени пользователя:", error);
+            alert("Не удалось обновить имя пользователя.");
+        }
+    };
+
     return (
         <div>
             <UserHeader avatarImage={avatarImage} backgroundImage={backgroundImage} />
@@ -102,7 +119,10 @@ export default function Settings() {
                         </label>
                     </div>
                     <div className="option">
-                        <button className="settings-button">
+                        <button
+                            className="settings-button"
+                            onClick={() => setIsEditPanelVisible(!isEditPanelVisible)}
+                        >
                             <img
                                 src="/png_lk/Settings/img_2.png"
                                 alt="Редактировать данные"
@@ -114,6 +134,26 @@ export default function Settings() {
                 </div>
                 {loadingAvatar && <p>Загрузка аватарки...</p>}
                 {loadingBackground && <p>Загрузка фона...</p>}
+
+                {/* Панель редактирования данных */}
+                {isEditPanelVisible && (
+                    <div className="edit-panel">
+                        <h2>Редактировать данные</h2>
+                        <div className="form-group">
+                            <label htmlFor="userName">Имя пользователя:</label>
+                            <input
+                                type="text"
+                                id="userName"
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                                placeholder="Введите новое имя"
+                            />
+                        </div>
+                        <button onClick={handleSaveUserName} className="btn-save">
+                            Сохранить
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

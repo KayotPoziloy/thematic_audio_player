@@ -40,8 +40,9 @@ export default function Account() {
                                         src="/png_lk/img_5.png"
                                         alt="Список друзей"
                                         className="icon-image"
+
                                     />
-                                    <p className="icon-label">СПИСОК ДРУЗЕЙ</p>
+                                    <p className="icon-label">АДМИН ПАНЕЛЬ</p>
                                 </div>
                                 <div className="icon-item" onClick={() => navigate("help")}>
                                     <img
