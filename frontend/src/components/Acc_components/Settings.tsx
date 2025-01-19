@@ -13,17 +13,13 @@ export default function Settings() {
     const [userName, setUserName] = useState<string>("");
     const [oldPassword, setOldPassword] = useState<string>("");
     const [newPassword, setNewPassword] = useState<string>("");
-    const [isNameSectionVisible, setIsNameSectionVisible] = useState<boolean>(false);
-    const [isPasswordSectionVisible, setIsPasswordSectionVisible] = useState<boolean>(false);
+    const [activeSection, setActiveSection] = useState<string | null>(null); // Track active section
 
     const handleChangePassword = async () => {
         try {
             await axios.put(
                 "http://localhost:4000/api/user/update-password",
-                {
-                    oldPassword,
-                    newPassword,
-                },
+                { oldPassword, newPassword },
                 { withCredentials: true }
             );
             alert("Пароль успешно обновлен!");
@@ -31,17 +27,14 @@ export default function Settings() {
             setNewPassword("");
         } catch (error: unknown) {
             if (axios.isAxiosError(error) && error.response?.data?.error?.msg) {
-                // Если ошибка от Axios с сообщением
                 alert(error.response.data.error.msg);
             } else {
-                // Общая ошибка
                 console.error("Ошибка при обновлении пароля:", error);
                 alert("Не удалось обновить пароль.");
             }
         }
     };
 
-    // Обработчик загрузки аватарки
     const handleAvatarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (!file) return;
@@ -49,11 +42,10 @@ export default function Settings() {
         const reader = new FileReader();
         reader.onload = async () => {
             const base64Image = reader.result as string;
-            setAvatarImage(base64Image); // Для предварительного просмотра
+            setAvatarImage(base64Image);
             setLoadingAvatar(true);
 
             try {
-                // Отправка данных на сервер
                 await axios.put(
                     "http://localhost:4000/api/user/update-avatar",
                     { avatarUrl: base64Image },
@@ -70,7 +62,6 @@ export default function Settings() {
         reader.readAsDataURL(file);
     };
 
-    // Обработчик загрузки фона
     const handleBackgroundChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (!file) return;
@@ -78,10 +69,9 @@ export default function Settings() {
         const reader = new FileReader();
         reader.onload = async () => {
             const base64Image = reader.result as string;
-            setBackgroundImage(base64Image); // Для предварительного просмотра
+            setBackgroundImage(base64Image);
 
             try {
-                // Отправка данных на сервер
                 await axios.put(
                     "http://localhost:4000/api/user/update-background",
                     { backgroundUrl: base64Image },
@@ -96,7 +86,6 @@ export default function Settings() {
         reader.readAsDataURL(file);
     };
 
-    // Обработчик сохранения имени пользователя
     const handleSaveUserName = async () => {
         try {
             await axios.put(
@@ -111,11 +100,15 @@ export default function Settings() {
         }
     };
 
+    const toggleSection = (section: string) => {
+        setActiveSection(activeSection === section ? null : section);
+    };
+
     return (
         <div>
             <div className="settings-page">
                 <div className="settings-options">
-                    {/* Добавить аватарку */}
+                    {/* Add Avatar */}
                     <div className="option">
                         <label className="settings-button">
                             <img
@@ -133,7 +126,7 @@ export default function Settings() {
                         </label>
                     </div>
 
-                    {/* Добавить шапку */}
+                    {/* Add Background */}
                     <div className="option">
                         <label className="settings-button">
                             <img
@@ -151,7 +144,7 @@ export default function Settings() {
                         </label>
                     </div>
 
-                    {/* Редактировать данные */}
+                    {/* Edit Data */}
                     <div className="option">
                         <button
                             className="settings-button"
@@ -167,26 +160,33 @@ export default function Settings() {
                     </div>
                 </div>
 
-                {/* Сообщения загрузки */}
                 {loadingAvatar && <p>Загрузка аватарки...</p>}
                 {loadingBackground && <p>Загрузка фона...</p>}
 
-                {/* Панель редактирования */}
+                {/* Edit Panel */}
                 {isEditPanelVisible && (
-                    <div className="edit-panel">
+                    <div className="unique-edit-panel">
+                        {/* Кнопка закрытия */}
+                        <button
+                            className="unique-close-button"
+                            onClick={() => setIsEditPanelVisible(false)}
+                            aria-label="Close"
+                        >
+                            &times;
+                        </button>
+
                         <h2 className="edit-panel-title">Редактировать данные</h2>
 
-                        {/* Изменение имени */}
-                        <div className="form-section">
+                        {/* Edit Username */}
+                        <div className="unique-form-section">
                             <h3
-                                className="collapsible-header"
-                                onClick={() => setIsNameSectionVisible(!isNameSectionVisible)}
+                                className="unique-collapsible-header"
+                                onClick={() => toggleSection("name")}
                             >
                                 Имя пользователя
                             </h3>
-                            {isNameSectionVisible && (
-                                <div className="form-group">
-                                    <label htmlFor="userName">Новое имя:</label>
+                            {activeSection === "name" && (
+                                <div className="unique-form-group">
                                     <input
                                         type="text"
                                         id="userName"
@@ -194,25 +194,24 @@ export default function Settings() {
                                         onChange={(e) => setUserName(e.target.value)}
                                         placeholder="Введите новое имя"
                                     />
-                                    <button onClick={handleSaveUserName} className="btn-save">
+                                    <button onClick={handleSaveUserName} className="unique-btn-save">
                                         Сохранить имя
                                     </button>
                                 </div>
                             )}
                         </div>
 
-                        {/* Изменение пароля */}
-                        <div className="form-section">
+                        {/* Change Password */}
+                        <div className="unique-form-section">
                             <h3
-                                className="collapsible-header"
-                                onClick={() => setIsPasswordSectionVisible(!isPasswordSectionVisible)}
+                                className="unique-collapsible-header"
+                                onClick={() => toggleSection("password")}
                             >
                                 Смена пароля
                             </h3>
-                            {isPasswordSectionVisible && (
+                            {activeSection === "password" && (
                                 <div>
-                                    <div className="form-group">
-                                        <label htmlFor="oldPassword">Текущий пароль:</label>
+                                    <div className="unique-form-group">
                                         <input
                                             type="password"
                                             id="oldPassword"
@@ -221,8 +220,7 @@ export default function Settings() {
                                             placeholder="Введите текущий пароль"
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="newPassword">Новый пароль:</label>
+                                    <div className="unique-form-group">
                                         <input
                                             type="password"
                                             id="newPassword"
@@ -231,7 +229,7 @@ export default function Settings() {
                                             placeholder="Введите новый пароль"
                                         />
                                     </div>
-                                    <button onClick={handleChangePassword} className="btn-save">
+                                    <button onClick={handleChangePassword} className="unique-btn-save">
                                         Сохранить пароль
                                     </button>
                                 </div>
