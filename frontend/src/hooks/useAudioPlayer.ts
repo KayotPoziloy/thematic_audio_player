@@ -161,6 +161,9 @@ export const useAudioPlayer = () => {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent ) => {
+            if (e.target instanceof HTMLInputElement) {
+                return;
+            }
             switch (e.code) {
                 case "MediaPlayPause":
                 case "KeyP":
