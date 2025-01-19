@@ -18,7 +18,7 @@ export default function Account() {
     const [avatarImage] = useState<string | null>(null);
 
     return (
-        <div className="account-container" style={{ position: "relative", zIndex: 1 }}>
+        <div className="account-container" style={{ position: "relative", zIndex: 1, paddingBottom: "10%"}}>
             <Routes>
                 <Route
                     path="/"
