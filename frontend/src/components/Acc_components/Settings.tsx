@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "../../style_lk/Settings.css";
-import UserHeader from "./UserHeader";
 import axios from "axios";
 
 export default function Settings() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [avatarImage, setAvatarImage] = useState<string | null>(null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
     const [loadingAvatar, setLoadingAvatar] = useState<boolean>(false);
     const [loadingBackground] = useState<boolean>(false);
