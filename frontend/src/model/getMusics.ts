@@ -1,4 +1,3 @@
-import Bugsnag from "@bugsnag/js";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_URL } from "../config";
@@ -30,10 +29,8 @@ export const fetchPlaylistTracks = createAsyncThunk(
             return tracks;
         } catch (error: unknown) {
             if (error instanceof Error) {
-                Bugsnag.notify(error.message)
                 return rejectWithValue(error.message);
             }
-            Bugsnag.notify("Unknown error occurred")
             return rejectWithValue("Unknown error occurred");
         }
     }
