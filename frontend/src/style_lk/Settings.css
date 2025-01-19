@@ -13,7 +13,9 @@
     justify-content: space-around;
     gap: 200px;
     flex-wrap: wrap; /* Для адаптации на маленьких экранах */
-    margin-top: 5%;
+
+    margin-top: 7%;
+
     margin-left: 15%
 }
 
