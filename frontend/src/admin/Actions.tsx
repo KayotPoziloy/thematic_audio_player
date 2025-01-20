@@ -6,6 +6,7 @@ export default function Actions(){
         <div className="d-grid gap-2">
             <Link to="upload" className="btn btn-success w-100 h-100 ">Добавить новую музыку</Link>
             <Link to="musicList" className="btn btn-success w-100 h-100">Список музыки</Link>
+            <Link to="/account" className="btn btn-warning w-100 h-100">Назад</Link>
         </div>
     );
 }
