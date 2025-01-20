@@ -1,15 +1,18 @@
 import axios from "axios";
+import {API_URL} from "../config";
 
 
 export const checkIfLiked = async (trackId: string) => {
     try {
-        const response = await axios.get("http://localhost:4000/api/music/like", {
+        const response = await axios.get(`${API_URL}api/music/like`, {
             params: { id: trackId },
             withCredentials: true,
         });
 
         const likedMusic = response.data.liked;
-        // @ts-ignore
+        /**
+         * @ts-expect-error
+         */
         return likedMusic.some((track: { id: string }) => track.id === trackId);
     } catch (err) {
         console.error("Ошибка при проверке лайка", err);
@@ -17,9 +20,9 @@ export const checkIfLiked = async (trackId: string) => {
     }
 };
 
-export const addLike = async (trackId: string, location: any) => {
+export const addLike = async (trackId: string, location: Location) => {
     try {
-        await axios.put("http://localhost:4000/api/music/like", {
+        await axios.put(`${API_URL}api/music/like`, {
             id: trackId,
         }, {
             withCredentials: true,
@@ -28,14 +31,13 @@ export const addLike = async (trackId: string, location: any) => {
             window.location.reload();
         }
     } catch (err) {
-        // @ts-ignore
-        console.error("Ошибка при добавлении лайка", err.response ? err.response.data : err.message);
+        console.error("Ошибка при добавлении лайка", err);
     }
 };
 
 export const removeLike = async (trackId: string) => {
     try {
-        await axios.delete("http://localhost:4000/api/music/like", {
+        await axios.delete(`${API_URL}api/music/like`, {
             data: { id: trackId },
             withCredentials: true,
         });
@@ -46,7 +48,7 @@ export const removeLike = async (trackId: string) => {
 
 export const getLiked = async () => {
     try {
-        const response = await axios.get('http://localhost:4000/api/music/like', {
+        const response = await axios.get(`${API_URL}api/music/like`, {
             withCredentials: true,
         });
         return response.data.liked;

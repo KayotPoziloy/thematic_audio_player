@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getLiked, removeLike } from '../../model/likeMusic';
 export default function FavoritesList() {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     const [likedTracks, setLikedTracks] = useState<any[]>([]);
 
     useEffect(() => {
@@ -18,7 +19,7 @@ export default function FavoritesList() {
 
     const handleRemoveLike = async (trackId: number) => {
         try {
-            // @ts-ignore
+            // @ts-expect-error: ...
             await removeLike(trackId);
             setLikedTracks(prevTracks => prevTracks.filter(track => track.id !== trackId));
             window.location.reload();

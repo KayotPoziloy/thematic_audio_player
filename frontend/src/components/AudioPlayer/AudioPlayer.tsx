@@ -34,11 +34,11 @@ export const AudioPlayer = () => {
 
     const handleLike = async () => {
         if (liked) {
-            // @ts-ignore
+            // @ts-expect-error: ...
             await removeLike(currentTrack.id);
             setLiked(false);
         } else {
-            // @ts-ignore
+            // @ts-expect-error: ...
             await addLike(currentTrack.id, location);
             setLiked(true);
         }
@@ -66,7 +66,7 @@ export const AudioPlayer = () => {
         const checkLikedStatus = async () => {
             if (!currentTrack) return;
 
-            // @ts-ignore
+            // @ts-expect-error: ...
             const isLiked = await checkIfLiked(currentTrack.id);
             setLiked(isLiked);
         };
