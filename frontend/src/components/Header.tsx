@@ -11,7 +11,7 @@ export default function Header() {
     const isAuth = useSelector((state: { user: UserState }) => state.user.isAuth);
 
     return (
-        <header>
+        <header className={"sticky-top"}>
             <nav className="navbar navbar-expand-lg bg-secondary bg-opacity-50">
                 <div className="container">
                     <div className="collapse navbar-collapse">
