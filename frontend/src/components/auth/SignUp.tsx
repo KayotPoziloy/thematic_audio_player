@@ -36,30 +36,57 @@ export default function SignUp(){
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className="unique-form" onSubmit={handleSubmit}>
                 <h1 className="h3 mb-3 fw-normal">Регистрация</h1>
 
-                <div className="mb-3">
-                    <input type="email" className="form-control" id="email" name="email"
-                           placeholder="Введите email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                <div>
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="Введите email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        name="password"
+                        placeholder="Введите пароль"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="passwordConfirm"
+                        name="passwordConfirm"
+                        placeholder="Подтвердите пароль"
+                        value={passwordConfirm}
+                        onChange={(e) => setPasswordConfirm(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        name="name"
+                        placeholder="Введите имя"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </div>
 
-                <div className="mb-3">
-                    <input type="password" className="form-control" id="password" name="password"
-                           placeholder="Введите пароль" value={password} onChange={(e)=> setPassword(e.target.value)}/>
-                </div>
-
-                <div className="mb-3">
-                    <input type="password" className="form-control" id="passwordConfirm" name="passwordConfirm"
-                           placeholder="Подтвердите пароль" value={passwordConfirm} onChange={(e)=> setPasswordConfirm(e.target.value)}/>
-                </div>
-
-                <div className="mb-3">
-                    <input type="text" className="form-control" id="name" name="name"
-                           placeholder="Введите имя" value={name} onChange={(e)=> setName(e.target.value)}/>
-                </div>
-
-                <button className="btn btn-primary w-100 py-2" type="submit">Зарегистрироваться</button>
+                <button className="btn btn-primary w-100 py-2" type="submit">
+                    Зарегистрироваться
+                </button>
 
                 {confirmError && <div className="text-danger">{confirmError}</div>}
                 {authError && <div className="text-danger">{authError}</div>}

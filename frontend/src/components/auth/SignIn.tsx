@@ -26,10 +26,10 @@ export default function SignIn() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className="unique-form" onSubmit={handleSubmit}>
                 <h1 className="h3 mb-3 fw-normal">Вход</h1>
 
-                <div className="form-floating">
+                <div>
                     <input
                         type="text"
                         className="form-control"
@@ -39,9 +39,8 @@ export default function SignIn() {
                         value={login}
                         onChange={(e) => setLogin(e.target.value)}
                     />
-                    <label htmlFor="username">Введите почту</label>
                 </div>
-                <div className="form-floating">
+                <div>
                     <input
                         type="password"
                         className="form-control"
@@ -51,7 +50,6 @@ export default function SignIn() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <label htmlFor="password">Введите пароль</label>
                 </div>
 
                 <button className="btn btn-primary w-100 py-2" type="submit">

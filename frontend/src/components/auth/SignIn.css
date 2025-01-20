@@ -1,4 +1,4 @@
-form {
+.unique-form {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -6,10 +6,40 @@ form {
     justify-content: flex-start;
     width: 100%;
     max-width: 400px;
-    margin: 100px auto 0; /* Центрируем форму и учитываем высоту шапки */
+    margin: 100px auto 0; /* Центрирование */
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     gap: 15px;
+}
+
+.unique-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Учитывает padding и border */
+}
+
+.unique-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.unique-form button:hover {
+    background-color: #0056b3;
+}
+
+.unique-form .text-danger {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 }

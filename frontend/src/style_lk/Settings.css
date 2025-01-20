@@ -1,6 +1,6 @@
 /* Стили для страницы настроек */
 .settings-page {
-    padding: 20px;
+    padding: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +13,9 @@
     justify-content: space-around;
     gap: 200px;
     flex-wrap: wrap; /* Для адаптации на маленьких экранах */
+
     margin-top: 7%;
+
     margin-left: 15%
 }
 
@@ -68,3 +70,86 @@
         height: 60px;
     }
 }
+
+
+.unique-edit-panel {
+    position: absolute; /* Фиксация позиции относительно окна браузера */
+    top: 40%; /* Отцентровка по вертикали */
+    left: 50%; /* Отцентровка по горизонтали */
+    transform: translate(-50%, -50%); /* Смещение для полного центрирования */
+    padding: 100px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавление тени для красоты */
+    z-index: 100; /* Убедись, что форма выше других элементов */
+}
+
+.unique-edit-panel .unique-form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; /* Расстояние между полем ввода и кнопкой */
+    margin-bottom: 15px;
+}
+
+.unique-edit-panel .unique-form-group input {
+    flex: 1; /* Поле ввода занимает всё доступное пространство */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.unique-edit-panel .unique-btn-save {
+    display: inline-block; /* Устанавливает кнопке блочное поведение внутри строки */
+    padding: 10px 7px; /* Внутренние отступы */
+    background-color: #007bff; /* Синий фон */
+    color: white; /* Белый текст */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Закругление углов */
+    cursor: pointer; /* Курсор указателя при наведении */
+    transition: background-color 0.3s ease-in-out; /* Плавный переход для изменения цвета фона */
+    white-space: nowrap; /* Запрещаем перенос текста */
+    font-size: 16px; /* Размер шрифта */
+    min-width: 150px; /* Минимальная ширина кнопки */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.unique-edit-panel .unique-btn-save:hover {
+    background-color: #0056b3; /* Более тёмный оттенок синего при наведении */
+}
+
+.unique-edit-panel .unique-btn-save:hover {
+    background-color: #0056b3;
+}
+
+.unique-edit-panel .unique-collapsible-header {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: color 0.2s ease-in-out;
+}
+
+.unique-edit-panel .unique-collapsible-header:hover {
+    color: #007bff;
+}
+.unique-close-button {
+    position: absolute;
+    top: 10px; /* Отступ сверху */
+    right: 10px; /* Отступ справа */
+    background: none; /* Убираем фон */
+    border: none; /* Убираем рамку */
+    color: #333; /* Цвет крестика */
+    font-size: 24px; /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+    cursor: pointer; /* Указатель при наведении */
+    transition: color 0.3s ease-in-out; /* Плавный переход цвета */
+}
+
+.unique-close-button:hover {
+    color: #ff0000; /* Красный цвет при наведении */
+}
+
