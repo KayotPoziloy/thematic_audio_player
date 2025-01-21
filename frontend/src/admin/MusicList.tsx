@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../config";
+import {Link} from "react-router-dom";
 
 export default function MusicList() {
     const [playlists, setPlaylists] = useState<Array<{ id: number; name: string }>>([]);
@@ -81,7 +82,7 @@ export default function MusicList() {
                                 key={playlist.id}
                                 className={`list-group-item ${selectedPlaylist === playlist.id ? "active" : ""}`}
                                 onClick={() => fetchMusics(playlist.id)}
-                                style={{ cursor: "pointer" }}
+                                style={{cursor: "pointer"}}
                             >
                                 {playlist.name}
                             </li>
@@ -118,12 +119,13 @@ export default function MusicList() {
                                             className="btn btn-warning w-100"
                                             onClick={() => {
                                                 setSelectedMusic(music);
-                                                setOriginalMusic({ ...music });
+                                                setOriginalMusic({...music});
                                             }}
                                         >
                                             Редактировать
                                         </button>
-                                        <button className="btn btn-danger w-100" onClick={() => handleDeleteMusic(music.id)}>
+                                        <button className="btn btn-danger w-100"
+                                                onClick={() => handleDeleteMusic(music.id)}>
                                             Удалить
                                         </button>
                                     </td>
@@ -141,7 +143,7 @@ export default function MusicList() {
                 <div>
                     <h4>Редактировать музыку</h4>
                     <form
-                        style={{ marginTop: '10px', marginBottom: '40px' }}
+                        style={{marginTop: '10px', marginBottom: '40px'}}
                         onSubmit={(e) => {
                             e.preventDefault();
                             handleUpdateMusic(selectedMusic.id, {
@@ -158,7 +160,7 @@ export default function MusicList() {
                                 type="text"
                                 className="form-control"
                                 value={selectedMusic.name}
-                                onChange={(e) => setSelectedMusic({ ...selectedMusic, name: e.target.value })}
+                                onChange={(e) => setSelectedMusic({...selectedMusic, name: e.target.value})}
                             />
                         </div>
                         <div className="form-group">
@@ -167,7 +169,7 @@ export default function MusicList() {
                                 type="text"
                                 className="form-control"
                                 value={selectedMusic.author}
-                                onChange={(e) => setSelectedMusic({ ...selectedMusic, author: e.target.value })}
+                                onChange={(e) => setSelectedMusic({...selectedMusic, author: e.target.value})}
                             />
                         </div>
                         <div className="form-group">
@@ -176,7 +178,7 @@ export default function MusicList() {
                                 type="text"
                                 className="form-control"
                                 value={selectedMusic.filename}
-                                onChange={(e) => setSelectedMusic({ ...selectedMusic, filename: e.target.value })}
+                                onChange={(e) => setSelectedMusic({...selectedMusic, filename: e.target.value})}
                             />
                         </div>
                         <div className="form-group">
@@ -185,7 +187,7 @@ export default function MusicList() {
                                 type="text"
                                 className="form-control"
                                 value={selectedMusic.tag}
-                                onChange={(e) => setSelectedMusic({ ...selectedMusic, tag: e.target.value })}
+                                onChange={(e) => setSelectedMusic({...selectedMusic, tag: e.target.value})}
                             />
                         </div>
                         <div className="d-flex gap-2">
@@ -206,6 +208,10 @@ export default function MusicList() {
             )}
 
             {error && <div className="alert alert-danger">{error}</div>}
+
+            <div style={{padding: '10px'}}>
+                <Link to="/account/admin" className="btn btn-warning w-100 h-100">Назад</Link>
+            </div>
         </div>
     );
 }
