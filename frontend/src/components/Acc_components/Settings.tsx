@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "../../style_lk/Settings.css";
-import UserHeader from "./UserHeader";
 import axios from "axios";
 
 export default function Settings() {
-    const [avatarImage, setAvatarImage] = useState<string | null>(null);
-    const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
+    const [, setAvatarImage] = useState<string | null>(null);
+    const [, setBackgroundImage] = useState<string | null>(null);
     const [loadingAvatar, setLoadingAvatar] = useState<boolean>(false);
     const [loadingBackground] = useState<boolean>(false);
 

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import { API_URL } from "../config";
+import {Link} from "react-router-dom";
 
 export default function UploadMusic() {
     const [formData, setFormData] = useState({
@@ -157,6 +158,10 @@ export default function UploadMusic() {
                 </div>
                 <button type="submit" className="btn btn-success w-100">Добавить</button>
             </form>
+
+            <div style={{padding: '10px'}}>
+                <Link to="/account/admin" className="btn btn-warning w-100 h-100">Назад</Link>
+            </div>
 
             {message && (
                 <div className="mt-3">
