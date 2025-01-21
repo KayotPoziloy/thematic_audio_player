@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import "../style_lk/Account.css";
-import UserHeader from "./Acc_components/UserHeader";
+import "../style_lk/Account.css"; // Подключение CSS для оформления
+import UserHeader from "./Acc_components/UserHeader"; // Шапка профиля
+
+// Импорт компонентов для маршрутов
 import Settings from "./Acc_components/Settings";
 import Privacy from "./Acc_components/Privacy";
-import Friends from "./Acc_components/Friends";
 import Cooperation from "./Acc_components/Cooperation";
 import Support from "./Acc_components/Support";
 import { useHandleLogout } from "../model";
+import Admin from "../admin/Admin";
 
 export default function Account() {
     const navigate = useNavigate();
@@ -16,7 +18,7 @@ export default function Account() {
     const [avatarImage] = useState<string | null>(null);
 
     return (
-        <div className="account-container" style={{ position: "relative", zIndex: 1 }}>
+        <div className="account-container" style={{ position: "relative", zIndex: 1, paddingBottom: "10%"}}>
             <Routes>
                 <Route
                     path="/"
@@ -35,13 +37,13 @@ export default function Account() {
                                     />
                                     <p className="icon-label">НАСТРОЙКИ ПРОФИЛЯ</p>
                                 </div>
-                                <div className="icon-item" onClick={() => navigate("friends")}>
+                                <div className="icon-item" onClick={() => navigate("admin")}>
                                     <img
                                         src="/png_lk/img_5.png"
-                                        alt="Список друзей"
+                                        alt="АДМИН"
                                         className="icon-image"
                                     />
-                                    <p className="icon-label">СПИСОК ДРУЗЕЙ</p>
+                                    <p className="icon-label">АДМИН</p>
                                 </div>
                                 <div className="icon-item" onClick={() => navigate("help")}>
                                     <img
@@ -67,6 +69,7 @@ export default function Account() {
                                     />
                                     <p className="icon-label">АВТОРСКИЕ ПРАВА</p>
                                 </div>
+                                {/* Кнопка выхода с обработчиком */}
                                 <div className="icon-item" onClick={handleLogout}>
                                     <img
                                         src="/png_lk/img_2.png"
@@ -92,7 +95,7 @@ export default function Account() {
                     }
                 />
                 <Route path="privacy" element={<Privacy />} />
-                <Route path="friends" element={<Friends />} />
+                <Route path="admin/*" element={<Admin />} />
                 <Route path="help" element={<Cooperation />} />
                 <Route path="support" element={<Support />} />
             </Routes>
