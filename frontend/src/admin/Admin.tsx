@@ -7,7 +7,7 @@ import MusicList from "./MusicList";
 
 export default function Admin(){
     return (
-        <div style={{position:"relative", margin: '5px'}} className="flex-grow-1 d-flex align-items-center justify-content-center">
+        <div style={{position:"relative", margin: '5px', paddingTop:'150px'}} className="flex-grow-1 d-flex align-items-center justify-content-center">
             <Routes>
                 <Route path="" element={<Actions/>}/>
                 <Route path="upload" element={<UploadMusic/>}/>
