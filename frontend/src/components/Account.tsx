@@ -104,6 +104,7 @@ export default function Account() {
                             <UserHeader
                                 backgroundImage={backgroundImage}
                                 avatarImage={avatarImage}
+                                userName={userName}
                             />
                             <Settings onUpdateUser={handleUpdateUser} />
                         </>
