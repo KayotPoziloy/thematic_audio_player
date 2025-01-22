@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../style_lk/Settings.css";
 import axios from "axios";
 
-export default function Settings() {
+export default function Settings({ onUpdateUser }: { onUpdateUser: (data: { avatar?: string; background?: string; name?: string }) => void }) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [avatarImage, setAvatarImage] = useState<string | null>(null);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -52,6 +52,7 @@ export default function Settings() {
                     { avatarUrl: base64Image },
                     { withCredentials: true }
                 );
+                onUpdateUser({ avatar: base64Image }); // Обновляем состояние в `UserHeader`
                 alert("Аватарка успешно обновлена!");
             } catch (error) {
                 console.error("Ошибка при загрузке аватарки:", error);
@@ -62,6 +63,7 @@ export default function Settings() {
         };
         reader.readAsDataURL(file);
     };
+
 
     const handleBackgroundChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -78,6 +80,7 @@ export default function Settings() {
                     { backgroundUrl: base64Image },
                     { withCredentials: true }
                 );
+                onUpdateUser({ background: base64Image }); // Обновляем состояние в `UserHeader`
                 alert("Шапка успешно обновлена!");
             } catch (error) {
                 console.error("Ошибка при загрузке шапки:", error);
@@ -87,6 +90,7 @@ export default function Settings() {
         reader.readAsDataURL(file);
     };
 
+
     const handleSaveUserName = async () => {
         try {
             await axios.put(
@@ -94,6 +98,7 @@ export default function Settings() {
                 { name: userName },
                 { withCredentials: true }
             );
+            onUpdateUser({ name: userName }); // Обновляем состояние в `UserHeader`
             alert("Имя пользователя успешно обновлено!");
         } catch (error) {
             console.error("Ошибка при обновлении имени пользователя:", error);

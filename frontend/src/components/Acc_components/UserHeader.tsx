@@ -3,8 +3,9 @@ import "../../style_lk/Account.css";
 import axios from "axios";
 
 type UserHeaderProps = {
-    backgroundImage?: string | null; // Локально загружаемая шапка, имеет приоритет
-    avatarImage?: string | null; // Локально загружаемая аватарка, имеет приоритет
+    backgroundImage?: string | null;
+    avatarImage?: string | null;
+    userName?: string;
 };
 
 type UserData = {
@@ -27,7 +28,7 @@ export async function fetchUserData() {
     }
 }
 
-const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage }) => {
+const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage, userName }) => {
     const [user, setUser] = useState<UserData | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -36,10 +37,11 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
             try {
                 setLoading(true);
                 const data = await fetchUserData();
-                setUser(data); // Устанавливаем данные пользователя
-            } catch  { console.error("Не удалось загрузить данные пользователя.");
+                setUser(data);
+            } catch {
+                console.error("Не удалось загрузить данные пользователя.");
             } finally {
-                setLoading(false); // Устанавливаем флаг загрузки в false
+                setLoading(false);
             }
         };
 
@@ -47,7 +49,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
     }, []);
 
     if (loading) {
-        return <p>Загрузка...</p>; // Показываем сообщение о загрузке
+        return <p>Загрузка...</p>;
     }
 
     return (
@@ -59,19 +61,14 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
         >
             <div className="avatar-container">
                 <img
-                    src={avatarImage || user?.avatar_url || "/png_lk/1.png"} // Приоритет: локальная -> серверная -> дефолтная
+                    src={avatarImage || user?.avatar_url || "/png_lk/1.png"}
                     alt="Аватар пользователя"
                     className="avatar"
                 />
             </div>
             <div className="user-info">
-                <h3>{user?.name || "Неизвестно"}</h3>
+                <h3>{userName || user?.name || "Неизвестно"}</h3>
                 <p>{user?.login || "Неизвестно"}</p>
-                <div className="icons">
-                    {/* <span>⭐</span> */}
-                    {/* <span>🔊</span> */}
-                    {/* <span>👥</span> */}
-                </div>
             </div>
         </div>
     );

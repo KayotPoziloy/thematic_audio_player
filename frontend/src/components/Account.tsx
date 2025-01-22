@@ -14,8 +14,14 @@ import Admin from "../admin/Admin";
 export default function Account() {
     const navigate = useNavigate();
     const { handleLogout } = useHandleLogout();
-    const [backgroundImage] = useState<string | null>(null);
-    const [avatarImage] = useState<string | null>(null);
+    const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
+    const [avatarImage, setAvatarImage] = useState<string | null>(null);
+    const [userName, setUserName] = useState<string>("");
+    const handleUpdateUser = (data: { avatar?: string; background?: string; name?: string }) => {
+        if (data.avatar) setAvatarImage(data.avatar);
+        if (data.background) setBackgroundImage(data.background);
+        if (data.name) setUserName(data.name);
+    };
 
     return (
         <div className="account-container" style={{ position: "relative", zIndex: 1, paddingBottom: "10%"}}>
@@ -99,7 +105,7 @@ export default function Account() {
                                 backgroundImage={backgroundImage}
                                 avatarImage={avatarImage}
                             />
-                            <Settings />
+                            <Settings onUpdateUser={handleUpdateUser} />
                         </>
                     }
                 />
