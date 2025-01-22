@@ -15,6 +15,7 @@ export default function Settings() {
     const [newPassword, setNewPassword] = useState<string>("");
     const [activeSection, setActiveSection] = useState<string | null>(null); // Track active section
 
+
     const handleChangePassword = async () => {
         try {
             await axios.put(
