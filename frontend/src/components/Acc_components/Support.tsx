@@ -28,6 +28,7 @@ export default function Support() {
                         src="/png_lk/Support/img.png"
                         alt="Поддержать проект"
                         className="support-icon"
+                        tabIndex={0}
                     />
                     <span>ПОДДЕРЖАТЬ ПРОЕКТ</span>
                 </div>
@@ -36,6 +37,7 @@ export default function Support() {
                         src="/png_lk/Support/img_1.png"
                         alt="Почта для Ваших писем"
                         className="support-icon"
+                        tabIndex={0}
                     />
                     <span>ПОЧТА ДЛЯ ВАШИХ ПИСЕМ</span>
                 </div>
