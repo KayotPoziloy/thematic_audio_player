@@ -109,15 +109,15 @@ export default function Settings() {
         <div>
             <div className="settings-page">
                 <div className="settings-options">
-                    {/* Add Avatar */}
                     <div className="option">
                         <label className="settings-button">
                             <img
                                 src="/png_lk/Settings/img.png"
                                 alt="Добавить фото пользователя"
                                 className="settings-icon"
+
                             />
-                            <span>ДОБАВИТЬ АВАТАРКУ</span>
+                            <span tabIndex={0}>ДОБАВИТЬ АВАТАРКУ</span>
                             <input
                                 type="file"
                                 accept="image/*"
@@ -135,7 +135,7 @@ export default function Settings() {
                                 alt="Добавить шапку пользователя"
                                 className="settings-icon"
                             />
-                            <span>ДОБАВИТЬ ШАПКУ</span>
+                            <span tabIndex={0}>ДОБАВИТЬ ШАПКУ</span>
                             <input
                                 type="file"
                                 accept="image/*"
@@ -144,8 +144,6 @@ export default function Settings() {
                             />
                         </label>
                     </div>
-
-                    {/* Edit Data */}
                     <div className="option">
                         <button
                             className="settings-button"
@@ -156,7 +154,7 @@ export default function Settings() {
                                 alt="Редактировать данные"
                                 className="settings-icon"
                             />
-                            <span>РЕДАКТИРОВАТЬ ДАННЫЕ</span>
+                            <span tabIndex={0}>РЕДАКТИРОВАТЬ ДАННЫЕ</span>
                         </button>
                     </div>
                 </div>
@@ -166,12 +164,13 @@ export default function Settings() {
 
                 {/* Edit Panel */}
                 {isEditPanelVisible && (
-                    <div className="unique-edit-panel">
+                    <div className="unique-edit-panel" tabIndex={0}>
                         {/* Кнопка закрытия */}
                         <button
                             className="unique-close-button"
                             onClick={() => setIsEditPanelVisible(false)}
                             aria-label="Close"
+                            tabIndex={0}
                         >
                             &times;
                         </button>
@@ -183,6 +182,7 @@ export default function Settings() {
                             <h3
                                 className="unique-collapsible-header"
                                 onClick={() => toggleSection("name")}
+                                tabIndex={0}
                             >
                                 Имя пользователя
                             </h3>
@@ -194,8 +194,13 @@ export default function Settings() {
                                         value={userName}
                                         onChange={(e) => setUserName(e.target.value)}
                                         placeholder="Введите новое имя"
+                                        tabIndex={0}
                                     />
-                                    <button onClick={handleSaveUserName} className="unique-btn-save">
+                                    <button
+                                        onClick={handleSaveUserName}
+                                        className="unique-btn-save"
+                                        tabIndex={0}
+                                    >
                                         Сохранить имя
                                     </button>
                                 </div>
@@ -207,6 +212,7 @@ export default function Settings() {
                             <h3
                                 className="unique-collapsible-header"
                                 onClick={() => toggleSection("password")}
+                                tabIndex={0}
                             >
                                 Смена пароля
                             </h3>
@@ -219,6 +225,7 @@ export default function Settings() {
                                             value={oldPassword}
                                             onChange={(e) => setOldPassword(e.target.value)}
                                             placeholder="Введите текущий пароль"
+                                            tabIndex={0}
                                         />
                                     </div>
                                     <div className="unique-form-group">
@@ -228,9 +235,14 @@ export default function Settings() {
                                             value={newPassword}
                                             onChange={(e) => setNewPassword(e.target.value)}
                                             placeholder="Введите новый пароль"
+                                            tabIndex={0}
                                         />
                                     </div>
-                                    <button onClick={handleChangePassword} className="unique-btn-save">
+                                    <button
+                                        onClick={handleChangePassword}
+                                        className="unique-btn-save"
+                                        tabIndex={0}
+                                    >
                                         Сохранить пароль
                                     </button>
                                 </div>
