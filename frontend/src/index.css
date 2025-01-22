@@ -56,3 +56,16 @@ main{
 .right-sided{
   right: 0;
 }
+@media screen and (max-width: 500px){
+  header, .container{
+    height: 50px;
+  }
+  .collapse:not(.show) {
+    display: block !important;
+  }
+  .account{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+}
