@@ -56,7 +56,7 @@ main{
 .right-sided{
   right: 0;
 }
-@media screen and (max-width: 500px){
+@media screen and (max-width: 1000px){
   header, .container{
     height: 50px;
   }
