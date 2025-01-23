@@ -49,7 +49,10 @@ export default function FavoritesList() {
         <div className="d-flex justify-content-center w-100">
             <div style={{position: 'relative', paddingBottom: '100px'}}>
                 {likedTracks.length === 0 ? (
-                    <p>Нет избранных треков.</p>
+                    <div>
+                        <p>Нет избранных треков.</p>
+                        <button className="btn btn-warning w-100" onClick={() => navigate(-1)}>Назад</button>
+                    </div>
                 ) : (
                     <div className="container">
                         <h3>Ваши избранные треки:</h3>
@@ -80,11 +83,11 @@ export default function FavoritesList() {
                                 </div>
                             ))}
                         </div>
+                        <div className="p-2 d-flex justify-content-center">
+                            <button className="btn btn-warning" onClick={() => navigate(-1)}>Назад</button>
+                        </div>
                     </div>
                 )}
-                <div className="container p-2 d-flex justify-content-center w-100">
-                    <button className="btn btn-warning" onClick={() => navigate(-1)}>Назад</button>
-                </div>
             </div>
         </div>
     );
