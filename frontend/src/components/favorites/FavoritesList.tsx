@@ -63,7 +63,7 @@ export default function FavoritesList() {
                                             <p>{track.author}</p>
                                         </div>
                                     </div>
-                                    <div className="d-flex gap-2"> {/* Добавлен div для выравнивания кнопок */}
+                                    <div className="d-flex gap-2">
                                         <button
                                             className="btn btn-primary w-50"
                                             onClick={() => handleStartLikedTrack(track.id, track.playlist_id)}
