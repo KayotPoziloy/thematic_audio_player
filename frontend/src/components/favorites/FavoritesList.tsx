@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { getLiked, removeLike } from '../../model/likeMusic';
+import {useNavigate} from "react-router-dom";
+import {playTrack} from "../../reducers/audioSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../reducers";
+import {changePlaylist} from "../../reducers/playlistSlice";
 export default function FavoritesList() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const [likedTracks, setLikedTracks] = useState<any[]>([]);
+    const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+    const tracks = useSelector((state: RootState) => state.audio.tracks);
 
     useEffect(() => {
         const fetchLikedTracks = async () => {
@@ -28,9 +36,18 @@ export default function FavoritesList() {
         }
     };
 
+    const handleStartLikedTrack = async (trackId: any, playlist_id: any) => {
+        dispatch(changePlaylist(playlist_id));
+        const trackIndex = tracks.findIndex((track) => track.id === trackId);
+
+        if (trackIndex !== -1) {
+            dispatch(playTrack(trackIndex));
+        }
+    }
+
     return (
         <div className="d-flex justify-content-center w-100">
-            <div style={{ position: 'relative', paddingBottom: '100px'}}>
+            <div style={{position: 'relative', paddingBottom: '100px'}}>
                 {likedTracks.length === 0 ? (
                     <p>Нет избранных треков.</p>
                 ) : (
@@ -38,21 +55,36 @@ export default function FavoritesList() {
                         <h3>Ваши избранные треки:</h3>
                         <div className="list-group">
                             {likedTracks.map((track) => (
-                                <div key={track.id} className="list-group-item d-flex justify-content-between align-items-center">
+                                <div key={track.id}
+                                     className="list-group-item d-flex justify-content-between align-items-center">
                                     <div className="d-flex align-items-center">
                                         <div>
                                             <h5>{track.name}</h5>
                                             <p>{track.author}</p>
                                         </div>
                                     </div>
-                                    <button
-                                        onClick={() => handleRemoveLike(track.id)}
-                                        className="btn btn-danger w-25">Удалить</button>
+                                    <div className="d-flex gap-2"> {/* Добавлен div для выравнивания кнопок */}
+                                        <button
+                                            className="btn btn-primary w-50"
+                                            onClick={() => handleStartLikedTrack(track.id, track.playlist_id)}
+                                        >
+                                            Выбрать
+                                        </button>
+                                        <button
+                                            onClick={() => handleRemoveLike(track.id)}
+                                            className="btn btn-danger w-50"
+                                        >
+                                            Удалить
+                                        </button>
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
+                <div className="container p-2 d-flex justify-content-center w-100">
+                    <button className="btn btn-warning" onClick={() => navigate(-1)}>Назад</button>
+                </div>
             </div>
         </div>
     );
