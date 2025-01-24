@@ -25,7 +25,10 @@ module.exports = function () {
 
                 const stream = fs.createReadStream(filePath);
                 stream.pipe(res);
-                stream.on('error', (err) => res.status(500).json({ error: { error_code: 500, msg: err } }));
+                stream.on('error', (err) => {
+                    console.log(err);
+                    res.end()
+                });
                 return;
             }
 
@@ -44,7 +47,10 @@ module.exports = function () {
 
             const stream = fs.createReadStream(filePath, { start, end });
             stream.pipe(res);
-            stream.on('error', (err) => res.status(500).json({ error: { error_code: 501, msg: err } }));
+            stream.on('error', (err) => {
+                console.log(err);
+                res.end()
+            });
         });
     }
 
