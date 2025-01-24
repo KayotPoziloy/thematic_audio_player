@@ -15,6 +15,7 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
+
 Bugsnag.start({
     apiKey: BUGSNAG,
     plugins: [new BugsnagPluginReact()]
