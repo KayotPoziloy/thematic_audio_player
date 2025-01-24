@@ -60,7 +60,7 @@ const isDarkImage = (imageUrl: string, callback: (isDark: boolean) => void) => {
     };
 };
 
-const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage }) => {
+const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage, userName }) => {
 
     const [user, setUser] = useState<UserData | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -114,11 +114,11 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
                 }}
             >
                 <div className="username-container">
-                    <h3>{user?.name || "Неизвестно"}</h3>
+                    <h3>{userName || user?.name || "Неизвестно"}</h3>
                     <p>{user?.login || "Неизвестно"}</p>
                 </div>
                 <div className="icons">
-                    {/* <span>⭐</span> */}
+                {/* <span>⭐</span> */}
                     {/* <span>🔊</span> */}
                     {/* <span>👥</span> */}
                 </div>
