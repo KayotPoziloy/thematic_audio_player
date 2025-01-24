@@ -25,6 +25,7 @@ export default function Cooperation() {
                         src="/png_lk/Cooperation/img.png"
                         alt="Анкета для сотрудничества"
                         className="support-icon"
+                        tabIndex={0}
                     />
                     <span>АНКЕТА ДЛЯ СОТРУДНИЧЕСТВА</span>
                 </div>
@@ -33,6 +34,7 @@ export default function Cooperation() {
                         src="/png_lk/Cooperation/img_1.png"
                         alt="Почта для Ваших писем"
                         className="support-icon"
+                        tabIndex={0}
                     />
                     <span>ПОЧТА ДЛЯ ВАШИХ ПИСЕМ</span>
                 </div>

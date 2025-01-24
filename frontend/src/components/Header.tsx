@@ -11,14 +11,14 @@ export default function Header() {
     const isAuth = useSelector((state: { user: UserState }) => state.user.isAuth);
 
     return (
-        <header>
+        <header className={"sticky-top"}>
             <nav className="navbar navbar-expand-lg bg-secondary bg-opacity-50">
                 <div className="container">
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav me-lg-auto">
                             <li className="nav-item"><Dropdown/></li>
                         </ul>
-                        <ul className="navbar-nav">
+                        <ul className="navbar-nav account">
                             {!isAuth ? (
                                 <>
                                     {isAuthPages.includes(location.pathname) ? (
@@ -41,9 +41,14 @@ export default function Header() {
                                 </>
                             ) : (
                                 <>
+                                    <Link to="/favoritesList" className="nav-link nav-item">
+                                        <img className="logo"
+                                             src="/png/Heart.png"
+                                             alt="Избранное"/>
+                                    </Link>
                                     {isAuthPages.includes(location.pathname) ? (
                                         <>
-                                            <Link to="/" className="nav-link nav-item">
+                                        <Link to="/" className="nav-link nav-item">
                                                 <img className="logo"
                                                      src="/png/Vinyl.png"
                                                      alt="Главная"/>

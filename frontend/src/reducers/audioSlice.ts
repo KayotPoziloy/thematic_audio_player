@@ -1,10 +1,7 @@
 import { loadAudioState } from "../utils/localStorage";
-// import { fetchPlaylistTracks } from "../model";
 import { Track } from "../types";
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import axios from "axios";
-import {API_URL} from "../config";
-import Bugsnag from "@bugsnag/js";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchPlaylistTracks } from "../model";
 
 interface AudioState {
     tracks: Track[];
@@ -27,59 +24,6 @@ const initialState: AudioState = {
     error: null,
     duration:savedState?.duration || 0,
 };
-
-const getTrackDuration = (filename: string): Promise<number> => {
-    return new Promise((resolve, reject) => {
-        const audioElement = new Audio(`${API_URL}api/music/m/${filename}`);
-        audioElement.onloadedmetadata = () => {
-            resolve(audioElement.duration);
-        };
-        audioElement.onerror = (error) => {
-            reject(error);
-        };
-    });
-};
-
-export const fetchPlaylistTracks = createAsyncThunk(
-    "audio/fetchPlaylistTracks",
-    async (playlistId: number, {rejectWithValue}) => {
-        try {
-            const response = await axios.post(
-                `${API_URL}api/music/musics`,
-                {id: playlistId},
-                {withCredentials: true}
-            );
-
-            if (response.data.error) {
-                throw new Error(response.data.error);
-            }
-
-            const tracksWithDuration = await Promise.all(
-                response.data.musics.map(async (track: Track) => {
-                    try {
-                        const duration = await getTrackDuration(track.filename);
-                        return {
-                            ...track,
-                            duration,
-                        };
-                    } catch (error) {
-                        Bugsnag.notify(error instanceof Error ? error.message : "Unknown error");
-                        return { ...track, duration: 0 }; // Default to 0 if duration extraction fails
-                    }
-                })
-            );
-
-            return tracksWithDuration;
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                Bugsnag.notify(error.message);
-                return rejectWithValue(error.message);
-            }
-            Bugsnag.notify("Unknown error occurred");
-            return rejectWithValue("Unknown error occurred");
-        }
-    }
-);
 
 const audioSlice = createSlice({
     name: "audio",

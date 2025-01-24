@@ -5,6 +5,7 @@ import Main from "./Main";
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
 import Account from "./Account";
+import FavoritesList from "./favorites/FavoritesList";
 
 export default function Content() {
     return (
@@ -14,6 +15,7 @@ export default function Content() {
                 <Route path="/login" element={<SignIn/>}/>
                 <Route path="/register" element={<SignUp/>}/>
                 <Route path="/account" element={<Account/>}/>
+                <Route path="/favoritesList" element={<FavoritesList/>}/>
             </Routes>
         </main>
     );

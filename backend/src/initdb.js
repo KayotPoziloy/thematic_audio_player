@@ -1,11 +1,10 @@
 const pool = require("./db.js");
-const bcrypt = require("bcrypt");
 
 async function initializeDatabase() {
     try {
         await pool.query('DROP TABLE IF EXISTS users, music, likes, playlist;');
         console.log("Drop database successfully.");
-        
+
         for (let q of [
             `CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,
@@ -13,9 +12,11 @@ async function initializeDatabase() {
                 password VARCHAR(255) NOT NULL,
                 name VARCHAR(255) NOT NULL,
                 privilege INTEGER NOT NULL,
+                avatar_url TEXT,
+                background_url TEXT,
                 avatar VARCHAR(255) NOT NULL DEFAULT 'def.png',
-                header VARCHAR(255) NOT NULL DEFAULT '' 
-            );`,
+                header VARCHAR(255) NOT NULL DEFAULT ''
+                );`,
 
             `CREATE TABLE IF NOT EXISTS playlist (
                 id SERIAL PRIMARY KEY,
@@ -25,7 +26,7 @@ async function initializeDatabase() {
 
             `CREATE TABLE IF NOT EXISTS music (
                 id SERIAL PRIMARY KEY,
-                playlist_id INTEGER REFERENCES playlist(id) ON DELETE CASCADE NOT NULL,
+                playlist_id INTEGER REFERENCES playlist(id) NOT NULL,
                 name VARCHAR(255) NOT NULL,
                 author VARCHAR(255) NOT NULL,
                 filename VARCHAR(255) NOT NULL,
@@ -33,8 +34,8 @@ async function initializeDatabase() {
             );`,
 
             `CREATE TABLE IF NOT EXISTS likes (
-                music_id INTEGER REFERENCES music(id) ON DELETE CASCADE,
-                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+                music_id INTEGER REFERENCES music(id),
+                user_id INTEGER REFERENCES users(id),
                 PRIMARY KEY (music_id, user_id)
             );`
         ]) { await pool.query(q) }
@@ -56,7 +57,6 @@ async function fillDatabase() {
             await pool.query("INSERT INTO music (playlist_id, name, author, filename, tag) VALUES ($1, $2, $3, $4, $5)", [newPlaylist.rows[0].id, x.name, x.author, x.filename, JSON.stringify(x.tag)]);
         }
     }
-    await pool.query("INSERT INTO users (login, password, name, privilege) VALUES ($1, $2, $3, $4)", ["admin", await bcrypt.hash("admin", 10), "admin", 10]);
 }
 
 module.exports = { fillDatabase, initializeDatabase };
