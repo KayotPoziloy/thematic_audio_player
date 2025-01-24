@@ -79,6 +79,17 @@
     font-weight: bold;
     margin-top: 5px;
 }
+
+@media (max-width: 1000px){
+    .icon-image, .icon-item{
+        height: 100px;
+        width: 100px;
+    }
+    .icon-label{
+        font-size: 10px;
+    }
+}
+
 /*.username-container{*/
 /*    background-color: #f0f0f0;*/
 /*    opacity: 0.5;*/
