@@ -9,6 +9,7 @@ import Account from "./components/Account";
 import { Routes } from "react-router";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
+import FavoritesList from "./components/favorites/FavoritesList";
 
 function App() {
     const { selectedPlaylist } = usePlaylists();
@@ -31,6 +32,7 @@ function App() {
                         <Route path="/account/*" element={<Account />} />
                         <Route path="/login" element={<SignIn />} />
                         <Route path="/register" element={<SignUp />} />
+                        <Route path="/favoritesList" element={<FavoritesList />} />
                     </Routes>
                     <Footer />
                 </div>
