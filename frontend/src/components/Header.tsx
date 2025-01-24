@@ -18,7 +18,7 @@ export default function Header() {
                         <ul className="navbar-nav me-lg-auto">
                             <li className="nav-item"><Dropdown/></li>
                         </ul>
-                        <ul className="navbar-nav">
+                        <ul className="navbar-nav account">
                             {!isAuth ? (
                                 <>
                                     {isAuthPages.includes(location.pathname) ? (
