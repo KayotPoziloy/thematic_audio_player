@@ -3,8 +3,9 @@ import "../../style_lk/Account.css";
 import axios from "axios";
 
 type UserHeaderProps = {
-    backgroundImage?: string | null; // Локально загружаемая шапка, имеет приоритет
-    avatarImage?: string | null; // Локально загружаемая аватарка, имеет приоритет
+    backgroundImage?: string | null;
+    avatarImage?: string | null;
+    userName?: string;
 };
 
 type UserData = {
@@ -26,6 +27,7 @@ export async function fetchUserData() {
         throw error;
     }
 }
+
 
 const isDarkImage = (imageUrl: string, callback: (isDark: boolean) => void) => {
     const img = new Image();
@@ -59,6 +61,7 @@ const isDarkImage = (imageUrl: string, callback: (isDark: boolean) => void) => {
 };
 
 const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage }) => {
+
     const [user, setUser] = useState<UserData | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [isTextDark, setIsTextDark] = useState<boolean>(false); // Флаг цвета текста
@@ -119,9 +122,11 @@ const UserHeader: React.FC<UserHeaderProps> = ({ backgroundImage, avatarImage })
                     {/* <span>🔊</span> */}
                     {/* <span>👥</span> */}
                 </div>
+
             </div>
         </div>
     );
 };
 
 export default UserHeader;
+

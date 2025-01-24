@@ -41,9 +41,14 @@ export default function Header() {
                                 </>
                             ) : (
                                 <>
+                                    <Link to="/favoritesList" className="nav-link nav-item">
+                                        <img className="logo"
+                                             src="/png/Heart.png"
+                                             alt="Избранное"/>
+                                    </Link>
                                     {isAuthPages.includes(location.pathname) ? (
                                         <>
-                                            <Link to="/" className="nav-link nav-item">
+                                        <Link to="/" className="nav-link nav-item">
                                                 <img className="logo"
                                                      src="/png/Vinyl.png"
                                                      alt="Главная"/>

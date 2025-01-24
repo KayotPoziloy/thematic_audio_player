@@ -14,8 +14,14 @@ import Admin from "../admin/Admin";
 export default function Account() {
     const navigate = useNavigate();
     const { handleLogout } = useHandleLogout();
-    const [backgroundImage] = useState<string | null>(null);
-    const [avatarImage] = useState<string | null>(null);
+    const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
+    const [avatarImage, setAvatarImage] = useState<string | null>(null);
+    const [userName, setUserName] = useState<string>("");
+    const handleUpdateUser = (data: { avatar?: string; background?: string; name?: string }) => {
+        if (data.avatar) setAvatarImage(data.avatar);
+        if (data.background) setBackgroundImage(data.background);
+        if (data.name) setUserName(data.name);
+    };
 
     return (
         <div className="account-container" style={{ position: "relative", zIndex: 1, paddingBottom: "10%"}}>
@@ -34,6 +40,7 @@ export default function Account() {
                                         src="/png_lk/img_6.png"
                                         alt="Настройки профиля"
                                         className="icon-image"
+                                        tabIndex={0}
                                     />
                                     <p className="icon-label">НАСТРОЙКИ ПРОФИЛЯ</p>
                                 </div>
@@ -42,6 +49,7 @@ export default function Account() {
                                         src="/png_lk/img_5.png"
                                         alt="АДМИН"
                                         className="icon-image"
+                                        tabIndex={0}
 
                                     />
 
@@ -53,6 +61,7 @@ export default function Account() {
                                         src="/png_lk/img_3.png"
                                         alt="Партнерство"
                                         className="icon-image"
+                                        tabIndex={0}
                                     />
                                     <p className="icon-label">ПАРТНЕРСТВО</p>
                                 </div>
@@ -61,6 +70,7 @@ export default function Account() {
                                         src="/png_lk/img_1.png"
                                         alt="Поддержка проекта"
                                         className="icon-image"
+                                        tabIndex={0}
                                     />
                                     <p className="icon-label">ПОДДЕРЖКА ПРОЕКТА</p>
                                 </div>
@@ -69,6 +79,7 @@ export default function Account() {
                                         src="/png_lk/img_4.png"
                                         alt="Авторские права"
                                         className="icon-image"
+                                        tabIndex={0}
                                     />
                                     <p className="icon-label">АВТОРСКИЕ ПРАВА</p>
                                 </div>
@@ -78,6 +89,7 @@ export default function Account() {
                                         src="/png_lk/img_2.png"
                                         alt="Выход из аккаунта"
                                         className="icon-image"
+                                        tabIndex={0}
                                     />
                                     <p className="icon-label">ВЫХОД ИЗ АККАУНТА</p>
                                 </div>
@@ -92,8 +104,9 @@ export default function Account() {
                             <UserHeader
                                 backgroundImage={backgroundImage}
                                 avatarImage={avatarImage}
+                                userName={userName}
                             />
-                            <Settings />
+                            <Settings onUpdateUser={handleUpdateUser} />
                         </>
                     }
                 />

@@ -200,5 +200,6 @@ export const useAudioPlayer = () => {
         handleNext,
         handlePrevious,
         handleVolumeChange,
+        currentTrackIndex
     };
 }
