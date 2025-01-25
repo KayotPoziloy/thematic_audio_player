@@ -29,6 +29,7 @@ module.exports = function () {
                     console.log(err);
                     res.end()
                 });
+                res.on('close', () => { stream.destroy(); });
                 return;
             }
 
@@ -51,6 +52,7 @@ module.exports = function () {
                 console.log(err);
                 res.end()
             });
+            res.on('close', () => { stream.destroy(); });
         });
     }
 

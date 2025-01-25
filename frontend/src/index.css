@@ -7,6 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .bg-image {
@@ -23,9 +24,10 @@ body {
   width: 100%;
 }
 
-footer{
+footer {
   z-index: 2;
   max-height: 10%;
+  width: 100%;
   position: absolute;
   bottom: 0;
 }

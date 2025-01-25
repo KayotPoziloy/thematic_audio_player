@@ -12,6 +12,7 @@ module.exports = function () {
 
         try {
             if (fs.existsSync(filePath)) {
+                res.setHeader('Cache-Control', 'public, max-age=86400');
                 res.sendFile(filePath);
             } else {
                 console.log(filePath);
