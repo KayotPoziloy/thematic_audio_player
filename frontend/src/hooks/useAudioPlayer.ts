@@ -28,7 +28,7 @@ export const useAudioPlayer = () => {
         (state: RootState) => state.audio
     );
     
-    const background = tracks[currentTrackIndex]?.background;
+    const background = tracks[currentTrackIndex]?.background.replace(/^\//, 'http://localhost:4000/');
     const trackName = tracks[currentTrackIndex]?.name;
     const trackAuthor = tracks[currentTrackIndex]?.author;
 

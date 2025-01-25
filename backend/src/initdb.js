@@ -1,5 +1,5 @@
 const pool = require("./db.js");
-
+const bcrypt = require("bcrypt");
 async function initializeDatabase() {
     try {
         await pool.query('DROP TABLE IF EXISTS users, music, likes, playlist;');
@@ -57,6 +57,7 @@ async function fillDatabase() {
             await pool.query("INSERT INTO music (playlist_id, name, author, filename, tag) VALUES ($1, $2, $3, $4, $5)", [newPlaylist.rows[0].id, x.name, x.author, x.filename, JSON.stringify(x.tag)]);
         }
     }
+    await pool.query("INSERT INTO users (login, password, name, privilege) VALUES ($1, $2, $3, $4)", ['admin', await bcrypt.hash('admin', 10), 'admin', 10]);
 }
 
 module.exports = { fillDatabase, initializeDatabase };

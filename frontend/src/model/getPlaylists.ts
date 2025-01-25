@@ -25,8 +25,8 @@ export const fetchPlaylists = createAsyncThunk(
                 return {
                     id: playlist.id,
                     name: playlist.name,
-                    background: tag.background,
-                    pic: tag.pic,
+                    background: tag.background.replace(/^\//,'http://localhost:4000/'),
+                    pic: tag.pic.replace(/^\//, 'http://localhost:4000/'),
                 };
             });
             return playlists;
